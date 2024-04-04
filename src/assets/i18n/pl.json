@@ -1,0 +1,38 @@
+{
+  "appName": "EODK",
+  "appVersion": "Wersja aplikacji",
+  
+  "global": {
+    "actions": {
+      "login": "Zaloguj"
+    },
+    "toast": {
+      "defaultTitle": {
+        "success": "Sukces",
+        "info": "Informacja",
+        "warn": "Ostrzeżenie",
+        "error": "Błąd"
+      }
+    },
+    "validation": {
+      "required": "To pole jest wymagane.",
+      "email": "Wprowadzona wartość powinna być poprawnym adresem email.",
+      "passwordConfirmation": "Hasło nie zostało poprawnie potwierdzone.",
+      "minlength": "Wprowadzona wartość powinna być dłuższa niż {{minlength}} znaków.",
+      "maxlength": "Wprowadzona wartość powinna być krótsza niż {{maxlength}} znaków."
+    }
+  },
+
+  "login": {
+    "errors": {
+      "wrongEmailOrPassword": "Podano błędny e-mail lub hasło.",
+      "anotherError": "Wystąpił problem z logowaniem. Spróbuj ponownie później."
+    },
+    "form": {
+      "email": "E-mail",
+      "password": "Hasło",
+      "remember": "Zapamiętaj mnie",
+      "forgotPassword": "Nie pamiętasz hasła?"
+    }
+  }
+}
