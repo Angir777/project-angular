@@ -11,23 +11,20 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent {
 
-
   constructor(
     private authService: AuthService,
     private router: Router,
-  ) {}
+  ) { }
 
   logout() {
     this.authService
-        .logout()
-        .subscribe({
-          next: (result) => {
-            this.router.navigate(['/login']);
-          },
-          error: (error) => {
-            
-          },
-        });
+      .logout()
+      .subscribe({
+        next: (result) => {
+          this.router.navigate(['/login']);
+        },
+        error: (error) => { },
+      });
   }
 
 }

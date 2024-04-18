@@ -5,21 +5,18 @@ import { LoggedUserService } from '../services/logged-user/logged-user.service';
 
 /**
  * Interceptor dodający token do zapytań wysyłanych przez zalogowanego użytkownika do API.
- * Token musi lecieć, jeśli w API mamy chronione rutingi.
+ * Token musi lecieć, jeśli w API mamy chronione routingi.
  */
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class TokenInterceptor implements HttpInterceptor {
 
   constructor(
     private loggedUserService: LoggedUserService
-  ) {}
+  ) { }
 
-  intercept(
-    request: HttpRequest<any>,
-    next: HttpHandler
-  ): Observable<HttpEvent<any>> {
+  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     if (this.loggedUserService.getToken() !== null) {
       request = request.clone({
         setHeaders: {

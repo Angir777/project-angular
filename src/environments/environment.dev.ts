@@ -12,6 +12,9 @@ export const environment = {
   // API public directory
   serverPublicPath: 'http://localhost:8000/',
 
+  // Defaut toast position
+  TOAST_POSITION: 'top-right',
+
   // Default paginator options
   PAGE_SIZES: [1, 10, 15, 20, 30, 100],
   // The default quantity on the page

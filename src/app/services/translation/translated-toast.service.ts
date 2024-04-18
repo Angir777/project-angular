@@ -3,14 +3,14 @@ import { TranslateService } from '@ngx-translate/core';
 import { MessageService } from 'primeng/api';
 
 /**
- * Tłumaczone komunikaty toast
+ * Tłumaczone komunikaty toast.
  */
 @Injectable({
   providedIn: 'root',
 })
 export class TranslatedToastService {
 
-  // Użycie
+  // Użycie:
   // this.translatedToastService.error('messageTranslation', {var1: "t1", var2:"t2"}, 'titleTranslation');
 
   // Informacja, gdy nie podano tłumaczenia
@@ -21,7 +21,7 @@ export class TranslatedToastService {
     private translateService: TranslateService
   ) { }
 
-  // Przygotowanie tłumaczenia wiadomości
+  // Przygotowanie tłumaczenia wiadomości.
   private prepareMessage(message?: string, translationParameters: any = {}): string | undefined {
     if (message != null) {
       return this.translateService.instant(message, translationParameters);
@@ -29,7 +29,7 @@ export class TranslatedToastService {
     return message;
   }
 
-  // Przygotowanie tłumaczenia tytułu
+  // Przygotowanie tłumaczenia tytułu.
   private prepareTitle(title?: string, translationParameters: any = {}): string | undefined {
     if (title != null) {
       return this.translateService.instant(title, translationParameters);
@@ -37,7 +37,7 @@ export class TranslatedToastService {
     return title;
   }
 
-  // Success toast
+  // Success toast.
   success(message?: string, translationParameters: any = {}, title?: string) {
     const successMessage = message ? this.prepareMessage(message, translationParameters) : this.messageNotFound;
     const prepareTitle = title ? this.prepareTitle(title, translationParameters) : this.translateService.instant('global.toast.defaultTitle.success');
@@ -48,7 +48,7 @@ export class TranslatedToastService {
     });
   }
 
-  // Info toast
+  // Info toast.
   info(message?: string, translationParameters: any = {}, title?: string) {
     const infoMessage = message ? this.prepareMessage(message, translationParameters) : this.messageNotFound;
     const prepareTitle = title ? this.prepareTitle(title, translationParameters) : this.translateService.instant('global.toast.defaultTitle.info');
@@ -59,7 +59,7 @@ export class TranslatedToastService {
     });
   }
 
-  // Warn toast
+  // Warn toast.
   warn(message?: string, translationParameters: any = {}, title?: string) {
     const warnMessage = message ? this.prepareMessage(message, translationParameters) : this.messageNotFound;
     const prepareTitle = title ? this.prepareTitle(title, translationParameters) : this.translateService.instant('global.toast.defaultTitle.warn');
@@ -70,7 +70,7 @@ export class TranslatedToastService {
     });
   }
 
-  // Error toast
+  // Error toast.
   error(message?: string, translationParameters: any = {}, title?: string) {
     const errorMessage = message ? this.prepareMessage(message, translationParameters) : this.messageNotFound;
     const prepareTitle = title ? this.prepareTitle(title, translationParameters) : this.translateService.instant('global.toast.defaultTitle.error');

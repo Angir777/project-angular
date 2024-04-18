@@ -17,19 +17,21 @@ export class LoggedUserService {
     private permissionService: NgxPermissionsService,
   ) {
     const savedLoggedUser = sessionStorage.getItem(LoggedUserService.loggedUserKey) || localStorage.getItem(LoggedUserService.loggedUserKey);
+    
     if (savedLoggedUser) {
       this.loggedUser = JSON.parse(savedLoggedUser);
     }
   }
 
-  // Czy user jest zautoryzowany
+  // Czy user jest zautoryzowany?
   isAuthenticated(): boolean {
     return this.loggedUser !== null;
   }
 
-  // Pobranie uprawnień usera
+  // Pobranie uprawnień usera.
   getPermissions(): string[] {
     const permissions: string[] = [];
+
     if (this.loggedUser != null) {
       this.loggedUser.permissions.forEach((permission, index) => {
         if (permission.name !== null) {
@@ -37,10 +39,11 @@ export class LoggedUserService {
         }
       });
     }
+
     return permissions;
   }
 
-  // Przeładowanie uprawnień usera
+  // Przeładowanie uprawnień usera.
   reloadPermissions() {
     if (!_.isNil(this.loggedUser)) {
       this.permissionService.flushPermissions();
@@ -48,20 +51,20 @@ export class LoggedUserService {
     }
   }
 
-  // Wyczyszczenie uprawnień / wylogowanie
+  // Wyczyszczenie uprawnień / wylogowanie.
   flush() {
     this.permissionService.flushPermissions();
     this.set();
   }
 
-  // Ustawianie danych usera
+  // Ustawianie danych usera.
   set(authUser?: LoggedUser, remember?: boolean) {
     this.loggedUser = authUser || null;
 
     if (this.loggedUser) {
       // Jeśli użytkownik zaznaczy przy logowaniu by go zapamiętać,
       // to po zamknięciu przeglądaki nadal będzie zalogowany, 
-      // aż się sam nie wyloguje lub localstorage się nie wyczyści
+      // aż się sam nie wyloguje lub localstorage się nie wyczyści.
       const selectedStorage = remember ? localStorage : sessionStorage;
       selectedStorage.setItem(
         LoggedUserService.loggedUserKey,
@@ -74,24 +77,26 @@ export class LoggedUserService {
     }
   }
 
-  // Pobranie danych usera
+  // Pobranie danych usera.
   get(): LoggedUser | null {
     return this.loggedUser;
   }
 
-  // Pobranie tokenu
+  // Pobranie tokenu.
   getToken(): Token | null {
     if (this.loggedUser != null) {
       return this.loggedUser.token;
     }
+
     return null;
   }
 
-  // Pobranie header tokenu
+  // Pobranie header tokenu.
   getTokenHeader(): string | null {
     if (this.loggedUser != null) {
       return `${this.loggedUser.tokenType} ${this.loggedUser?.token}`;
     }
+    
     return null;
   }
 }

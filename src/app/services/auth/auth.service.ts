@@ -16,6 +16,7 @@ export class AuthService {
     private loggedUserService: LoggedUserService
   ) {}
 
+  // Logowanie.
   login(authenticationData: LoginInterface): Observable<HttpResponse<LoggedUser>> {
     return this.http
       .post<LoggedUser>(environment.serverUrl + 'auth/login', authenticationData, {
@@ -32,6 +33,7 @@ export class AuthService {
       );
   }
 
+  // Wylogowywanie.
   logout() {
     return this.http
       .get<any>(environment.serverUrl + 'auth/logout', {
@@ -47,6 +49,7 @@ export class AuthService {
       );
   }
 
+  // Rejestracja.
   register(authenticationData: LoginInterface): Observable<HttpResponse<LoggedUser>> {
     return this.http
       .post<LoggedUser>(environment.serverUrl + 'auth/register', authenticationData, {
@@ -54,6 +57,7 @@ export class AuthService {
       });
   }
 
+  // Potwierdzanie konta.
   confirmAccount(code: string): Observable<HttpResponse<any>> {
     return this.http
       .get<any>(environment.serverUrl + 'auth/confirm-account/' + code, {

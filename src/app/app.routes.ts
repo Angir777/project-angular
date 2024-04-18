@@ -12,21 +12,40 @@ import { NotfoundComponent } from './views/notfound/notfound.component';
 import { ErrorComponent } from './layout/error/error.component';
 
 export const routes: Routes = [
-    { path: '', redirectTo: 'login', pathMatch: 'full' },
+    { 
+        path: '', 
+        redirectTo: 'login', 
+        pathMatch: 'full' 
+    },
     {
         path: '',
         component: PublicComponent, 
         children: [
-            { path: 'login', component: LoginComponent },
-            { path: 'register', component: RegisterComponent },
+            { 
+                path: 'login', 
+                component: LoginComponent, 
+                data: { 
+                    title: 'pageTitle.login' 
+                } 
+            },
+            { 
+                path: 'register', 
+                component: RegisterComponent 
+            },
         ]
     },
     {
         path: '',
         component: ErrorComponent,
         children: [
-            { path: '403', component: ForbiddenComponent },
-            { path: '404', component: NotfoundComponent },
+            { 
+                path: '403', 
+                component: ForbiddenComponent 
+            },
+            { 
+                path: '404', 
+                component: NotfoundComponent 
+            },
         ]
     },
     {
@@ -34,10 +53,22 @@ export const routes: Routes = [
         component: DashboardComponent,
         canActivate: [AuthGuard],
         children: [
-            { path: 'home', component: HomeComponent },
-            { path: 'users', component: UsersComponent },
-            { path: 'roles', component: RolesComponent }
+            { 
+                path: 'home', 
+                component: HomeComponent 
+            },
+            { 
+                path: 'users', 
+                component: UsersComponent 
+            },
+            { 
+                path: 'roles', 
+                component: RolesComponent 
+            }
         ]
     },
-    { path: '**', redirectTo: '/404' },
+    { 
+        path: '**', 
+        redirectTo: '/404' 
+    },
 ];

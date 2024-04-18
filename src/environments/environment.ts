@@ -5,7 +5,7 @@ export const environment = {
   APP_VERSION: env.APP_VERSION + '-loc',
 
   // The variable determines whether the build is production or local
-  production: true,
+  production: false,
 
   // API URL
   serverUrl: 'http://localhost:8000/api/',

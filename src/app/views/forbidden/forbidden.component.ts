@@ -7,6 +7,4 @@ import { Component } from '@angular/core';
   templateUrl: './forbidden.component.html',
   styleUrl: './forbidden.component.scss'
 })
-export class ForbiddenComponent {
-
-}
+export class ForbiddenComponent { }

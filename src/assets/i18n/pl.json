@@ -3,6 +3,10 @@
   "appVersion": "Wersja aplikacji",
   
   "global": {
+    "buttons": {
+      "yes": "Tak",
+      "no": "Nie"
+    },
     "actions": {
       "login": "Zaloguj"
     },
@@ -18,9 +22,13 @@
       "required": "To pole jest wymagane.",
       "email": "Wprowadzona wartość powinna być poprawnym adresem email.",
       "passwordConfirmation": "Hasło nie zostało poprawnie potwierdzone.",
-      "minlength": "Wprowadzona wartość powinna być dłuższa niż {{minlength}} znaków.",
-      "maxlength": "Wprowadzona wartość powinna być krótsza niż {{maxlength}} znaków."
+      "minlength": "Wprowadzona wartość powinna być dłuższa niż {{ minlength }} znaków.",
+      "maxlength": "Wprowadzona wartość powinna być krótsza niż {{ maxlength }} znaków."
     }
+  },
+
+  "pageTitle": {
+    "login": "Logowanie"
   },
 
   "login": {
@@ -32,7 +40,8 @@
       "email": "E-mail",
       "password": "Hasło",
       "remember": "Zapamiętaj mnie",
-      "forgotPassword": "Nie pamiętasz hasła?"
+      "forgotPassword": "Nie pamiętasz hasła?",
+      "dupa": "Ptrzykładowy tekst {{ zmienna }} ze zmienna."
     }
   }
 }

@@ -1,3 +1,6 @@
+/**
+ * Model tokenu.
+ */
 export class Token {
   accessToken: string | null = null;
   expiresAt: string | null = null;

@@ -1,3 +1,6 @@
+/**
+ * Bazowy model.
+ */
 export class BaseModel {
   id: number | null = null;
   createdAt: string | null = null;

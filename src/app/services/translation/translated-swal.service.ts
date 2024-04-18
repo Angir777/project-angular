@@ -1,16 +1,52 @@
 import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import swal, { SweetAlertOptions, SweetAlertResult } from 'sweetalert2';
+import Swal, { SweetAlertOptions, SweetAlertResult } from 'sweetalert2';
 
 /**
- * Tłumaczone komunikaty SweetAlert2
+ * Tłumaczone komunikaty SweetAlert2.
  */
 @Injectable({
   providedIn: 'root',
 })
 export class TranslatedSwalService {
-  constructor(private translateService: TranslateService) {}
 
+  // Użycie:
+  // async exampleFunction() {
+  //   const result = await this.translatedSwalService.showAsync(
+  //     {
+  //       icon: 'question',
+  //       title: 'login.form.password',
+  //       text: 'login.form.dupa',
+  //       footer: 'login.form.remember',
+  //       showConfirmButton: true,
+  //       showCancelButton: true,
+  //       confirmButtonText: 'global.buttons.yes',
+  //       cancelButtonText: 'global.buttons.no',
+
+  //       input: 'textarea',
+  //       inputPlaceholder: this.translateService.instant('validation.sweetAlertCommentIsRequired'),
+  //       inputAttributes: {
+  //         'aria-label': 'comment'
+  //       },
+  //       inputValidator: (value) => {
+  //         if (value && value.length < 5) {
+  //           return this.translateService.instant('validation.sweetAlertCommentMinLength')
+  //         } else if (!value) {
+  //           return this.translateService.instant('validation.sweetAlertCommentIsRequired')
+  //         }
+  //       }
+  //     },
+  //     {
+  //       zmienna: "ha ha",
+  //     }
+  //   );
+  // }
+
+  constructor(
+    private translateService: TranslateService
+  ) { }
+
+  // Synchroniczne wywołanie.
   async show(
     settings: SweetAlertOptions = {},
     translationParameters: any = {}
@@ -19,9 +55,11 @@ export class TranslatedSwalService {
       settings,
       translationParameters
     );
-    swal.fire({ ...settings, ...translatedSettings });
+    
+    Swal.fire({ ...translatedSettings });
   }
 
+  // Asynchroniczne wywołanie.
   async showAsync(
     settings: SweetAlertOptions = {},
     translationParameters: any = {}
@@ -30,15 +68,18 @@ export class TranslatedSwalService {
       settings,
       translationParameters
     );
-    return await swal.fire({ ...settings, ...translatedSettings });
+
+    return await Swal.fire({ ...translatedSettings });
   }
 
+  // Przygotowanie tłumaczeń.
   private async prepareSettings(
     settings: SweetAlertOptions = {},
     translationParameters: any = {}
   ): Promise<SweetAlertOptions> {
-    const translatedSettings: SweetAlertOptions = {};
+    const translatedSettings: SweetAlertOptions = { ...settings };
 
+    // Tytuł.
     if (settings.title != null) {
       translatedSettings.title = this.translateService.instant(
         settings.title.toString(),
@@ -46,13 +87,15 @@ export class TranslatedSwalService {
       );
     }
 
+    // Zmienne.
     if (settings.text != null) {
       translatedSettings.text = this.translateService.instant(
         settings.text,
-        translationParameters.text
+        translationParameters
       );
     }
 
+    // Stopka.
     if (settings.footer != null) {
       translatedSettings.footer = this.translateService.instant(
         settings.footer.toString(),
@@ -60,6 +103,7 @@ export class TranslatedSwalService {
       );
     }
 
+    // Przycisk potwierdzenia.
     if (
       settings.confirmButtonText != null &&
       settings.confirmButtonText.length > 0
@@ -71,6 +115,7 @@ export class TranslatedSwalService {
       );
     }
 
+    // Przycisk odrzucenia.
     if (
       settings.cancelButtonText != null &&
       settings.cancelButtonText.length > 0
@@ -84,4 +129,5 @@ export class TranslatedSwalService {
 
     return translatedSettings;
   }
+  
 }

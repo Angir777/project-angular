@@ -8,6 +8,4 @@ import { RouterOutlet } from '@angular/router';
   templateUrl: './error.component.html',
   styleUrl: './error.component.scss'
 })
-export class ErrorComponent {
-
-}
+export class ErrorComponent { }

@@ -3,6 +3,10 @@
   "appVersion": "Application Version",
   
   "global": {
+    "buttons": {
+      "yes": "Yes",
+      "no": "No"
+    },
     "actions": {
       "login": "Log in"
     },
@@ -17,22 +21,27 @@
     "validation": {
       "required": "This field is required.",
       "email": "The entered value should be a valid email address.",
-      "passwordConfirmation": "The password confirmation did not match.",
-      "minlength": "The entered value should be longer than {{minlength}} characters.",
-      "maxlength": "The entered value should be shorter than {{maxlength}} characters."
+      "passwordConfirmation": "The password was not properly confirmed.",
+      "minlength": "The entered value should be longer than {{ minlength }} characters.",
+      "maxlength": "The entered value should be shorter than {{ maxlength }} characters."
     }
+  },
+
+  "pageTitle": {
+    "login": "Login"
   },
 
   "login": {
     "errors": {
-      "wrongEmailOrPassword": "Incorrect email or password.",
+      "wrongEmailOrPassword": "Incorrect email or password provided.",
       "anotherError": "There was a problem with logging in. Please try again later."
     },
     "form": {
       "email": "Email",
       "password": "Password",
       "remember": "Remember me",
-      "forgotPassword": "Forgot your password?"
+      "forgotPassword": "Forgot your password?",
+      "dupa": "Sample text {{ variable }} with variable."
     }
   }
 }

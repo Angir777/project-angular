@@ -1,8 +1,6 @@
-// TODO
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
-
 import * as _ from 'lodash';
 
 /**
@@ -70,7 +68,7 @@ export class FormControlErrorsComponent {
    */
   @Input() customValidationMessages: any = {};
 
-  constructor() {}
+  constructor() { }
 
   /**
    * Funkcja sprawdza, czy dla danej reguły walidacji istnieje klucz tłumaczeń.

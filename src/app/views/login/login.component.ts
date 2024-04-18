@@ -38,7 +38,6 @@ import { faKey, faSpinner, faUser } from '@fortawesome/free-solid-svg-icons';
 export class LoginComponent extends BaseFormComponent implements OnInit {
 
   public loggedUser: LoggedUser | null = null;
-
   appVersion: string = environment.APP_VERSION;
 
   faUser = faUser;
@@ -50,7 +49,7 @@ export class LoginComponent extends BaseFormComponent implements OnInit {
     private loggedUserService: LoggedUserService,
     private formBuilder: FormBuilder,
     private router: Router,
-    private translatedToastService: TranslatedToastService
+    private translatedToastService: TranslatedToastService,
   ) {
     super();
 
