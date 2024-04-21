@@ -5,6 +5,7 @@ import { LoggedUserService } from '../logged-user/logged-user.service';
 import { LoginInterface } from '../../interfaces/login.interface';
 import { LoggedUser } from '../../models/auth/logged-user.model';
 import { environment } from '../../../environments/environment.dev';
+import { RegisterInterface } from '../../interfaces/register.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -50,7 +51,7 @@ export class AuthService {
   }
 
   // Rejestracja.
-  register(authenticationData: LoginInterface): Observable<HttpResponse<LoggedUser>> {
+  register(authenticationData: RegisterInterface): Observable<HttpResponse<LoggedUser>> {
     return this.http
       .post<LoggedUser>(environment.serverUrl + 'auth/register', authenticationData, {
         observe: 'response',

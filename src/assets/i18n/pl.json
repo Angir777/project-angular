@@ -8,7 +8,7 @@
       "no": "Nie"
     },
     "actions": {
-      "login": "Zaloguj"
+     
     },
     "toast": {
       "defaultTitle": {
@@ -28,7 +28,8 @@
   },
 
   "pageTitle": {
-    "login": "Logowanie"
+    "login": "Logowanie",
+    "register": "Rejestracja"
   },
 
   "login": {
@@ -41,7 +42,27 @@
       "password": "Hasło",
       "remember": "Zapamiętaj mnie",
       "forgotPassword": "Nie pamiętasz hasła?",
-      "dupa": "Ptrzykładowy tekst {{ zmienna }} ze zmienna."
+      "register": "Zarejestruj się"
+    },
+    "buttons": {
+      "login": "Zaloguj"
+    }
+  },
+
+  "register": {
+    "errors": {
+      "registrationDisabled": "Aktualnie nie możesz się zarejestrować.",
+      "anotherError": "Wystąpił problem z rejestracją. Spróbuj ponownie później."
+    },
+    "form": {
+      "name": "Nazwa użytkownika",
+      "email": "E-mail",
+      "password": "Hasło",
+      "passwordConfirmation": "Powtórz hasło",
+      "login": "Mam już konto"
+    },
+    "buttons": {
+      "register": "Zarejestruj się"
     }
   }
 }

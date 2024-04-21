@@ -55,7 +55,7 @@
          </div>
       
          <div class="mt-4">
-            <div class="d-flex align-items-center justify-content-between mb-4">
+            <div class="d-flex align-items-center justify-content-between">
                <div class="d-flex align-items-center mb-2">
                   <p-checkbox id="remember" formControlName="remember" [binary]="true"></p-checkbox>
                   <label for="remember" class="ms-2">{{ "login.form.remember" | translate }}</label>
@@ -69,15 +69,26 @@
          <button 
             pButton 
             pRipple 
-            class="p-button-success w-100 d-flex justify-content-center" 
+            class="p-button-success w-100 d-flex justify-content-center mt-4" 
             [disabled]="isLoading || !form.valid"
          >
             <span *ngIf="!isLoading">
-               {{ "global.actions.login" | translate }}
+               {{ "login.buttons.login" | translate }}
             </span>
             <span *ngIf="isLoading">
                <fa-icon [icon]="faSpinner" [spin]="true"></fa-icon>
             </span>
+         </button>
+
+         <button 
+            type="button"
+            *ngIf="canRegistration"
+            pButton 
+            pRipple 
+            class="p-button-secondary w-100 d-flex justify-content-center mt-3"
+            [routerLink]="['/register']"
+         >
+            {{ "login.form.register" | translate }}
          </button>
       </form>
    </div>

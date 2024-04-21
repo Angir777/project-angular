@@ -5,7 +5,7 @@ import { BaseFormComponent } from '../../components/base-component';
 import { LoggedUserService } from '../../services/logged-user/logged-user.service';
 import { environment } from '../../../environments/environment';
 import { LoggedUser } from '../../models/auth/logged-user.model';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { finalize } from 'rxjs';
 import { InputTextModule } from 'primeng/inputtext';
 import { CheckboxModule } from 'primeng/checkbox';
@@ -30,7 +30,8 @@ import { faKey, faSpinner, faUser } from '@fortawesome/free-solid-svg-icons';
     CommonModule,
     TranslateModule,
     RippleModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    RouterModule
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
@@ -39,6 +40,7 @@ export class LoginComponent extends BaseFormComponent implements OnInit {
 
   public loggedUser: LoggedUser | null = null;
   appVersion: string = environment.APP_VERSION;
+  canRegistration: any = environment.REGISTRATION_ENABLED;
 
   faUser = faUser;
   faKey = faKey;
@@ -58,7 +60,7 @@ export class LoginComponent extends BaseFormComponent implements OnInit {
       this.router.navigate(['/home']);
     }
 
-    // Wstawienie przykładowych danych na dev
+    // Utworzenie formularza i wstawienie przykładowych danych jeśli dev
     this.form = this.formBuilder.group({
       email: [
         environment.production ? '' : 'superadmin@mail.com',
