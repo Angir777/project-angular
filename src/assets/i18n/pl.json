@@ -3,12 +3,10 @@
   "appVersion": "Wersja aplikacji",
   
   "global": {
-    "buttons": {
+    "button": {
+      "ok": "OK",
       "yes": "Tak",
       "no": "Nie"
-    },
-    "actions": {
-     
     },
     "toast": {
       "defaultTitle": {
@@ -22,6 +20,7 @@
       "required": "To pole jest wymagane.",
       "email": "Wprowadzona wartość powinna być poprawnym adresem email.",
       "passwordConfirmation": "Hasło nie zostało poprawnie potwierdzone.",
+      "acceptanceRegulations": "Musisz zaakceptować regulamin serwisu.",
       "minlength": "Wprowadzona wartość powinna być dłuższa niż {{ minlength }} znaków.",
       "maxlength": "Wprowadzona wartość powinna być krótsza niż {{ maxlength }} znaków."
     }
@@ -29,40 +28,101 @@
 
   "pageTitle": {
     "login": "Logowanie",
-    "register": "Rejestracja"
+    "register": "Rejestracja",
+    "accountConfirmation": "Potwierdzanie Twojego konta",
+    "passwordReset": "Resetowanie hasła",
+    "passwordResetFinish": "Ustawienie nowego hasła"
   },
 
   "login": {
-    "errors": {
-      "wrongEmailOrPassword": "Podano błędny e-mail lub hasło.",
-      "anotherError": "Wystąpił problem z logowaniem. Spróbuj ponownie później."
+    "error": {
+      "wrongEmailOrPasswordText": "Podano błędny e-mail lub hasło.",
+      "anotherErrorText": "Wystąpił problem z logowaniem."
     },
     "form": {
       "email": "E-mail",
       "password": "Hasło",
       "remember": "Zapamiętaj mnie",
-      "forgotPassword": "Nie pamiętasz hasła?",
-      "register": "Zarejestruj się"
+      "forgotPassword": "Nie pamiętam hasła",
+      "register": "Rejestracja"
     },
-    "buttons": {
+    "button": {
       "login": "Zaloguj"
     }
   },
 
   "register": {
-    "errors": {
-      "registrationDisabled": "Aktualnie nie możesz się zarejestrować.",
-      "anotherError": "Wystąpił problem z rejestracją. Spróbuj ponownie później."
+    "success": {
+      "confirmYourAccountTitle": "Witaj na pokładzie!",
+      "confirmYourAccountText": "Cieszymy się, że z nami jesteś :) Na podany przez Ciebie adres e-mail wysłaliśmy Twój link aktywacyjny. Aktywacja konta pozwala w pełni korzystać z serwisu."
+    },
+    "error": {
+      "registrationDisabledText": "Aktualnie nie możesz się zarejestrować.",
+      "youDontAcceptanceRegulationsText": "Musisz zaakceptować regulamin serwisu.",
+      "anotherErrorText": "Wystąpił problem z rejestracją."
     },
     "form": {
       "name": "Nazwa użytkownika",
       "email": "E-mail",
       "password": "Hasło",
       "passwordConfirmation": "Powtórz hasło",
+      "acceptanceRegulations": "Akceptuję regulamin",
       "login": "Mam już konto"
     },
-    "buttons": {
-      "register": "Zarejestruj się"
+    "button": {
+      "register": "Potwierdzam"
+    }
+  },
+
+  "accountConfirmation": {
+    "success": {
+      "accountConfirmationSuccessText": "Twoje konto zostało potwierdzone! Zaloguj się i w pełni korzystaj z serwisu!"
+    },
+    "error": {
+      "codeInvalidText": "Nie poprawny kod potwierdzenia!",
+      "alreadyConfirmedText": "Konto zostało już potwierdzone!",
+      "anotherErrorText": "Wystąpił problem z potwierdzeniem konta. Spróbuj ponownie."
+    }
+  },
+
+  "passwordReset": {
+    "success": {
+      "passwordResetSuccessText": "Na Twój adres e-mail wysłaliśmy link do resetowania hasła."
+    },
+    "warning": {
+      "tokenExistsText": "Link do resetowania hasła został już wysłany na podany adres e-mail. Sprawdź swoją pocztę."
+    },
+    "error": {
+      "userNotFoundText": "Nie odnaleziono użytkownika o podanym adrese e-mail.",
+      "anotherErrorText": "Wystąpił problem podczas resetowania hasła. Spróbuj ponownie."
+    },
+    "form": {
+      "email": "E-mail",
+      "login": "Pamiętam swoje hasło"
+    },
+    "button": {
+      "passwordReset": "Resetuje swoje hasło"
+    }
+  },
+
+  "passwordResetFinish": {
+    "success": {
+      "passwordResetSuccessText": "Hasło zresetowano pomyślnie."
+    },
+    "error": {
+      "tokenInvalidText": "Błędny token resetowania hasła.",
+      "tokenExpiredText": "Minął czas na dokończenie resetowania hasła.",
+      "userNotFoundText": "Nie odnaleziono użytkownika o podanym adrese e-mail.",
+      "anotherErrorText": "Wystąpił problem podczas resetowania hasła. Spróbuj ponownie."
+    },
+    "form": {
+      "email": "E-mail",
+      "password": "Hasło",
+      "passwordConfirmation": "Powtórz hasło",
+      "login": "Pamiętam swoje hasło"
+    },
+    "button": {
+      "passwordReset": "Potwierdzam"
     }
   }
 }

@@ -6,6 +6,8 @@ import { LoginInterface } from '../../interfaces/login.interface';
 import { LoggedUser } from '../../models/auth/logged-user.model';
 import { environment } from '../../../environments/environment.dev';
 import { RegisterInterface } from '../../interfaces/register.interface';
+import { PasswordResetInterface } from '../../interfaces/password-reset.interface';
+import { FinishResetPasswordInterface } from '../../interfaces/finish-reset-password.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -64,5 +66,21 @@ export class AuthService {
       .get<any>(environment.serverUrl + 'auth/confirm-account/' + code, {
         observe: 'response',
       })
+  }
+
+  // Proźba o zresetowanie hasła.
+  sendResetPasswordEmail(authenticationData: PasswordResetInterface): Observable<HttpResponse<LoggedUser>> {
+    return this.http
+      .post<LoggedUser>(environment.serverUrl + 'auth/send-reset-password-email', authenticationData, {
+        observe: 'response',
+      });
+  }
+
+  // Resetowanie hasła.
+  resetPassword(authenticationData: FinishResetPasswordInterface): Observable<HttpResponse<LoggedUser>> {
+    return this.http
+      .post<LoggedUser>(environment.serverUrl + 'auth/reset-password', authenticationData, {
+        observe: 'response',
+      });
   }
 }

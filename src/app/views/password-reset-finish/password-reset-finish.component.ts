@@ -1,33 +1,30 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth/auth.service';
-import { AbstractControl, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { BaseFormComponent } from '../../components/base-component';
 import { LoggedUserService } from '../../services/logged-user/logged-user.service';
-import { Router, RouterModule } from '@angular/router';
-import { finalize } from 'rxjs';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { TranslatedToastService } from '../../services/translation/translated-toast.service';
+import _ from 'lodash';
+import { FormControlErrorsComponent } from '../../components/form-control-errors/form-control-errors.component';
+import { AbstractControl, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
-import { FormControlErrorsComponent } from '../../components/form-control-errors/form-control-errors.component';
 import { RippleModule } from 'primeng/ripple';
-import { TranslatedToastService } from '../../services/translation/translated-toast.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faKey, faSignature, faSpinner, faUser } from '@fortawesome/free-solid-svg-icons';
-import { RegisterInterface } from '../../interfaces/register.interface';
-import _ from 'lodash';
-import { TranslatedSwalService } from '../../services/translation/translated-swal.service';
-import { CheckboxModule } from 'primeng/checkbox';
 import { AutoFocusModule } from 'primeng/autofocus';
+import { BaseFormComponent } from '../../components/base-component';
+import { FinishResetPasswordInterface } from '../../interfaces/finish-reset-password.interface';
+import { faKey, faSpinner, faUser } from '@fortawesome/free-solid-svg-icons';
+import { finalize } from 'rxjs';
 
 @Component({
-  selector: 'app-register',
+  selector: 'app-new-password',
   standalone: true,
   imports: [
     FormControlErrorsComponent,
     ReactiveFormsModule,
     InputTextModule,
-    CheckboxModule,
     ButtonModule,
     CommonModule,
     TranslateModule,
@@ -36,23 +33,24 @@ import { AutoFocusModule } from 'primeng/autofocus';
     RouterModule,
     AutoFocusModule
   ],
-  templateUrl: './register.component.html',
-  styleUrl: './register.component.scss'
+  templateUrl: './password-reset-finish.component.html',
+  styleUrl: './password-reset-finish.component.scss'
 })
-export class RegisterComponent extends BaseFormComponent implements OnInit {
+export class PasswordResetFinishComponent extends BaseFormComponent implements OnInit {
 
-  faSignature = faSignature;
   faUser = faUser;
   faKey = faKey;
   faSpinner = faSpinner
+
+  code!: string;
 
   constructor(
     private authService: AuthService,
     private loggedUserService: LoggedUserService,
     private formBuilder: FormBuilder,
     private router: Router,
-    private translatedToastService: TranslatedToastService,
-    private translatedSwalService: TranslatedSwalService,
+    private route: ActivatedRoute,
+    private translatedToastService: TranslatedToastService
   ) {
     super();
 
@@ -77,13 +75,9 @@ export class RegisterComponent extends BaseFormComponent implements OnInit {
 
     // Utworzenie formularza
     this.form = this.formBuilder.group({
-      name: [
-        null,
-        [Validators.required, Validators.maxLength(191)],
-      ],
       email: [
         null,
-        [Validators.required, Validators.email, Validators.maxLength(191)],
+        [Validators.required, Validators.email],
       ],
       password: [
         null,
@@ -93,28 +87,31 @@ export class RegisterComponent extends BaseFormComponent implements OnInit {
         null,
         [Validators.required]
       ],
-      acceptanceRegulations: [
-        null,
-        [Validators.required]
-      ]
     }, { validator: passwordMatchValidator});
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.route.params.subscribe((params: any) => {
+      if (!_.isNil(params['code'])) {
+        this.code = params['code'];
+      } else {
+        this.router.navigate(["login"]);
+      }
+    });
+  }
 
-  register() {
+  finishResetPassword() {
     this.isLoading = true;
 
-    const dataToSave: RegisterInterface = {
-      name: this.form.get('name')?.value,
+    const dataToSave: FinishResetPasswordInterface = {
       email: this.form.get('email')?.value,
       password: this.form.get('password')?.value,
       password_confirmation: this.form.get('passwordConfirmation')?.value,
-      acceptance_regulations: this.form.get('acceptanceRegulations')?.value
+      token: this.code
     };
 
     this.authService
-      .register(dataToSave)
+      .resetPassword(dataToSave)
       .pipe(
         finalize(() => {
           this.isLoading = false;
@@ -123,43 +120,27 @@ export class RegisterComponent extends BaseFormComponent implements OnInit {
       .subscribe({
         next: (response) => {
           if (!_.isNil(response.body)) {
+            this.translatedToastService.success('passwordResetFinish.success.passwordResetSuccessText');
             this.form.reset();
-            this.registeredSuccess();
+            this.router.navigate(["login"]);
           }
         },
         error: (error) => {
           // Obsługujemy błędy pól z API
           this.serverErrors = !_.isNil(error.error) && !_.isNil(error.error.errors) ? error.error.errors : [];
           // Obsługujemy pozostałe błędy
-          if (error.error.error === 'YOU_DONT_ACCEPTANCE_REGULATIONS') {
-            this.translatedToastService.error('register.error.youDontAcceptanceRegulationsText');
-            this.form.get('acceptanceRegulations')?.setErrors({ 'acceptanceRegulations': true });
-          } else if (error.error.error === 'REGISTRATION_DISABLED') {
-            this.translatedToastService.error('register.error.registrationDisabledText');
+          if (error.error.error === 'TOKEN_INVALID') {
+            this.translatedToastService.error('passwordResetFinish.error.tokenInvalidText');
+          } else if (error.error.error === 'TOKEN_EXPIRED') {
+            this.translatedToastService.error('passwordResetFinish.error.tokenExpiredText');
+          } else if (error.error.error === 'USER_NOT_FOUND') {
+            this.translatedToastService.error('passwordResetFinish.error.userNotFoundText');
           } else {
-            this.translatedToastService.error('register.error.anotherErrorText');
+            this.translatedToastService.error('passwordResetFinish.error.anotherErrorText');
           }
         },
         complete: () => { },
       });
-  }
-
-  async registeredSuccess() {
-    const result = await this.translatedSwalService.showAsync(
-      {
-        icon: 'success',
-        title: 'register.success.confirmYourAccountTitle',
-        text: 'register.success.confirmYourAccountText',
-        showConfirmButton: true,
-        showCancelButton: false,
-        confirmButtonText: 'global.button.ok',
-      },
-      {}
-    );
-
-    if (result) {
-      this.router.navigate(["login"]);
-    }
   }
 
 }

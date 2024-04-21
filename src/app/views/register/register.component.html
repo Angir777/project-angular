@@ -1,6 +1,6 @@
 <div class="row light-blur-bg rounded-3 p-3 pb-4">
     <div class="col-12">
-       <h1 class="display-4 mt-4 mb-4 text-center">{{ 'pageTitle.register' | translate }}</h1>
+       <h1 class="display-6 mt-4 mb-4 text-center">{{ 'pageTitle.register' | translate }}</h1>
     </div>
     <div class="col-12">
        <form [formGroup]="form" (ngSubmit)="register()">
@@ -11,6 +11,8 @@
                <i><fa-icon [icon]="faSignature"></fa-icon></i>
                <input 
                   pInputText
+                  pAutoFocus 
+                  [autofocus]="true"
                   [ngClass]="getStatus('name')"
                   id="name" 
                   type="name" 
@@ -29,7 +31,7 @@
             ></app-form-control-errors>
          </div>
 
-         <div class="field p-fluid mt-4">
+         <div class="field p-fluid mt-3">
             <label for="email">{{ "register.form.email" | translate }}</label>
             <span class="p-input-icon-left">
                <i><fa-icon [icon]="faUser"></fa-icon></i>
@@ -53,7 +55,7 @@
             ></app-form-control-errors>
          </div>
             
-         <div class="field p-fluid mt-4">
+         <div class="field p-fluid mt-3">
             <label for="password">{{ "register.form.password" | translate }}</label>
             <span class="p-input-icon-left">
                <i><fa-icon [icon]="faKey"></fa-icon></i>
@@ -77,7 +79,7 @@
             ></app-form-control-errors>
          </div>
 
-         <div class="field p-fluid mt-4">
+         <div class="field p-fluid mt-3">
             <label for="password">{{ "register.form.passwordConfirmation" | translate }}</label>
             <span class="p-input-icon-left">
                <i><fa-icon [icon]="faKey"></fa-icon></i>
@@ -100,15 +102,34 @@
                [serverErrors]="getServerErrors('passwordConfirmation')"
             ></app-form-control-errors>
          </div>
+
+         <div class="mt-4">
+            <div class="d-flex align-items-center">
+               <p-checkbox 
+                  id="acceptanceRegulations" 
+                  formControlName="acceptanceRegulations" 
+                  [binary]="true"  
+                  [ngClass]="getStatus('acceptanceRegulations')"
+                  [attr.aria-invalid]="getAriaInvalid('passwordConfirmation')"
+                  (keydown)="clearServerErrors('passwordConfirmation')"
+               ></p-checkbox>
+               <label for="acceptanceRegulations" class="ms-2">{{ "register.form.acceptanceRegulations" | translate }}</label>
+            </div>
+            <app-form-control-errors
+               *ngIf="isFormControlInvalid('acceptanceRegulations')"
+               [errors]="form.get('acceptanceRegulations')?.errors"
+               [serverErrors]="getServerErrors('acceptanceRegulations')"
+            ></app-form-control-errors>
+         </div>
             
          <button 
             pButton 
             pRipple 
-            class="p-button-success w-100 d-flex justify-content-center mt-4" 
+            class="p-button-success w-100 d-flex justify-content-center rounded mt-3" 
             [disabled]="isLoading || !form.valid"
          >
             <span *ngIf="!isLoading">
-               {{ "register.buttons.register" | translate }}
+               {{ "register.button.register" | translate }}
             </span>
             <span *ngIf="isLoading">
                <fa-icon [icon]="faSpinner" [spin]="true"></fa-icon>

@@ -81,6 +81,17 @@
           : { matching: errors?.passwordConfirmation?.requiredMatching }
     }}
   </small>
+
+  <small class="form-text text-danger" *ngIf="errors?.acceptanceRegulations">
+    {{
+      (!hasCustomErrorMessage('acceptanceRegulations')
+        ? 'global.validation.acceptanceRegulations'
+        : customValidationMessages['acceptanceRegulations']
+      )
+        | translate
+          : { matching: errors?.acceptanceRegulations?.requiredMatching }
+    }}
+  </small>
 </ng-container>
 
 <ng-container *ngIf="hasServerErrors()">

@@ -6,4 +6,5 @@ export interface RegisterInterface {
   email: string;
   password: string;
   password_confirmation: string;
+  acceptance_regulations: boolean;
 }

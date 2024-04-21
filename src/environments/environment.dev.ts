@@ -15,6 +15,9 @@ export const environment = {
   // Defaut toast position
   TOAST_POSITION: 'top-right',
 
+  // Czy pozwalamy na rejestrację?
+  REGISTRATION_ENABLED: true,
+
   // Default paginator options
   PAGE_SIZES: [1, 10, 15, 20, 30, 100],
   // The default quantity on the page
@@ -31,7 +34,7 @@ export const environment = {
   // Account menu items
   ACCOUNT_MENU: [
     { title: 'pageTitle.account.changePassword', link: '/account/change-password'},
-    { title: 'global.buttons.logout', data: { key: 'LOGOUT' } },
+    { title: 'global.button.logout', data: { key: 'LOGOUT' } },
   ],
 
   // Checking the application version

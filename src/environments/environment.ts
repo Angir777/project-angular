@@ -34,7 +34,7 @@ export const environment = {
   // Account menu items
   ACCOUNT_MENU: [
     { title: 'pageTitle.account.changePassword', link: '/account/change-password'},
-    { title: 'global.buttons.logout', data: { key: 'LOGOUT' } },
+    { title: 'global.button.logout', data: { key: 'LOGOUT' } },
   ],
 
   // Checking the application version

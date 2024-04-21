@@ -20,8 +20,8 @@ export class TranslatedSwalService {
   //       footer: 'login.form.remember',
   //       showConfirmButton: true,
   //       showCancelButton: true,
-  //       confirmButtonText: 'global.buttons.yes',
-  //       cancelButtonText: 'global.buttons.no',
+  //       confirmButtonText: 'global.button.yes',
+  //       cancelButtonText: 'global.button.no',
 
   //       input: 'textarea',
   //       inputPlaceholder: this.translateService.instant('validation.sweetAlertCommentIsRequired'),

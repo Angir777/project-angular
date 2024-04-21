@@ -10,6 +10,9 @@ import { RolesComponent } from './views/roles/roles.component';
 import { ForbiddenComponent } from './views/forbidden/forbidden.component';
 import { NotfoundComponent } from './views/notfound/notfound.component';
 import { ErrorComponent } from './layout/error/error.component';
+import { AccountConfirmationComponent } from './views/account-confirmation/account-confirmation.component';
+import { PasswordResetComponent } from './views/password-reset/password-reset.component';
+import { PasswordResetFinishComponent } from './views/password-reset-finish/password-reset-finish.component';
 
 export const routes: Routes = [
     { 
@@ -35,6 +38,27 @@ export const routes: Routes = [
                     title: 'pageTitle.register' 
                 } 
             },
+            { 
+                path: 'account-confirmation/:code', 
+                component: AccountConfirmationComponent,
+                data: { 
+                    title: 'pageTitle.accountConfirmation' 
+                } 
+            },
+            { 
+                path: 'password-reset', 
+                component: PasswordResetComponent,
+                data: { 
+                    title: 'pageTitle.passwordReset' 
+                } 
+            },
+            { 
+                path: 'finish-reset-password/:code', 
+                component: PasswordResetFinishComponent,
+                data: { 
+                    title: 'pageTitle.passwordResetFinish' 
+                } 
+            }
         ]
     },
     {

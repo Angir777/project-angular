@@ -3,12 +3,10 @@
   "appVersion": "Application Version",
   
   "global": {
-    "buttons": {
+    "button": {
+      "ok": "OK",
       "yes": "Yes",
       "no": "No"
-    },
-    "actions": {
-      "login": "Log in"
     },
     "toast": {
       "defaultTitle": {
@@ -22,26 +20,107 @@
       "required": "This field is required.",
       "email": "The entered value should be a valid email address.",
       "passwordConfirmation": "The password was not properly confirmed.",
+      "acceptanceRegulations": "You must accept the website regulations.",
       "minlength": "The entered value should be longer than {{ minlength }} characters.",
       "maxlength": "The entered value should be shorter than {{ maxlength }} characters."
     }
   },
 
   "pageTitle": {
-    "login": "Login"
+    "login": "Login",
+    "register": "Registration",
+    "accountConfirmation": "Account confirmation",
+    "passwordReset": "Password reset",
+    "passwordResetFinish": "Setting new password"
   },
 
   "login": {
-    "errors": {
-      "wrongEmailOrPassword": "Incorrect email or password provided.",
-      "anotherError": "There was a problem with logging in. Please try again later."
+    "error": {
+      "wrongEmailOrPasswordText": "Incorrect email or password provided.",
+      "anotherErrorText": "There was a problem with logging in. Please try again later."
     },
     "form": {
       "email": "Email",
       "password": "Password",
       "remember": "Remember me",
-      "forgotPassword": "Forgot your password?",
-      "dupa": "Sample text {{ variable }} with variable."
+      "forgotPassword": "Forgot password",
+      "register": "Registration"
+    }
+  },
+
+  "register": {
+    "success": {
+      "confirmYourAccountTitle": "Welcome aboard!",
+      "confirmYourAccountText": "We're glad to have you with us :) We've sent your activation link to the email address you provided. Activating your account allows you to fully enjoy our service."
+    },
+    "error": {
+      "registrationDisabledText": "Currently, registration is disabled.",
+      "youDontAcceptanceRegulationsText": "You must accept the service regulations.",
+      "anotherErrorText": "There was a problem with registration."
+    },
+    "form": {
+      "name": "Username",
+      "email": "Email",
+      "password": "Password",
+      "passwordConfirmation": "Confirm password",
+      "acceptanceRegulations": "I accept the regulations",
+      "login": "I already have an account"
+    },
+    "button": {
+      "register": "Confirm"
+    }
+  },
+
+  "accountConfirmation": {
+    "success": {
+      "accountConfirmationSuccessText": "Your account has been confirmed! Log in and enjoy the full service!"
+    },
+    "error": {
+      "codeInvalidText": "Invalid confirmation code!",
+      "alreadyConfirmedText": "The account has already been confirmed!",
+      "anotherErrorText": "There was a problem confirming your account. Please try again."
+    }
+  },
+
+  "passwordReset": {
+    "success": {
+      "passwordResetSuccessText": "We've sent a password reset link to your email address."
+    },
+    "warning": {
+      "tokenExistsText": "A password reset link has already been sent to the email address provided. Check your email."
+    },
+    "error": {
+      "userNotFoundText": "No user found with the provided email address.",
+      "anotherErrorText": "There was a problem resetting your password. Please try again."
+    },
+    "form": {
+      "email": "Email",
+      "login": "I remember my password"
+    },
+    "button": {
+      "passwordReset": "Reset my password"
+    }
+  },
+
+  "passwordResetFinish": {
+    "success": {
+      "passwordResetSuccessText": "Password reset successful."
+    },
+    "error": {
+      "tokenInvalidText": "Invalid password reset token.",
+      "tokenExpiredText": "The time to complete the password reset has expired.",
+      "userNotFoundText": "No user found with the provided email address.",
+      "anotherErrorText": "There was a problem resetting your password. Please try again."
+    },
+    "form": {
+      "email": "Email",
+      "password": "Password",
+      "passwordConfirmation": "Confirm password",
+      "login": "I remember my password"
+    },
+    "button": {
+      "passwordReset": "Confirm"
     }
   }
+
 }

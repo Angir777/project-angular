@@ -59,8 +59,8 @@ export class TranslatedToastService {
     });
   }
 
-  // Warn toast.
-  warn(message?: string, translationParameters: any = {}, title?: string) {
+  // Warning toast.
+  warning(message?: string, translationParameters: any = {}, title?: string) {
     const warnMessage = message ? this.prepareMessage(message, translationParameters) : this.messageNotFound;
     const prepareTitle = title ? this.prepareTitle(title, translationParameters) : this.translateService.instant('global.toast.defaultTitle.warn');
     this.messageService.add({
