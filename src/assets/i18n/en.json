@@ -6,7 +6,8 @@
     "button": {
       "ok": "OK",
       "yes": "Yes",
-      "no": "No"
+      "no": "No",
+      "goToHomePage": "Go to home page"
     },
     "toast": {
       "defaultTitle": {

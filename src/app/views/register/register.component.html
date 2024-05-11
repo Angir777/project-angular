@@ -6,7 +6,7 @@
        <form [formGroup]="form" (ngSubmit)="register()">
 
          <div class="field p-fluid">
-            <label for="email">{{ "register.form.name" | translate }}</label>
+            <label for="email">{{ "register.form.name" | translate }}*</label>
             <span class="p-input-icon-left">
                <i><fa-icon [icon]="faSignature"></fa-icon></i>
                <input 
@@ -32,7 +32,7 @@
          </div>
 
          <div class="field p-fluid mt-3">
-            <label for="email">{{ "register.form.email" | translate }}</label>
+            <label for="email">{{ "register.form.email" | translate }}*</label>
             <span class="p-input-icon-left">
                <i><fa-icon [icon]="faUser"></fa-icon></i>
                <input 
@@ -56,7 +56,7 @@
          </div>
             
          <div class="field p-fluid mt-3">
-            <label for="password">{{ "register.form.password" | translate }}</label>
+            <label for="password">{{ "register.form.password" | translate }}*</label>
             <span class="p-input-icon-left">
                <i><fa-icon [icon]="faKey"></fa-icon></i>
                <input
@@ -80,7 +80,7 @@
          </div>
 
          <div class="field p-fluid mt-3">
-            <label for="password">{{ "register.form.passwordConfirmation" | translate }}</label>
+            <label for="password">{{ "register.form.passwordConfirmation" | translate }}*</label>
             <span class="p-input-icon-left">
                <i><fa-icon [icon]="faKey"></fa-icon></i>
                <input
@@ -113,7 +113,7 @@
                   [attr.aria-invalid]="getAriaInvalid('passwordConfirmation')"
                   (keydown)="clearServerErrors('passwordConfirmation')"
                ></p-checkbox>
-               <label for="acceptanceRegulations" class="ms-2">{{ "register.form.acceptanceRegulations" | translate }}</label>
+               <label for="acceptanceRegulations" class="ms-2">{{ "register.form.acceptanceRegulations" | translate }}*</label>
             </div>
             <app-form-control-errors
                *ngIf="isFormControlInvalid('acceptanceRegulations')"
