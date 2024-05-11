@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { BaseFormComponent } from '../../components/base-component';
-import { AuthService } from '../../services/auth/auth.service';
-import { LoggedUserService } from '../../services/logged-user/logged-user.service';
+import { BaseFormComponent } from '../../../../components/base-component';
+import { AuthService } from '../../../../services/auth/auth.service';
+import { LoggedUserService } from '../../../../services/logged-user/logged-user.service';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
-import { FormControlErrorsComponent } from '../../components/form-control-errors/form-control-errors.component';
+import { FormControlErrorsComponent } from '../../../../components/form-control-errors/form-control-errors.component';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { CommonModule } from '@angular/common';
@@ -14,7 +14,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { faSpinner, faUser } from '@fortawesome/free-solid-svg-icons';
 import { finalize } from 'rxjs';
 import _ from 'lodash';
-import { TranslatedToastService } from '../../services/translation/translated-toast.service';
+import { TranslatedToastService } from '../../../../services/translation/translated-toast.service';
 import { AutoFocusModule } from 'primeng/autofocus';
 
 @Component({

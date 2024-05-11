@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../services/auth/auth.service';
+import { AuthService } from '../../../../services/auth/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import _ from 'lodash';
 import { finalize } from 'rxjs';
-import { TranslatedToastService } from '../../services/translation/translated-toast.service';
+import { TranslatedToastService } from '../../../../services/translation/translated-toast.service';
 import { TranslateModule } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
-import { LoggedUserService } from '../../services/logged-user/logged-user.service';
+import { LoggedUserService } from '../../../../services/logged-user/logged-user.service';
 
 @Component({
   selector: 'app-account-confirmation',

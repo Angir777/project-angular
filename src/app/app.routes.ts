@@ -2,17 +2,17 @@ import { Routes } from '@angular/router';
 import { AuthGuard } from './helpers/guards/auth.guard';
 import { PublicComponent } from './layout/public/public.component';
 import { DashboardComponent } from './layout/dashboard/dashboard.component';
-import { LoginComponent } from './views/login/login.component';
-import { RegisterComponent } from './views/register/register.component';
-import { HomeComponent } from './views/home/home.component';
-import { UsersComponent } from './views/users/users.component';
-import { RolesComponent } from './views/roles/roles.component';
-import { ForbiddenComponent } from './views/forbidden/forbidden.component';
-import { NotfoundComponent } from './views/notfound/notfound.component';
+import { LoginComponent } from './views/public/auth/login/login.component';
+import { RegisterComponent } from './views/public/auth/register/register.component';
+import { HomeComponent } from './views/dashboard/home/home.component';
+import { UsersComponent } from './views/dashboard/users/users.component';
+import { RolesComponent } from './views/dashboard/roles/roles.component';
+import { ForbiddenComponent } from './views/error/forbidden/forbidden.component';
+import { NotfoundComponent } from './views/error/notfound/notfound.component';
 import { ErrorComponent } from './layout/error/error.component';
-import { AccountConfirmationComponent } from './views/account-confirmation/account-confirmation.component';
-import { PasswordResetComponent } from './views/password-reset/password-reset.component';
-import { PasswordResetFinishComponent } from './views/password-reset-finish/password-reset-finish.component';
+import { AccountConfirmationComponent } from './views/public/auth/account-confirmation/account-confirmation.component';
+import { PasswordResetComponent } from './views/public/auth/password-reset/password-reset.component';
+import { PasswordResetFinishComponent } from './views/public/auth/password-reset-finish/password-reset-finish.component';
 
 export const routes: Routes = [
     { 
