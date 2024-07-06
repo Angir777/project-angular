@@ -1,0 +1,41 @@
+<div class="layout-topbar">
+    <a class="layout-topbar-logo" routerLink="">
+        <span>{{ 'appName' | translate }}</span>
+        <!-- https://sakai.primeng.org/uikit/formlayout -->
+    </a>
+
+    <button #menubutton class="p-link layout-menu-button layout-topbar-button" (click)="layoutService.onMenuToggle()">
+        <fa-icon [icon]="faBars"></fa-icon>
+    </button>
+
+    <button #topbarmenubutton class="p-link layout-topbar-menu-button layout-topbar-button" (click)="layoutService.showProfileSidebar()">
+        <fa-icon [icon]="faUser"></fa-icon>
+    </button>
+
+    <div #topbarmenu class="layout-topbar-menu" [ngClass]="{'layout-topbar-menu-mobile-active': layoutService.state.profileSidebarVisible}">
+        <button class="p-link layout-topbar-button" (click)="changeTheme('lara-'+ newColorTheme +'-indigo', newColorTheme)">
+            <fa-icon 
+                [icon]="faCircleHalfStroke" 
+                pTooltip="{{ 'nav.motyw' | translate }}" 
+                tooltipPosition="bottom"
+            ></fa-icon>
+            <span class="ms-1">{{ "nav.motyw" | translate }}</span>
+        </button>
+        <button class="p-link layout-topbar-button" [routerLink]="'/documentation'">
+            <fa-icon 
+                [icon]="faGear" 
+                pTooltip="{{ 'nav.settings' | translate }}" 
+                tooltipPosition="bottom"
+            ></fa-icon>
+            <span class="ms-1">{{ "nav.settings" | translate }}</span>
+        </button>
+        <button class="p-link layout-topbar-button" (click)="logout()">
+            <fa-icon 
+                [icon]="faArrowRightFromBracket"
+                pTooltip="{{ 'nav.logout' | translate }}" 
+                tooltipPosition="bottom"
+            ></fa-icon>
+            <span class="ms-1">{{ "nav.logout" | translate }}</span>
+        </button>
+    </div>
+</div>

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { LayoutService } from '../../services/layout/layout.service';
 
 @Component({
   selector: 'app-public',
@@ -8,4 +9,10 @@ import { RouterOutlet } from '@angular/router';
   templateUrl: './public.component.html',
   styleUrl: './public.component.scss'
 })
-export class PublicComponent { }
+export class PublicComponent {
+
+  constructor(
+    public layoutService: LayoutService,
+  ) { }
+
+}

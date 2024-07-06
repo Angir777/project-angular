@@ -1,5 +1,5 @@
 {
-  "appName": "EODK",
+  "appName": "Angular APP",
   "appVersion": "Application Version",
   
   "global": {
@@ -25,6 +25,12 @@
       "minlength": "The entered value should be longer than {{ minlength }} characters.",
       "maxlength": "The entered value should be shorter than {{ maxlength }} characters."
     }
+  },
+
+  "nav": {
+    "motyw": "Theme",
+    "settings": "Settings",
+    "logout": "Logout"
   },
 
   "pageTitle": {
