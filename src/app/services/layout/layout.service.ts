@@ -73,6 +73,12 @@ export class LayoutService {
             this.changeScale(config.scale);
             this.onConfigUpdate();
         });
+
+        // Inicjalizacja stanu menu na podstawie localStorage
+        const staticMenuDesktopInactive = localStorage.getItem('staticMenuDesktopInactive');
+        if (staticMenuDesktopInactive !== null) {
+          this.state.staticMenuDesktopInactive = JSON.parse(staticMenuDesktopInactive);
+        }
     }
 
     updateStyle(config: AppConfig) {
@@ -86,19 +92,20 @@ export class LayoutService {
         console.log('T1');
         if (this.isOverlay()) {
             this.state.overlayMenuActive = !this.state.overlayMenuActive;
+
             if (this.state.overlayMenuActive) {
                 this.overlayOpen.next(null);
             }
         }
 
-        console.log('T3');
-
         if (this.isDesktop()) {
-            this.state.staticMenuDesktopInactive =
-                !this.state.staticMenuDesktopInactive;
+            this.state.staticMenuDesktopInactive = !this.state.staticMenuDesktopInactive;
+
+            console.log({"this.state.staticMenuDesktopInactive":this.state.staticMenuDesktopInactive});
+            
+            localStorage.setItem('staticMenuDesktopInactive', JSON.stringify(this.state.staticMenuDesktopInactive));
         } else {
-            this.state.staticMenuMobileActive =
-                !this.state.staticMenuMobileActive;
+            this.state.staticMenuMobileActive = !this.state.staticMenuMobileActive;
 
             if (this.state.staticMenuMobileActive) {
                 this.overlayOpen.next(null);
