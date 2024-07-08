@@ -5,6 +5,7 @@ import { Subscription, filter } from 'rxjs';
 import { LayoutService } from '../../../../services/layout/layout.service';
 import { MenuService } from '../../../../services/layout/menu.service';
 import { CommonModule } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-menu-item',
@@ -12,6 +13,7 @@ import { CommonModule } from '@angular/common';
   imports: [
     CommonModule,
     RouterModule,
+    TranslateModule
   ],
   templateUrl: './menu-item.component.html',
   styleUrl: './menu-item.component.scss',

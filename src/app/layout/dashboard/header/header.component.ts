@@ -8,6 +8,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AuthService } from '../../../services/auth/auth.service';
 import { TranslateModule } from '@ngx-translate/core';
 import { TooltipModule } from 'primeng/tooltip';
+import { DropdownModule } from 'primeng/dropdown';
+import { FormsModule } from '@angular/forms';
 
 export interface AppConfig {
   inputStyle: string;
@@ -18,6 +20,11 @@ export interface AppConfig {
   scale: number;
 }
 
+interface Language {
+  name: string;
+  code: string;
+}
+
 @Component({
   selector: 'app-header',
   standalone: true,
@@ -26,7 +33,9 @@ export interface AppConfig {
     RouterModule,
     FontAwesomeModule,
     TranslateModule,
-    TooltipModule
+    TooltipModule,
+    FormsModule,
+    DropdownModule
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
@@ -49,12 +58,22 @@ export class HeaderComponent {
 
   newColorTheme = 'dark';
 
+  languages: Language[] | undefined; // TODO: DO OPRACOWANIA ZMIANA JĘZYKA. Pobierz kody języków z env a potem płeładowywuj w zalezności co wybrano.
+  selectedLanguage: Language | undefined;
+
   constructor(
     public layoutService: LayoutService,
     private authService: AuthService,
     private router: Router
   ) {
     this.getNewColorThreme();
+
+    this.languages = [
+      { name: 'PL', code: 'pl' },
+      { name: 'EN', code: 'en' },
+    ];
+
+    this.selectedLanguage = this.languages.find(lang => lang.code === 'pl');
   }
 
   set theme(val: string) {

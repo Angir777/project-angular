@@ -13,6 +13,7 @@ import { ErrorComponent } from './layout/error/error.component';
 import { AccountConfirmationComponent } from './views/public/auth/account-confirmation/account-confirmation.component';
 import { PasswordResetComponent } from './views/public/auth/password-reset/password-reset.component';
 import { PasswordResetFinishComponent } from './views/public/auth/password-reset-finish/password-reset-finish.component';
+import { NgxPermissionsGuard } from 'ngx-permissions';
 
 export const routes: Routes = [
     { 
@@ -86,11 +87,25 @@ export const routes: Routes = [
             },
             { 
                 path: 'users', 
-                component: UsersComponent 
+                component: UsersComponent,
+                canActivate: [NgxPermissionsGuard],
+                data: {
+                    permissions: {
+                        only: ['USER_MANAGE', 'USER_ACCESS'],
+                        redirectTo: '/'
+                    }
+                }
             },
             { 
                 path: 'roles', 
-                component: RolesComponent 
+                component: RolesComponent,
+                canActivate: [NgxPermissionsGuard],
+                data: {
+                    permissions: {
+                        only: ['ROLE_MANAGE', 'ROLE_ACCESS'],
+                        redirectTo: '/'
+                    }
+                }
             }
         ]
     },

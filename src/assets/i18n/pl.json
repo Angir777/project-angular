@@ -38,7 +38,11 @@
     "register": "Rejestracja",
     "accountConfirmation": "Potwierdzanie Twojego konta",
     "passwordReset": "Resetowanie hasła",
-    "passwordResetFinish": "Ustawienie nowego hasła"
+    "passwordResetFinish": "Ustawienie nowego hasła",
+    "homePage": "Strona główna",
+    "userManagement": "Zarządzanie użytkownikami",
+    "users": "Użytkownicy",
+    "roles" : "Role"
   },
 
   "login": {
@@ -131,5 +135,9 @@
     "button": {
       "passwordReset": "Potwierdzam"
     }
+  },
+
+  "home": {
+    "hello": "Cześć"
   }
 }

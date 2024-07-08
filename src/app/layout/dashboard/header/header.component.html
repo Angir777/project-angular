@@ -13,6 +13,14 @@
     </button>
 
     <div #topbarmenu class="layout-topbar-menu" [ngClass]="{'layout-topbar-menu-mobile-active': layoutService.state.profileSidebarVisible}">
+        <!-- Language -->
+        <p-dropdown 
+        class="ps-0"
+                [options]="languages" 
+                [(ngModel)]="selectedLanguage" 
+                optionLabel="name"
+                placeholder="Select a lang" />
+        <!-- Icons -->
         <button class="p-link layout-topbar-button" (click)="changeTheme('lara-'+ newColorTheme +'-indigo', newColorTheme)">
             <fa-icon 
                 [icon]="faCircleHalfStroke" 

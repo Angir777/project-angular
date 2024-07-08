@@ -38,7 +38,11 @@
     "register": "Registration",
     "accountConfirmation": "Account confirmation",
     "passwordReset": "Password reset",
-    "passwordResetFinish": "Setting new password"
+    "passwordResetFinish": "Setting new password",
+    "homePage": "Home",
+    "userManagement": "User management",
+    "users": "Users",
+    "roles" : "Roles"
   },
 
   "login": {
@@ -128,6 +132,10 @@
     "button": {
       "passwordReset": "Confirm"
     }
+  },
+
+  "home": {
+    "hello": "Hello"
   }
 
 }

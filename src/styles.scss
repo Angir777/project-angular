@@ -11,6 +11,11 @@ $gutter: 1rem; // for primeflex grid system
     width: 100%;
 }
 
+.p-dropdown-items-wrapper ul {
+    padding-left: 0rem;
+    margin-bottom: 0rem;
+}
+
 // Style formularzy
 form {
     .ng-valid-success {
