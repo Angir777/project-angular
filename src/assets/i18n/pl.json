@@ -24,6 +24,9 @@
       "acceptanceRegulations": "Musisz zaakceptować regulamin serwisu.",
       "minlength": "Wprowadzona wartość powinna być dłuższa niż {{ minlength }} znaków.",
       "maxlength": "Wprowadzona wartość powinna być krótsza niż {{ maxlength }} znaków."
+    },
+    "header": {
+      "currentLang": "Wybierz język"
     }
   },
 

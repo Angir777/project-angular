@@ -39,7 +39,7 @@ export class AppComponent implements OnInit {
     if (selectedLanguage && isLanguagesAvailable) {
       this.translateService.use(selectedLanguage);
     } else {
-      this.translateService.setDefaultLang(environment.defaultLanguage);
+      this.translateService.setDefaultLang(environment.DEFAULT_LANGUAGE);
     }
 
     // Ustawiamy tłumaczenie tytułu strony głównej i tłumaczenie tytułu podstrony.

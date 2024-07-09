@@ -1,0 +1,13 @@
+// Usunięcie obramowania z p-dropdown
+::ng-deep .p-dropdown {
+    border: none;
+    box-shadow: none;
+}
+
+// Separator
+.vertical-separator {
+    width: 1px;
+    height: 24px;
+    background-color: var(--surface-200);
+    margin-left: 15px;
+}

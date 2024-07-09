@@ -24,8 +24,8 @@ export const environment = {
   DEFAULT_PAGE_SIZE: 10,
 
   // Application languages
-  enableLanguageChange: true,
-  defaultLanguage: 'pl',
+  ENABLE_LANGUAGE_CHANGE: true,
+  DEFAULT_LANGUAGE: 'pl',
   LANGUAGES_AVAILABLE: [
     { title: 'Polski', data: { lang: 'pl' } },
     { title: 'English', data: { lang: 'en' } },

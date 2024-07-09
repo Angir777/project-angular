@@ -6,10 +6,11 @@ import { CommonModule } from '@angular/common';
 import { faArrowRightFromBracket, faBars, faCircleHalfStroke, faGear, faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AuthService } from '../../../services/auth/auth.service';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { TooltipModule } from 'primeng/tooltip';
 import { DropdownModule } from 'primeng/dropdown';
 import { FormsModule } from '@angular/forms';
+import { environment } from '../../../../environments/environment';
 
 export interface AppConfig {
   inputStyle: string;
@@ -20,9 +21,11 @@ export interface AppConfig {
   scale: number;
 }
 
-interface Language {
-  name: string;
-  code: string;
+export interface Language {
+  title: string;
+  data: {
+    lang: string;
+  };
 }
 
 @Component({
@@ -58,22 +61,29 @@ export class HeaderComponent {
 
   newColorTheme = 'dark';
 
-  languages: Language[] | undefined; // TODO: DO OPRACOWANIA ZMIANA JĘZYKA. Pobierz kody języków z env a potem płeładowywuj w zalezności co wybrano.
-  selectedLanguage: Language | undefined;
+  enableLanguageChange: boolean = environment.ENABLE_LANGUAGE_CHANGE;
+  languages: Language[] = environment.LANGUAGES_AVAILABLE;
+  selectedLanguage!: Language;
 
   constructor(
     public layoutService: LayoutService,
     private authService: AuthService,
+    private translateService: TranslateService,
     private router: Router
   ) {
     this.getNewColorThreme();
 
-    this.languages = [
-      { name: 'PL', code: 'pl' },
-      { name: 'EN', code: 'en' },
-    ];
-
-    this.selectedLanguage = this.languages.find(lang => lang.code === 'pl');
+    // Ustawienie wybranego języka
+    const savedLanguage = localStorage.getItem('selectedLanguage');
+    const isLanguagesAvailable = this.languages.some(item => item.data.lang === savedLanguage);
+    
+    if (savedLanguage && isLanguagesAvailable) {
+      this.selectedLanguage = this.languages.find(item => item.data.lang === savedLanguage) as Language;
+      this.translateService.use(savedLanguage);
+    } else {
+      this.selectedLanguage = this.languages.find(item => item.data.lang === environment.DEFAULT_LANGUAGE) as Language;
+      this.translateService.setDefaultLang(environment.DEFAULT_LANGUAGE);
+    }
   }
 
   set theme(val: string) {
@@ -128,5 +138,13 @@ export class HeaderComponent {
         },
         error: (error) => { },
       });
+  }
+
+  changeLanguage(): void {
+    if (this.selectedLanguage) {
+      this.translateService.use(this.selectedLanguage.data.lang);
+      localStorage.setItem('selectedLanguage', this.selectedLanguage.data.lang);
+      location.reload();
+    }
   }
 }

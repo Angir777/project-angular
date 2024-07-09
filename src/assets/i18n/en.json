@@ -24,6 +24,9 @@
       "acceptanceRegulations": "You must accept the website regulations.",
       "minlength": "The entered value should be longer than {{ minlength }} characters.",
       "maxlength": "The entered value should be shorter than {{ maxlength }} characters."
+    },
+    "header": {
+      "currentLang": "Select language"
     }
   },
 
@@ -56,6 +59,9 @@
       "remember": "Remember me",
       "forgotPassword": "Forgot password",
       "register": "Registration"
+    },
+    "button": {
+      "login": "Login"
     }
   },
 

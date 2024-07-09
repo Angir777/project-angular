@@ -12,14 +12,26 @@
         <fa-icon [icon]="faUser"></fa-icon>
     </button>
 
-    <div #topbarmenu class="layout-topbar-menu" [ngClass]="{'layout-topbar-menu-mobile-active': layoutService.state.profileSidebarVisible}">
+    <div #topbarmenu class="layout-topbar-menu d-flex align-items-center" [ngClass]="{'layout-topbar-menu-mobile-active': layoutService.state.profileSidebarVisible}">
         <!-- Language -->
-        <p-dropdown 
-        class="ps-0"
+        @if (enableLanguageChange) {
+            <p-dropdown 
+                class="ps-0"
                 [options]="languages" 
                 [(ngModel)]="selectedLanguage" 
-                optionLabel="name"
-                placeholder="Select a lang" />
+                optionLabel="title"
+                placeholder="{{ 'global.header.currentLang' | translate }}"
+                (onChange)="changeLanguage()">
+                
+                <ng-template let-language pTemplate="selectedItem">
+                    <div class="p-d-flex p-ai-center">
+                        <i class="pi pi-language p-mr-2"></i>
+                        <span class="ms-1">{{ language.title }}</span>
+                    </div>
+                </ng-template>
+            </p-dropdown>
+            <span class="vertical-separator"></span>
+        }
         <!-- Icons -->
         <button class="p-link layout-topbar-button" (click)="changeTheme('lara-'+ newColorTheme +'-indigo', newColorTheme)">
             <fa-icon 
