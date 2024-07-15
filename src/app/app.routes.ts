@@ -14,6 +14,7 @@ import { AccountConfirmationComponent } from './views/public/auth/account-confir
 import { PasswordResetComponent } from './views/public/auth/password-reset/password-reset.component';
 import { PasswordResetFinishComponent } from './views/public/auth/password-reset-finish/password-reset-finish.component';
 import { NgxPermissionsGuard } from 'ngx-permissions';
+import { SettingsComponent } from './views/dashboard/settings/settings.component';
 
 export const routes: Routes = [
     { 
@@ -84,6 +85,17 @@ export const routes: Routes = [
             { 
                 path: 'home', 
                 component: HomeComponent 
+            },
+            { 
+                path: 'settings', 
+                component: SettingsComponent,
+                canActivate: [NgxPermissionsGuard],
+                data: {
+                    permissions: {
+                        only: ['USER'],
+                        redirectTo: '/'
+                    }
+                }
             },
             { 
                 path: 'users', 
