@@ -1,5 +1,8 @@
 import { PermissionModes } from "../../constants/permission-modes.const";
 
+/**
+ * Weryfikacja uprawnień
+ */
 export abstract class PermissionsHelper {
 
   public static checkPermission(

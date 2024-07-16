@@ -1,5 +1,5 @@
 /**
- * Interfejsc określający "kształt" wymaganych danych podczas dokończania resetowania hasła.
+ * Interfejs określający "kształt" wymaganych danych podczas dokończania resetowania hasła.
  */
 export interface FinishResetPasswordInterface {
   email: string;

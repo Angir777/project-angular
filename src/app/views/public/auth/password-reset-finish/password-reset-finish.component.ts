@@ -3,7 +3,6 @@ import { AuthService } from '../../../../services/auth/auth.service';
 import { LoggedUserService } from '../../../../services/logged-user/logged-user.service';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { TranslatedToastService } from '../../../../services/translation/translated-toast.service';
-import _ from 'lodash';
 import { FormControlErrorsComponent } from '../../../../components/form-control-errors/form-control-errors.component';
 import { AbstractControl, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
@@ -92,7 +91,7 @@ export class PasswordResetFinishComponent extends BaseFormComponent implements O
 
   ngOnInit(): void {
     this.route.params.subscribe((params: any) => {
-      if (!_.isNil(params['code'])) {
+      if (params['code'] != null) {
         this.code = params['code'];
       } else {
         this.router.navigate(["login"]);
@@ -119,7 +118,7 @@ export class PasswordResetFinishComponent extends BaseFormComponent implements O
       )
       .subscribe({
         next: (response) => {
-          if (!_.isNil(response.body)) {
+          if (response.body != null) {
             this.translatedToastService.success('passwordResetFinish.success.passwordResetSuccessText');
             this.form.reset();
             this.router.navigate(["login"]);
@@ -127,7 +126,7 @@ export class PasswordResetFinishComponent extends BaseFormComponent implements O
         },
         error: (error) => {
           // Obsługujemy błędy pól z API
-          this.serverErrors = !_.isNil(error.error) && !_.isNil(error.error.errors) ? error.error.errors : [];
+          this.serverErrors = error.error != null && error.error.errors != null ? error.error.errors : [];
           // Obsługujemy pozostałe błędy
           if (error.error.error === 'TOKEN_INVALID') {
             this.translatedToastService.error('passwordResetFinish.error.tokenInvalidText');

@@ -11,22 +11,8 @@ import { TooltipModule } from 'primeng/tooltip';
 import { DropdownModule } from 'primeng/dropdown';
 import { FormsModule } from '@angular/forms';
 import { environment } from '../../../../environments/environment';
-
-export interface AppConfig {
-  inputStyle: string;
-  colorScheme: string;
-  theme: string;
-  ripple: boolean;
-  menuMode: string;
-  scale: number;
-}
-
-export interface Language {
-  title: string;
-  data: {
-    lang: string;
-  };
-}
+import { AppConfig } from '../../../interfaces/app-config.interface';
+import { Language } from '../../../interfaces/language.interface';
 
 @Component({
   selector: 'app-header',

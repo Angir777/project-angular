@@ -13,7 +13,6 @@ import { RippleModule } from 'primeng/ripple';
 import { TranslateModule } from '@ngx-translate/core';
 import { faSpinner, faUser } from '@fortawesome/free-solid-svg-icons';
 import { finalize } from 'rxjs';
-import _ from 'lodash';
 import { TranslatedToastService } from '../../../../services/translation/translated-toast.service';
 import { AutoFocusModule } from 'primeng/autofocus';
 
@@ -76,14 +75,14 @@ export class PasswordResetComponent extends BaseFormComponent implements OnInit 
       )
       .subscribe({
         next: (response) => {
-          if (!_.isNil(response.body)) {
+          if (response.body != null) {
             this.translatedToastService.success('passwordReset.success.passwordResetSuccessText');
             this.form.reset();
           }
         },
         error: (error) => {
           // Obsługujemy błędy pól z API
-          this.serverErrors = !_.isNil(error.error) && !_.isNil(error.error.errors) ? error.error.errors : [];
+          this.serverErrors = error.error != null && error.error.errors != null ? error.error.errors : [];
           // Obsługujemy pozostałe błędy
           if (error.error.error === 'USER_NOT_FOUND') {
             this.translatedToastService.error('passwordReset.error.userNotFoundText');

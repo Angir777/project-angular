@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../../services/auth/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import _ from 'lodash';
 import { finalize } from 'rxjs';
 import { TranslatedToastService } from '../../../../services/translation/translated-toast.service';
 import { TranslateModule } from '@ngx-translate/core';
@@ -35,7 +34,7 @@ export class AccountConfirmationComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe((params: any) => {
-      if (!_.isNil(params['code'])) {
+      if (params['code'] != null) {
         this.accountConfirmation(params['code']);
       } else {
         this.router.navigate(["login"]);
@@ -53,7 +52,7 @@ export class AccountConfirmationComponent implements OnInit {
       )
       .subscribe({
         next: (response) => {
-          if (!_.isNil(response.body)) {
+          if (response.body != null) {
             this.translatedToastService.success('accountConfirmation.success.accountConfirmationSuccessText');
           }
         },

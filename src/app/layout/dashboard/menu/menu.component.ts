@@ -30,12 +30,15 @@ export class MenuComponent implements OnInit {
         this.model = [
             {
                 label: 'pageTitle.homePage',
+                permissions: ['USER'],
                 permissionsMode: PermissionModes.AT_LEAST_ONE,
                 items: [
                     { 
                         label: 'pageTitle.homePage', 
                         icon: 'pi pi-fw pi-home', 
                         routerLink: ['/'],
+                        permissions: ['USER'],
+                        permissionsMode: PermissionModes.AT_LEAST_ONE,
                     }
                 ]
             },

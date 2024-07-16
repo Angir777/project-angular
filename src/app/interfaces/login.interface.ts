@@ -1,5 +1,5 @@
 /**
- * Interfejsc określający "kształt" wymaganych danych podczas logowania.
+ * Interfejs określający "kształt" wymaganych danych podczas logowania.
  */
 export interface LoginInterface {
   email: string;

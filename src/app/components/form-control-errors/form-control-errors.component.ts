@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
-import * as _ from 'lodash';
 
 /**
  * Komponent wyświetlający błędy walidacji dla ReactiveForms.
@@ -83,6 +82,6 @@ export class FormControlErrorsComponent {
    * @returns
    */
   hasServerErrors(): boolean {
-    return !(_.isNil(this.serverErrors) || this.serverErrors.length === 0);
+    return !(this.serverErrors == null || this.serverErrors.length === 0);
   }
 }

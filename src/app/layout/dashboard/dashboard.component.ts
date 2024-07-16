@@ -7,15 +7,6 @@ import { Subscription, filter } from 'rxjs';
 import { LayoutService } from '../../services/layout/layout.service';
 import { SidebarComponent } from './sidebar/sidebar.component';
 
-export interface AppConfig {
-    inputStyle: string;
-    colorScheme: string;
-    theme: string;
-    ripple: boolean;
-    menuMode: string;
-    scale: number;
-  }
-
 @Component({
   selector: 'app-dashboard',
   standalone: true,

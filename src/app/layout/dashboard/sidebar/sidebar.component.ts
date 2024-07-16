@@ -5,9 +5,7 @@ import { MenuComponent } from '../menu/menu.component';
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [
-    MenuComponent
-  ],
+  imports: [MenuComponent],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.scss'
 })

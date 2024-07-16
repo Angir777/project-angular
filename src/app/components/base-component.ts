@@ -31,12 +31,12 @@ export abstract class BaseFormComponent extends BaseComponent implements ServerS
     const abstractControl: AbstractControl | null = this.form.get(formControlName);
 
     // Jeśli nie podano drugiego argumentu, to jego nazwa jest identyczna z pierwszym.
-    if (_.isNil(serverValidationPropName)) {
+    if (serverValidationPropName == null) {
       serverValidationPropName = formControlName;
     }
 
     // Sprawdzenie, czy dla pola są błędy zwrócone z API.
-    if (!_.isNil(this.serverErrors) && _.has(this.serverErrors, serverValidationPropName) && this.serverErrors[serverValidationPropName].length > 0) {
+    if (this.serverErrors != null && _.has(this.serverErrors, serverValidationPropName) && this.serverErrors[serverValidationPropName].length > 0) {
       return true;
     }
 
@@ -44,7 +44,7 @@ export abstract class BaseFormComponent extends BaseComponent implements ServerS
     if (abstractControl !== null) {
       return isFormControlInvalid(abstractControl);
     }
-    
+
     return false;
   }
 
@@ -84,7 +84,7 @@ export abstract class BaseFormComponent extends BaseComponent implements ServerS
     }
 
     // Jeśli nie podano drugiego argumentu, to jego nazwa jest identyczna z pierwszym.
-    if (_.isNil(serverValidationPropName)) {
+    if (serverValidationPropName == null) {
       serverValidationPropName = formControlName;
     }
 

@@ -17,7 +17,6 @@ import { RippleModule } from 'primeng/ripple';
 import { TranslatedToastService } from '../../../../services/translation/translated-toast.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faKey, faSpinner, faUser } from '@fortawesome/free-solid-svg-icons';
-import _ from 'lodash';
 import { AutoFocusModule } from 'primeng/autofocus';
 
 @Component({
@@ -98,7 +97,7 @@ export class LoginComponent extends BaseFormComponent implements OnInit {
         },
         error: (error) => {
           // Obsługujemy błędy pól z API
-          this.serverErrors = !_.isNil(error.error) && !_.isNil(error.error.errors) ? error.error.errors : [];
+          this.serverErrors = error.error != null && error.error.errors != null ? error.error.errors : [];
           // Obsługujemy pozostałe błędy
           if (error.error.error === 'INVALID_CREDENTIALS') {
             this.translatedToastService.error('login.error.wrongEmailOrPasswordText');

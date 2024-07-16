@@ -15,7 +15,6 @@ import { TranslatedToastService } from '../../../../services/translation/transla
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faKey, faSignature, faSpinner, faUser } from '@fortawesome/free-solid-svg-icons';
 import { RegisterInterface } from '../../../../interfaces/register.interface';
-import _ from 'lodash';
 import { TranslatedSwalService } from '../../../../services/translation/translated-swal.service';
 import { CheckboxModule } from 'primeng/checkbox';
 import { AutoFocusModule } from 'primeng/autofocus';
@@ -122,14 +121,14 @@ export class RegisterComponent extends BaseFormComponent implements OnInit {
       )
       .subscribe({
         next: (response) => {
-          if (!_.isNil(response.body)) {
+          if (response.body != null) {
             this.form.reset();
             this.registeredSuccess();
           }
         },
         error: (error) => {
           // Obsługujemy błędy pól z API
-          this.serverErrors = !_.isNil(error.error) && !_.isNil(error.error.errors) ? error.error.errors : [];
+          this.serverErrors = error.error != null && error.error.errors != null ? error.error.errors : [];
           // Obsługujemy pozostałe błędy
           if (error.error.error === 'YOU_DONT_ACCEPTANCE_REGULATIONS') {
             this.translatedToastService.error('register.error.youDontAcceptanceRegulationsText');

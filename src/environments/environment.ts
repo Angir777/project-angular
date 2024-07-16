@@ -31,12 +31,6 @@ export const environment = {
     { title: 'English', data: { lang: 'en' } },
   ],
 
-  // Account menu items
-  ACCOUNT_MENU: [
-    { title: 'pageTitle.account.changePassword', link: '/account/change-password'},
-    { title: 'global.button.logout', data: { key: 'LOGOUT' } },
-  ],
-
   // Checking the application version
   versionCheckEnabled: false,
   versionCheckUrl: 'version.json',

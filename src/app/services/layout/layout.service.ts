@@ -1,14 +1,6 @@
 import { Injectable, effect, signal } from '@angular/core';
 import { Subject } from 'rxjs';
-
-export interface AppConfig {
-  inputStyle: string;
-  colorScheme: string;
-  theme: string;
-  ripple: boolean;
-  menuMode: string;
-  scale: number;
-}
+import { AppConfig } from '../../interfaces/app-config.interface';
 
 interface LayoutState {
   staticMenuDesktopInactive: boolean;
@@ -67,9 +59,7 @@ export class LayoutService {
 
         effect(() => {
             const config = this.config();
-            // if (this.updateStyle(config)) {
-                this.changeTheme();
-            // }
+            this.changeTheme();
             this.changeScale(config.scale);
             this.onConfigUpdate();
         });

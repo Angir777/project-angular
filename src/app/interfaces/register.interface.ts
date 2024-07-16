@@ -1,5 +1,5 @@
 /**
- * Interfejsc określający "kształt" wymaganych danych podczas rejestracji.
+ * Interfejs określający "kształt" wymaganych danych podczas rejestracji.
  */
 export interface RegisterInterface {
   name: string;
