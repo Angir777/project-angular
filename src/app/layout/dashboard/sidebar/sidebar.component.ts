@@ -7,13 +7,11 @@ import { MenuComponent } from '../menu/menu.component';
   standalone: true,
   imports: [MenuComponent],
   templateUrl: './sidebar.component.html',
-  styleUrl: './sidebar.component.scss'
+  styleUrl: './sidebar.component.scss',
 })
 export class SidebarComponent {
-
   constructor(
-    public layoutService: LayoutService, 
+    public layoutService: LayoutService,
     public el: ElementRef
-  ) { }
-
+  ) {}
 }

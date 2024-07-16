@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { BaseFormComponent } from '../../../../components/base-component';
 import { AuthService } from '../../../../services/auth/auth.service';
 import { LoggedUserService } from '../../../../services/logged-user/logged-user.service';
@@ -29,13 +29,12 @@ import { AutoFocusModule } from 'primeng/autofocus';
     RippleModule,
     FontAwesomeModule,
     RouterModule,
-    AutoFocusModule
+    AutoFocusModule,
   ],
   templateUrl: './password-reset.component.html',
-  styleUrl: './password-reset.component.scss'
+  styleUrl: './password-reset.component.scss',
 })
-export class PasswordResetComponent extends BaseFormComponent implements OnInit {
-
+export class PasswordResetComponent extends BaseFormComponent {
   faUser = faUser;
   faSpinner = faSpinner;
 
@@ -44,7 +43,7 @@ export class PasswordResetComponent extends BaseFormComponent implements OnInit 
     private loggedUserService: LoggedUserService,
     private formBuilder: FormBuilder,
     private router: Router,
-    private translatedToastService: TranslatedToastService,
+    private translatedToastService: TranslatedToastService
   ) {
     super();
 
@@ -55,14 +54,9 @@ export class PasswordResetComponent extends BaseFormComponent implements OnInit 
 
     // Utworzenie formularza
     this.form = this.formBuilder.group({
-      email: [
-        null,
-        [Validators.required, Validators.email],
-      ]
+      email: [null, [Validators.required, Validators.email]],
     });
   }
-
-  ngOnInit(): void { }
 
   passwordReset() {
     this.isLoading = true;
@@ -92,8 +86,7 @@ export class PasswordResetComponent extends BaseFormComponent implements OnInit 
             this.translatedToastService.error('passwordReset.error.anotherErrorText');
           }
         },
-        complete: () => { },
+        complete: () => {},
       });
   }
-
 }

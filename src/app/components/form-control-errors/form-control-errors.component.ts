@@ -8,10 +8,7 @@ import { TranslateModule } from '@ngx-translate/core';
 @Component({
   selector: 'app-form-control-errors',
   standalone: true,
-  imports: [
-    CommonModule,
-    TranslateModule
-  ],
+  imports: [CommonModule, TranslateModule],
   templateUrl: './form-control-errors.component.html',
   styleUrls: ['./form-control-errors.component.scss'],
 })
@@ -67,7 +64,7 @@ export class FormControlErrorsComponent {
    */
   @Input() customValidationMessages: any = {};
 
-  constructor() { }
+  constructor() {}
 
   /**
    * Funkcja sprawdza, czy dla danej reguły walidacji istnieje klucz tłumaczeń.

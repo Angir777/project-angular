@@ -6,18 +6,15 @@ import { CREDENTIALS_KEY } from '../../constants/global';
 import * as _ from 'lodash';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LoggedUserService {
-  
   static readonly loggedUserKey: string = CREDENTIALS_KEY;
   private loggedUser: LoggedUser | null = null;
 
-  constructor(
-    private permissionService: NgxPermissionsService,
-  ) {
+  constructor(private permissionService: NgxPermissionsService) {
     const savedLoggedUser = sessionStorage.getItem(LoggedUserService.loggedUserKey) || localStorage.getItem(LoggedUserService.loggedUserKey);
-    
+
     if (savedLoggedUser) {
       this.loggedUser = JSON.parse(savedLoggedUser);
     }
@@ -33,7 +30,7 @@ export class LoggedUserService {
     const permissions: string[] = [];
 
     if (this.loggedUser != null) {
-      this.loggedUser.permissions.forEach((permission, index) => {
+      this.loggedUser.permissions.forEach((permission) => {
         if (permission.name !== null) {
           permissions.push(permission.name);
         }
@@ -63,13 +60,10 @@ export class LoggedUserService {
 
     if (this.loggedUser) {
       // Jeśli użytkownik zaznaczy przy logowaniu by go zapamiętać,
-      // to po zamknięciu przeglądaki nadal będzie zalogowany, 
+      // to po zamknięciu przeglądaki nadal będzie zalogowany,
       // aż się sam nie wyloguje lub localstorage się nie wyczyści.
       const selectedStorage = remember ? localStorage : sessionStorage;
-      selectedStorage.setItem(
-        LoggedUserService.loggedUserKey,
-        JSON.stringify(this.loggedUser)
-      );
+      selectedStorage.setItem(LoggedUserService.loggedUserKey, JSON.stringify(this.loggedUser));
       this.permissionService.loadPermissions(this.getPermissions());
     } else {
       sessionStorage.removeItem(LoggedUserService.loggedUserKey);
@@ -96,7 +90,7 @@ export class LoggedUserService {
     if (this.loggedUser != null) {
       return `${this.loggedUser.tokenType} ${this.loggedUser?.token}`;
     }
-    
+
     return null;
   }
 }

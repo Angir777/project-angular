@@ -1,6 +1,6 @@
-import { Permission } from "../auth/permission";
-import { BaseModel } from "../base-model";
-import * as _ from "lodash";
+import { Permission } from '../auth/permission';
+import { BaseModel } from '../base-model';
+import * as _ from 'lodash';
 
 /**
  * Model od ról.
@@ -22,7 +22,7 @@ export class Role extends BaseModel {
 
   // Sprawdza, czy rola ma przypisane dane uprawnienie.
   hasPermission(permission: Permission): boolean {
-    let index: number = this.permissions.findIndex((perm: Permission) => {
+    const index: number = this.permissions.findIndex((perm: Permission) => {
       return perm.id === permission.id;
     });
     return index >= 0;

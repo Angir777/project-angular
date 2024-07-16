@@ -10,12 +10,11 @@ import { PasswordResetInterface } from '../../interfaces/password-reset.interfac
 import { FinishResetPasswordInterface } from '../../interfaces/finish-reset-password.interface';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-
   constructor(
-    private http: HttpClient, 
+    private http: HttpClient,
     private loggedUserService: LoggedUserService
   ) {}
 
@@ -27,7 +26,7 @@ export class AuthService {
       })
       .pipe(
         map((response) => {
-          let authUser: LoggedUser | null = response.body;
+          const authUser: LoggedUser | null = response.body;
           if (authUser) {
             this.loggedUserService.set(authUser, authenticationData.remember);
           }
@@ -54,33 +53,29 @@ export class AuthService {
 
   // Rejestracja.
   register(authenticationData: RegisterInterface): Observable<HttpResponse<LoggedUser>> {
-    return this.http
-      .post<LoggedUser>(environment.serverUrl + 'auth/register', authenticationData, {
-        observe: 'response',
-      });
+    return this.http.post<LoggedUser>(environment.serverUrl + 'auth/register', authenticationData, {
+      observe: 'response',
+    });
   }
 
   // Potwierdzanie konta.
   confirmAccount(code: string): Observable<HttpResponse<any>> {
-    return this.http
-      .get<any>(environment.serverUrl + 'auth/confirm-account/' + code, {
-        observe: 'response',
-      })
+    return this.http.get<any>(environment.serverUrl + 'auth/confirm-account/' + code, {
+      observe: 'response',
+    });
   }
 
   // Proźba o zresetowanie hasła.
   sendResetPasswordEmail(authenticationData: PasswordResetInterface): Observable<HttpResponse<LoggedUser>> {
-    return this.http
-      .post<LoggedUser>(environment.serverUrl + 'auth/send-reset-password-email', authenticationData, {
-        observe: 'response',
-      });
+    return this.http.post<LoggedUser>(environment.serverUrl + 'auth/send-reset-password-email', authenticationData, {
+      observe: 'response',
+    });
   }
 
   // Resetowanie hasła.
   resetPassword(authenticationData: FinishResetPasswordInterface): Observable<HttpResponse<LoggedUser>> {
-    return this.http
-      .post<LoggedUser>(environment.serverUrl + 'auth/reset-password', authenticationData, {
-        observe: 'response',
-      });
+    return this.http.post<LoggedUser>(environment.serverUrl + 'auth/reset-password', authenticationData, {
+      observe: 'response',
+    });
   }
 }

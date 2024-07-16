@@ -1,84 +1,49 @@
 <ng-container *ngIf="!hasServerErrors()">
   <small class="form-text text-danger" *ngIf="errors?.min">
-    {{
-      (!hasCustomErrorMessage('min')
-        ? 'global.validation.min'
-        : customValidationMessages['min']
-      ) | translate: { min: errors?.min?.min }
-    }}
+    {{ (!hasCustomErrorMessage('min') ? 'global.validation.min' : customValidationMessages['min']) | translate: { min: errors?.min?.min } }}
   </small>
 
   <small class="form-text text-danger" *ngIf="errors?.max">
-    {{
-      (!hasCustomErrorMessage('max')
-        ? 'global.validation.max'
-        : customValidationMessages['max']
-      ) | translate: { max: errors?.max?.max }
-    }}
+    {{ (!hasCustomErrorMessage('max') ? 'global.validation.max' : customValidationMessages['max']) | translate: { max: errors?.max?.max } }}
   </small>
 
   <small class="form-text text-danger" *ngIf="errors?.required">
-    {{
-      (!hasCustomErrorMessage('required')
-        ? 'global.validation.required'
-        : customValidationMessages['required']
-      ) | translate
-    }}
+    {{ (!hasCustomErrorMessage('required') ? 'global.validation.required' : customValidationMessages['required']) | translate }}
   </small>
 
   <small class="form-text text-danger" *ngIf="errors?.requiredTrue">
-    {{
-      (!hasCustomErrorMessage('requiredTrue')
-        ? 'global.validation.requiredTrue'
-        : customValidationMessages['requiredTrue']
-      ) | translate
-    }}
+    {{ (!hasCustomErrorMessage('requiredTrue') ? 'global.validation.requiredTrue' : customValidationMessages['requiredTrue']) | translate }}
   </small>
 
   <small class="form-text text-danger" *ngIf="errors?.email">
-    {{
-      (!hasCustomErrorMessage('email')
-        ? 'global.validation.email'
-        : customValidationMessages['email']
-      ) | translate
-    }}
+    {{ (!hasCustomErrorMessage('email') ? 'global.validation.email' : customValidationMessages['email']) | translate }}
   </small>
 
   <small class="form-text text-danger" *ngIf="errors?.minlength">
     {{
-      (!hasCustomErrorMessage('minlength')
-        ? 'global.validation.minlength'
-        : customValidationMessages['minlength']
-      ) | translate: { minlength: errors?.minlength?.requiredLength }
+      (!hasCustomErrorMessage('minlength') ? 'global.validation.minlength' : customValidationMessages['minlength'])
+        | translate: { minlength: errors?.minlength?.requiredLength }
     }}
   </small>
 
   <small class="form-text text-danger" *ngIf="errors?.maxlength">
     {{
-      (!hasCustomErrorMessage('maxlength')
-        ? 'global.validation.maxlength'
-        : customValidationMessages['maxlength']
-      ) | translate: { maxlength: errors?.maxlength?.requiredLength }
+      (!hasCustomErrorMessage('maxlength') ? 'global.validation.maxlength' : customValidationMessages['maxlength'])
+        | translate: { maxlength: errors?.maxlength?.requiredLength }
     }}
   </small>
 
   <small class="form-text text-danger" *ngIf="errors?.pattern">
     {{
-      (!hasCustomErrorMessage('pattern')
-        ? 'global.validation.pattern'
-        : customValidationMessages['pattern']
-      ) | translate: { pattern: errors?.pattern?.requiredPattern }
+      (!hasCustomErrorMessage('pattern') ? 'global.validation.pattern' : customValidationMessages['pattern'])
+        | translate: { pattern: errors?.pattern?.requiredPattern }
     }}
   </small>
 
   <small class="form-text text-danger" *ngIf="errors?.passwordConfirmation">
     {{
-      (!hasCustomErrorMessage('passwordConfirmation')
-        ? 'global.validation.passwordConfirmation'
-        : customValidationMessages['passwordConfirmation']
-      )
-        | translate
-          : { matching: errors?.passwordConfirmation?.requiredMatching }
+      (!hasCustomErrorMessage('passwordConfirmation') ? 'global.validation.passwordConfirmation' : customValidationMessages['passwordConfirmation'])
+        | translate: { matching: errors?.passwordConfirmation?.requiredMatching }
     }}
   </small>
 
@@ -87,9 +52,7 @@
       (!hasCustomErrorMessage('acceptanceRegulations')
         ? 'global.validation.acceptanceRegulations'
         : customValidationMessages['acceptanceRegulations']
-      )
-        | translate
-          : { matching: errors?.acceptanceRegulations?.requiredMatching }
+      ) | translate: { matching: errors?.acceptanceRegulations?.requiredMatching }
     }}
   </small>
 </ng-container>

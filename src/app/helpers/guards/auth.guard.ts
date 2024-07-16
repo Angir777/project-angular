@@ -6,19 +6,15 @@ import { LoggedUserService } from '../../services/logged-user/logged-user.servic
  * Guard sprawdzający dostep do chronionych tras
  */
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 class AuthGuardHelper {
-
   constructor(
     private loggedUserService: LoggedUserService,
     private router: Router
-  ) { }
+  ) {}
 
-  canActivate(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ): boolean {
+  canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     if (this.loggedUserService.isAuthenticated()) {
       return true;
     } else {
@@ -29,9 +25,8 @@ class AuthGuardHelper {
       return false;
     }
   }
-
 }
 
 export const AuthGuard: CanActivateFn = (next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean => {
   return inject(AuthGuardHelper).canActivate(next, state);
-}
+};

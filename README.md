@@ -39,3 +39,28 @@ Dodaj do "scripts": "build-dev": "ng build --configuration dev && npm run post-b
 4. Edycja pliku angular.json
 
 Dodaj do "configurations" budowanie wersji "dev" oraz "fileReplacements".
+
+## Configure Prettier and ESLint
+(https://dev.to/this-is-angular/configure-prettier-and-eslint-with-angular-526c)
+
+0. settings.json dla VC
+
+1. ng add @angular-eslint/schematics
+
+2. npm install prettier --save-dev
+
+3. 
+
+Then we need to add .prettierrc.json and .prettierignore files in our root project directory.
+Inside .prettierignore it’s better to add whatever we have inside .gitignore file.
+
+4. install prettier-eslint eslint-config-prettier eslint-plugin-prettier --save-dev
+
+5. Sformatowanie całego projektu: npx prettier --write .
+
+6. Formatowanie ręczne: 'Shift+Alt+F'
+Kliknij na ikonę koła zębatego w lewym dolnym rogu i wybierz Settings.
+W pasku wyszukiwania wpisz „default formatter” i wybierz opcję Editor: Default Formatter.
+Wybierz Prettier - Code formatter z rozwijanej listy.
+
+7. Sprawdzenie błędów i poprawa możliwych: ng lint --fix

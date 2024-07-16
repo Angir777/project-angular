@@ -10,15 +10,11 @@ import { LoggedUserService } from '../../../../services/logged-user/logged-user.
 @Component({
   selector: 'app-account-confirmation',
   standalone: true,
-  imports: [
-    CommonModule,
-    TranslateModule
-  ],
+  imports: [CommonModule, TranslateModule],
   templateUrl: './account-confirmation.component.html',
-  styleUrl: './account-confirmation.component.scss'
+  styleUrl: './account-confirmation.component.scss',
 })
 export class AccountConfirmationComponent implements OnInit {
-
   constructor(
     private authService: AuthService,
     private loggedUserService: LoggedUserService,
@@ -37,7 +33,7 @@ export class AccountConfirmationComponent implements OnInit {
       if (params['code'] != null) {
         this.accountConfirmation(params['code']);
       } else {
-        this.router.navigate(["login"]);
+        this.router.navigate(['login']);
       }
     });
   }
@@ -47,7 +43,7 @@ export class AccountConfirmationComponent implements OnInit {
       .confirmAccount(code)
       .pipe(
         finalize(() => {
-          this.router.navigate(["login"]);
+          this.router.navigate(['login']);
         })
       )
       .subscribe({
@@ -66,7 +62,7 @@ export class AccountConfirmationComponent implements OnInit {
             this.translatedToastService.error('accountConfirmation.error.anotherErrorText');
           }
         },
-        complete: () => { },
+        complete: () => {},
       });
   }
 }

@@ -8,13 +8,10 @@ import { Observable } from 'rxjs';
  * (Uwaga! Body nie jest wysyłane podczas zapytań GET)
  */
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class BodyInterceptor implements HttpInterceptor {
-
-  constructor(
-    private translateService: TranslateService
-  ) { }
+  constructor(private translateService: TranslateService) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     if (request.body instanceof FormData) {
@@ -32,5 +29,4 @@ export class BodyInterceptor implements HttpInterceptor {
       );
     }
   }
-
 }

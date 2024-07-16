@@ -8,14 +8,13 @@ import { LoggedUserService } from '../services/logged-user/logged-user.service';
  * Interceptor przychwytujący błędy 401 dla zalogowanego użytkownika.
  */
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthorizedInterceptor implements HttpInterceptor {
-
   constructor(
     private loggedUserService: LoggedUserService,
     private router: Router
-  ) { }
+  ) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     // Jeśli jest niezalogowany to przepuszczamy dalej.
@@ -37,5 +36,4 @@ export class AuthorizedInterceptor implements HttpInterceptor {
       })
     );
   }
-
 }

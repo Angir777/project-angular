@@ -13,10 +13,9 @@ import { environment } from '../environments/environment';
   standalone: true,
   imports: [RouterOutlet, ToastModule],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
 })
 export class AppComponent implements OnInit {
-
   title: string = 'Angular_APP';
   languageMenu: any = environment.LANGUAGES_AVAILABLE;
   toastPosition: any = environment.TOAST_POSITION;
@@ -57,7 +56,7 @@ export class AppComponent implements OnInit {
         mergeMap((route) => route.data)
       )
       .subscribe((data) => {
-        this.translateService.get('appName').subscribe((appNameTranslation: string) => {
+        this.translateService.get('appName').subscribe(() => {
           const pageTitle = this.translateService.instant('appName');
           let subPageTitle: string = '';
           if (data['title'] != undefined) {
@@ -67,7 +66,6 @@ export class AppComponent implements OnInit {
           this.titleService.setTitle(completeTitle);
         });
       });
-
   }
 
   ngOnInit() {

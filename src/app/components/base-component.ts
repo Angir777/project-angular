@@ -1,13 +1,12 @@
-import { AbstractControl, FormGroup } from "@angular/forms";
-import { ServerSideFormValidationInterface } from "../interfaces/server-side-form-validation.interface";
-import { getServerErrors, getValidationClass, getValidationStatus, isFormControlInvalid } from "../utils/form.utils";
-import * as _ from "lodash";
+import { AbstractControl, FormGroup } from '@angular/forms';
+import { ServerSideFormValidationInterface } from '../interfaces/server-side-form-validation.interface';
+import { getServerErrors, getValidationClass, getValidationStatus, isFormControlInvalid } from '../utils/form.utils';
+import * as _ from 'lodash';
 
 /**
  * Bazowa klasa komponentu.
  */
 export abstract class BaseComponent {
-
   isLoading: boolean = false;
   isSaving: boolean = false;
 
@@ -18,16 +17,12 @@ export abstract class BaseComponent {
 }
 
 export abstract class BaseFormComponent extends BaseComponent implements ServerSideFormValidationInterface {
-
   form!: FormGroup;
   serverErrors: any;
   error: string = '';
 
   // Sprawdza, czy dany kontroler formularza jest nieprawidłowy.
-  isFormControlInvalid(
-    formControlName: string,
-    serverValidationPropName?: string
-  ): boolean {
+  isFormControlInvalid(formControlName: string, serverValidationPropName?: string): boolean {
     const abstractControl: AbstractControl | null = this.form.get(formControlName);
 
     // Jeśli nie podano drugiego argumentu, to jego nazwa jest identyczna z pierwszym.
@@ -49,10 +44,7 @@ export abstract class BaseFormComponent extends BaseComponent implements ServerS
   }
 
   // Określa status walidacji danego kontrolera formularza.
-  getFormValidationStatus(
-    formControlName: string,
-    serverValidationPropName?: string
-  ): any {
+  getFormValidationStatus(formControlName: string, serverValidationPropName?: string): any {
     const abstractControl: AbstractControl | null = this.form.get(formControlName);
 
     if (abstractControl === null) {
@@ -63,16 +55,11 @@ export abstract class BaseFormComponent extends BaseComponent implements ServerS
       return 'basic';
     }
 
-    return getValidationStatus(
-      this.isFormControlInvalid(formControlName, serverValidationPropName)
-    );
+    return getValidationStatus(this.isFormControlInvalid(formControlName, serverValidationPropName));
   }
 
   // Funkcja zwraca klasę walidacji ('is-valid' | 'is-invalid').
-  getFormValidationClass(
-    formControlName: string,
-    serverValidationPropName?: string
-  ): string {
+  getFormValidationClass(formControlName: string, serverValidationPropName?: string): string {
     const abstractControl: AbstractControl | null = this.form.get(formControlName);
 
     if (abstractControl === null) {
@@ -88,9 +75,7 @@ export abstract class BaseFormComponent extends BaseComponent implements ServerS
       serverValidationPropName = formControlName;
     }
 
-    return getValidationClass(
-      this.isFormControlInvalid(formControlName, serverValidationPropName)
-    );
+    return getValidationClass(this.isFormControlInvalid(formControlName, serverValidationPropName));
   }
 
   // Pobra listy błędów walidacji dla określonego pola.

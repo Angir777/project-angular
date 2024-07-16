@@ -30,16 +30,15 @@ import { finalize } from 'rxjs';
     RippleModule,
     FontAwesomeModule,
     RouterModule,
-    AutoFocusModule
+    AutoFocusModule,
   ],
   templateUrl: './password-reset-finish.component.html',
-  styleUrl: './password-reset-finish.component.scss'
+  styleUrl: './password-reset-finish.component.scss',
 })
 export class PasswordResetFinishComponent extends BaseFormComponent implements OnInit {
-
   faUser = faUser;
   faKey = faKey;
-  faSpinner = faSpinner
+  faSpinner = faSpinner;
 
   code!: string;
 
@@ -65,28 +64,22 @@ export class PasswordResetFinishComponent extends BaseFormComponent implements O
 
       // Sprawdź, czy pola istnieją i czy ich wartości są równe
       if (password && passwordConfirmation && password.value !== passwordConfirmation.value) {
-        control.get('passwordConfirmation')?.setErrors({ 'passwordConfirmation': true });
-        return { 'passwordConfirmation': true };
+        control.get('passwordConfirmation')?.setErrors({ passwordConfirmation: true });
+        return { passwordConfirmation: true };
       }
 
       return null;
     };
 
     // Utworzenie formularza
-    this.form = this.formBuilder.group({
-      email: [
-        null,
-        [Validators.required, Validators.email],
-      ],
-      password: [
-        null,
-        [Validators.required, Validators.minLength(6), Validators.maxLength(191)]
-      ],
-      passwordConfirmation: [
-        null,
-        [Validators.required]
-      ],
-    }, { validator: passwordMatchValidator});
+    this.form = this.formBuilder.group(
+      {
+        email: [null, [Validators.required, Validators.email]],
+        password: [null, [Validators.required, Validators.minLength(6), Validators.maxLength(191)]],
+        passwordConfirmation: [null, [Validators.required]],
+      },
+      { validator: passwordMatchValidator }
+    );
   }
 
   ngOnInit(): void {
@@ -94,7 +87,7 @@ export class PasswordResetFinishComponent extends BaseFormComponent implements O
       if (params['code'] != null) {
         this.code = params['code'];
       } else {
-        this.router.navigate(["login"]);
+        this.router.navigate(['login']);
       }
     });
   }
@@ -106,7 +99,7 @@ export class PasswordResetFinishComponent extends BaseFormComponent implements O
       email: this.form.get('email')?.value,
       password: this.form.get('password')?.value,
       password_confirmation: this.form.get('passwordConfirmation')?.value,
-      token: this.code
+      token: this.code,
     };
 
     this.authService
@@ -121,7 +114,7 @@ export class PasswordResetFinishComponent extends BaseFormComponent implements O
           if (response.body != null) {
             this.translatedToastService.success('passwordResetFinish.success.passwordResetSuccessText');
             this.form.reset();
-            this.router.navigate(["login"]);
+            this.router.navigate(['login']);
           }
         },
         error: (error) => {
@@ -138,8 +131,7 @@ export class PasswordResetFinishComponent extends BaseFormComponent implements O
             this.translatedToastService.error('passwordResetFinish.error.anotherErrorText');
           }
         },
-        complete: () => { },
+        complete: () => {},
       });
   }
-
 }

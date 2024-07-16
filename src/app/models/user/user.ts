@@ -1,7 +1,7 @@
-import { Permission } from "../auth/permission";
-import { BaseModel } from "../base-model";
-import { Role } from "../role/role";
-import * as _ from "lodash";
+import { Permission } from '../auth/permission';
+import { BaseModel } from '../base-model';
+import { Role } from '../role/role';
+import * as _ from 'lodash';
 
 /**
  * Model użytkownika.
@@ -25,8 +25,8 @@ export class User extends BaseModel {
 
   // Sprawdza, czy użytkownik ma przypisaną daną rolę.
   hasRole(role: Role | string): boolean {
-    let roleName: string | null = role instanceof Role ? role.name : role;
-    let index: number = this.roles.findIndex((name) => {
+    const roleName: string | null = role instanceof Role ? role.name : role;
+    const index: number = this.roles.findIndex((name) => {
       return name === roleName;
     });
     return index >= 0;

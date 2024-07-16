@@ -9,7 +9,6 @@ import { MessageService } from 'primeng/api';
   providedIn: 'root',
 })
 export class TranslatedToastService {
-
   // Użycie:
   // this.translatedToastService.error('messageTranslation', {var1: "t1", var2:"t2"}, 'titleTranslation');
 
@@ -19,7 +18,7 @@ export class TranslatedToastService {
   constructor(
     private messageService: MessageService,
     private translateService: TranslateService
-  ) { }
+  ) {}
 
   // Przygotowanie tłumaczenia wiadomości.
   private prepareMessage(message?: string, translationParameters: any = {}): string | undefined {
@@ -44,7 +43,7 @@ export class TranslatedToastService {
     this.messageService.add({
       severity: 'success',
       summary: prepareTitle,
-      detail: successMessage
+      detail: successMessage,
     });
   }
 
@@ -55,7 +54,7 @@ export class TranslatedToastService {
     this.messageService.add({
       severity: 'info',
       summary: prepareTitle,
-      detail: infoMessage
+      detail: infoMessage,
     });
   }
 
@@ -66,7 +65,7 @@ export class TranslatedToastService {
     this.messageService.add({
       severity: 'warn',
       summary: prepareTitle,
-      detail: warnMessage
+      detail: warnMessage,
     });
   }
 
@@ -77,8 +76,7 @@ export class TranslatedToastService {
     this.messageService.add({
       severity: 'error',
       summary: prepareTitle,
-      detail: errorMessage
+      detail: errorMessage,
     });
   }
-
 }

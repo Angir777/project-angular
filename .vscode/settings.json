@@ -1,0 +1,10 @@
+{
+  "cSpell.language": "en,pl,pl-PL",
+  "cSpell.words": [],
+  "files.eol": "\n",
+  "editor.rulers": [80, 150],
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": false,
+  "javascript.preferences.importModuleSpecifier": "project-relative",
+  "typescript.preferences.importModuleSpecifier": "project-relative"
+}

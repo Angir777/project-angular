@@ -5,20 +5,14 @@ import { TranslateModule } from '@ngx-translate/core';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [
-    TranslateModule
-  ],
+  imports: [TranslateModule],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.scss'
+  styleUrl: './home.component.scss',
 })
 export class HomeComponent {
-
   userName!: string | null | undefined;
 
-  constructor(
-    private loggedUserService: LoggedUserService
-  ) { 
+  constructor(private loggedUserService: LoggedUserService) {
     this.userName = loggedUserService.get()?.name;
   }
-
 }

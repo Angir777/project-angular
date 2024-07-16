@@ -17,112 +17,112 @@ import { NgxPermissionsGuard } from 'ngx-permissions';
 import { SettingsComponent } from './views/dashboard/settings/settings.component';
 
 export const routes: Routes = [
-    { 
-        path: '', 
-        redirectTo: 'login', 
-        pathMatch: 'full' 
-    },
-    {
-        path: '',
-        component: PublicComponent, 
-        children: [
-            { 
-                path: 'login', 
-                component: LoginComponent, 
-                data: { 
-                    title: 'pageTitle.login' 
-                } 
-            },
-            { 
-                path: 'register', 
-                component: RegisterComponent,
-                data: { 
-                    title: 'pageTitle.register' 
-                } 
-            },
-            { 
-                path: 'account-confirmation/:code', 
-                component: AccountConfirmationComponent,
-                data: { 
-                    title: 'pageTitle.accountConfirmation' 
-                } 
-            },
-            { 
-                path: 'password-reset', 
-                component: PasswordResetComponent,
-                data: { 
-                    title: 'pageTitle.passwordReset' 
-                } 
-            },
-            { 
-                path: 'finish-reset-password/:code', 
-                component: PasswordResetFinishComponent,
-                data: { 
-                    title: 'pageTitle.passwordResetFinish' 
-                } 
-            }
-        ]
-    },
-    {
-        path: '',
-        component: ErrorComponent,
-        children: [
-            { 
-                path: '403', 
-                component: ForbiddenComponent 
-            },
-            { 
-                path: '404', 
-                component: NotfoundComponent 
-            },
-        ]
-    },
-    {
-        path: '',
-        component: DashboardComponent,
-        canActivate: [AuthGuard],
-        children: [
-            { 
-                path: 'home', 
-                component: HomeComponent 
-            },
-            { 
-                path: 'settings', 
-                component: SettingsComponent,
-                canActivate: [NgxPermissionsGuard],
-                data: {
-                    permissions: {
-                        only: ['USER'],
-                        redirectTo: '/'
-                    }
-                }
-            },
-            { 
-                path: 'users', 
-                component: UsersComponent,
-                canActivate: [NgxPermissionsGuard],
-                data: {
-                    permissions: {
-                        only: ['USER_MANAGE', 'USER_ACCESS'],
-                        redirectTo: '/'
-                    }
-                }
-            },
-            { 
-                path: 'roles', 
-                component: RolesComponent,
-                canActivate: [NgxPermissionsGuard],
-                data: {
-                    permissions: {
-                        only: ['ROLE_MANAGE', 'ROLE_ACCESS'],
-                        redirectTo: '/'
-                    }
-                }
-            }
-        ]
-    },
-    { 
-        path: '**', 
-        redirectTo: '/404' 
-    },
+  {
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full',
+  },
+  {
+    path: '',
+    component: PublicComponent,
+    children: [
+      {
+        path: 'login',
+        component: LoginComponent,
+        data: {
+          title: 'pageTitle.login',
+        },
+      },
+      {
+        path: 'register',
+        component: RegisterComponent,
+        data: {
+          title: 'pageTitle.register',
+        },
+      },
+      {
+        path: 'account-confirmation/:code',
+        component: AccountConfirmationComponent,
+        data: {
+          title: 'pageTitle.accountConfirmation',
+        },
+      },
+      {
+        path: 'password-reset',
+        component: PasswordResetComponent,
+        data: {
+          title: 'pageTitle.passwordReset',
+        },
+      },
+      {
+        path: 'finish-reset-password/:code',
+        component: PasswordResetFinishComponent,
+        data: {
+          title: 'pageTitle.passwordResetFinish',
+        },
+      },
+    ],
+  },
+  {
+    path: '',
+    component: ErrorComponent,
+    children: [
+      {
+        path: '403',
+        component: ForbiddenComponent,
+      },
+      {
+        path: '404',
+        component: NotfoundComponent,
+      },
+    ],
+  },
+  {
+    path: '',
+    component: DashboardComponent,
+    canActivate: [AuthGuard],
+    children: [
+      {
+        path: 'home',
+        component: HomeComponent,
+      },
+      {
+        path: 'settings',
+        component: SettingsComponent,
+        canActivate: [NgxPermissionsGuard],
+        data: {
+          permissions: {
+            only: ['USER'],
+            redirectTo: '/',
+          },
+        },
+      },
+      {
+        path: 'users',
+        component: UsersComponent,
+        canActivate: [NgxPermissionsGuard],
+        data: {
+          permissions: {
+            only: ['USER_MANAGE', 'USER_ACCESS'],
+            redirectTo: '/',
+          },
+        },
+      },
+      {
+        path: 'roles',
+        component: RolesComponent,
+        canActivate: [NgxPermissionsGuard],
+        data: {
+          permissions: {
+            only: ['ROLE_MANAGE', 'ROLE_ACCESS'],
+            redirectTo: '/',
+          },
+        },
+      },
+    ],
+  },
+  {
+    path: '**',
+    redirectTo: '/404',
+  },
 ];

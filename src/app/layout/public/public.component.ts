@@ -7,12 +7,8 @@ import { LayoutService } from '../../services/layout/layout.service';
   standalone: true,
   imports: [RouterOutlet],
   templateUrl: './public.component.html',
-  styleUrl: './public.component.scss'
+  styleUrl: './public.component.scss',
 })
 export class PublicComponent {
-
-  constructor(
-    public layoutService: LayoutService,
-  ) { }
-
+  constructor(public layoutService: LayoutService) {}
 }

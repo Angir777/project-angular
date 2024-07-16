@@ -9,7 +9,6 @@ import { ErrorHandlerInterceptor } from './error-handler.interceptor';
  * Lista interceptorów HTTP ładowanych w aplikacji.
  */
 export const httpInterceptorProviders = [
-
   // Interceptor przechwytujący brak połączenia z API.
   { provide: HTTP_INTERCEPTORS, useClass: ApiUnavailableInterceptor, multi: true },
 
@@ -24,5 +23,4 @@ export const httpInterceptorProviders = [
 
   // Interceptor przechwytujący błędy zapytań.
   { provide: HTTP_INTERCEPTORS, useClass: ErrorHandlerInterceptor, multi: true },
-
 ];

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AuthService } from '../../../../services/auth/auth.service';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { BaseFormComponent } from '../../../../components/base-component';
@@ -33,27 +33,26 @@ import { AutoFocusModule } from 'primeng/autofocus';
     RippleModule,
     FontAwesomeModule,
     RouterModule,
-    AutoFocusModule
+    AutoFocusModule,
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
-export class LoginComponent extends BaseFormComponent implements OnInit {
-
+export class LoginComponent extends BaseFormComponent {
   public loggedUser: LoggedUser | null = null;
   appVersion: string = environment.APP_VERSION;
   canRegistration: any = environment.REGISTRATION_ENABLED;
 
   faUser = faUser;
   faKey = faKey;
-  faSpinner = faSpinner
+  faSpinner = faSpinner;
 
   constructor(
     private authService: AuthService,
     private loggedUserService: LoggedUserService,
     private formBuilder: FormBuilder,
     private router: Router,
-    private translatedToastService: TranslatedToastService,
+    private translatedToastService: TranslatedToastService
   ) {
     super();
 
@@ -64,19 +63,11 @@ export class LoginComponent extends BaseFormComponent implements OnInit {
 
     // Utworzenie formularza i wstawienie przykładowych danych jeśli dev
     this.form = this.formBuilder.group({
-      email: [
-        environment.production ? '' : 'superadmin@mail.com',
-        [Validators.required, Validators.email],
-      ],
-      password: [
-        environment.production ? '' : 'root12',
-        [Validators.required]
-      ],
+      email: [environment.production ? '' : 'superadmin@mail.com', [Validators.required, Validators.email]],
+      password: [environment.production ? '' : 'root12', [Validators.required]],
       remember: true,
     });
   }
-
-  ngOnInit(): void { }
 
   login() {
     this.isLoading = true;
@@ -92,7 +83,7 @@ export class LoginComponent extends BaseFormComponent implements OnInit {
           this.loggedUser = response.body;
           if (this.loggedUser !== null) {
             this.form.reset();
-            this.router.navigate(["home"]);
+            this.router.navigate(['home']);
           }
         },
         error: (error) => {
@@ -105,8 +96,7 @@ export class LoginComponent extends BaseFormComponent implements OnInit {
             this.translatedToastService.error('login.error.anotherErrorText');
           }
         },
-        complete: () => { },
+        complete: () => {},
       });
   }
-
 }

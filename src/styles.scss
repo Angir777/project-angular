@@ -1,40 +1,42 @@
 /* You can add global styles to this file, and also import other style files */
 
 $gutter: 1rem; // for primeflex grid system
-@import "assets/layout/styles/layout/layout.scss";
+@import 'assets/layout/styles/layout/layout.scss';
 
 // PrimeNG
-@import "../node_modules/primeng/resources/primeng.min.css";
-@import "../node_modules/primeicons/primeicons.css";
+@import '../node_modules/primeng/resources/primeng.min.css';
+@import '../node_modules/primeicons/primeicons.css';
 
-.layout-main, .landing-wrapper {
-    width: 100%;
+.layout-main,
+.landing-wrapper {
+  width: 100%;
 }
 
 .p-dropdown-items-wrapper ul {
-    padding-left: 0rem;
-    margin-bottom: 0rem;
+  padding-left: 0rem;
+  margin-bottom: 0rem;
 }
 
 // Style formularzy
 form {
-    .ng-valid-success {
-        border: 1px solid #78da9c;
-    }
+  .ng-valid-success {
+    border: 1px solid #78da9c;
+  }
 }
 
 // Tło blur
 .light-blur-bg {
-    background-color: var(--surface-50);
-    opacity: 0.9;
-    backdrop-filter: blur(10px);
-    -webkit-box-shadow: 0px 8px 16px -16px rgba(66, 68, 90, 1);
-    -moz-box-shadow: 0px 8px 16px -16px rgba(66, 68, 90, 1);
-    box-shadow: 0px 8px 16px -16px rgba(66, 68, 90, 1);
+  background-color: var(--surface-50);
+  opacity: 0.9;
+  backdrop-filter: blur(10px);
+  -webkit-box-shadow: 0px 8px 16px -16px rgba(66, 68, 90, 1);
+  -moz-box-shadow: 0px 8px 16px -16px rgba(66, 68, 90, 1);
+  box-shadow: 0px 8px 16px -16px rgba(66, 68, 90, 1);
 }
 
 // Uzupełnienie dla styli by działłąy poprawnie motywy
 // https://primeng.org/colors
-p, small {
-    color: var(--text-color);
+p,
+small {
+  color: var(--text-color);
 }

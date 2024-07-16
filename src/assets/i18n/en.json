@@ -1,7 +1,7 @@
 {
   "appName": "Angular APP",
   "appVersion": "Application Version",
-  
+
   "global": {
     "button": {
       "ok": "OK",
@@ -45,7 +45,7 @@
     "homePage": "Home",
     "userManagement": "User management",
     "users": "Users",
-    "roles" : "Roles"
+    "roles": "Roles"
   },
 
   "login": {
@@ -143,5 +143,4 @@
   "home": {
     "hello": "Hello"
   }
-
 }

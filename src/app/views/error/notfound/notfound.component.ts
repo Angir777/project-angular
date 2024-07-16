@@ -5,11 +5,8 @@ import { TranslateModule } from '@ngx-translate/core';
 @Component({
   selector: 'app-notfound',
   standalone: true,
-  imports: [
-    TranslateModule,
-    RouterModule
-  ],
+  imports: [TranslateModule, RouterModule],
   templateUrl: './notfound.component.html',
-  styleUrl: './notfound.component.scss'
+  styleUrl: './notfound.component.scss',
 })
-export class NotfoundComponent { }
+export class NotfoundComponent {}

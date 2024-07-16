@@ -9,7 +9,6 @@ import Swal, { SweetAlertOptions, SweetAlertResult } from 'sweetalert2';
   providedIn: 'root',
 })
 export class TranslatedSwalService {
-
   // Użycie:
   // async exampleFunction() {
   //   const result = await this.translatedSwalService.showAsync(
@@ -42,92 +41,53 @@ export class TranslatedSwalService {
   //   );
   // }
 
-  constructor(
-    private translateService: TranslateService
-  ) { }
+  constructor(private translateService: TranslateService) {}
 
   // Synchroniczne wywołanie.
-  async show(
-    settings: SweetAlertOptions = {},
-    translationParameters: any = {}
-  ) {
-    const translatedSettings = await this.prepareSettings(
-      settings,
-      translationParameters
-    );
-    
+  async show(settings: SweetAlertOptions = {}, translationParameters: any = {}) {
+    const translatedSettings = await this.prepareSettings(settings, translationParameters);
+
     Swal.fire({ ...translatedSettings });
   }
 
   // Asynchroniczne wywołanie.
-  async showAsync(
-    settings: SweetAlertOptions = {},
-    translationParameters: any = {}
-  ): Promise<SweetAlertResult> {
-    const translatedSettings = await this.prepareSettings(
-      settings,
-      translationParameters
-    );
+  async showAsync(settings: SweetAlertOptions = {}, translationParameters: any = {}): Promise<SweetAlertResult> {
+    const translatedSettings = await this.prepareSettings(settings, translationParameters);
 
     return await Swal.fire({ ...translatedSettings });
   }
 
   // Przygotowanie tłumaczeń.
-  private async prepareSettings(
-    settings: SweetAlertOptions = {},
-    translationParameters: any = {}
-  ): Promise<SweetAlertOptions> {
+  private async prepareSettings(settings: SweetAlertOptions = {}, translationParameters: any = {}): Promise<SweetAlertOptions> {
     const translatedSettings: SweetAlertOptions = { ...settings };
 
     // Tytuł.
     if (settings.title != null) {
-      translatedSettings.title = this.translateService.instant(
-        settings.title.toString(),
-        translationParameters.title
-      );
+      translatedSettings.title = this.translateService.instant(settings.title.toString(), translationParameters.title);
     }
 
     // Zmienne.
     if (settings.text != null) {
-      translatedSettings.text = this.translateService.instant(
-        settings.text,
-        translationParameters
-      );
+      translatedSettings.text = this.translateService.instant(settings.text, translationParameters);
     }
 
     // Stopka.
     if (settings.footer != null) {
-      translatedSettings.footer = this.translateService.instant(
-        settings.footer.toString(),
-        translationParameters.footer
-      );
+      translatedSettings.footer = this.translateService.instant(settings.footer.toString(), translationParameters.footer);
     }
 
     // Przycisk potwierdzenia.
-    if (
-      settings.confirmButtonText != null &&
-      settings.confirmButtonText.length > 0
-    ) {
+    if (settings.confirmButtonText != null && settings.confirmButtonText.length > 0) {
       translatedSettings.showConfirmButton = true;
-      translatedSettings.confirmButtonText = this.translateService.instant(
-        settings.confirmButtonText,
-        translationParameters.confirmButtonText
-      );
+      translatedSettings.confirmButtonText = this.translateService.instant(settings.confirmButtonText, translationParameters.confirmButtonText);
     }
 
     // Przycisk odrzucenia.
-    if (
-      settings.cancelButtonText != null &&
-      settings.cancelButtonText.length > 0
-    ) {
+    if (settings.cancelButtonText != null && settings.cancelButtonText.length > 0) {
       translatedSettings.showCancelButton = true;
-      translatedSettings.cancelButtonText = this.translateService.instant(
-        settings.cancelButtonText,
-        translationParameters.cancelButtonText
-      );
+      translatedSettings.cancelButtonText = this.translateService.instant(settings.cancelButtonText, translationParameters.cancelButtonText);
     }
 
     return translatedSettings;
   }
-  
 }

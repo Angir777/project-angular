@@ -5,11 +5,8 @@ import { TranslateModule } from '@ngx-translate/core';
 @Component({
   selector: 'app-forbidden',
   standalone: true,
-  imports: [
-    TranslateModule,
-    RouterModule
-  ],
+  imports: [TranslateModule, RouterModule],
   templateUrl: './forbidden.component.html',
-  styleUrl: './forbidden.component.scss'
+  styleUrl: './forbidden.component.scss',
 })
-export class ForbiddenComponent { }
+export class ForbiddenComponent {}

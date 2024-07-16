@@ -8,10 +8,9 @@ describe('PublicComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PublicComponent]
-    })
-    .compileComponents();
-    
+      imports: [PublicComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(PublicComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

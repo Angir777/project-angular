@@ -17,20 +17,11 @@ import { Language } from '../../../interfaces/language.interface';
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [
-    CommonModule,
-    RouterModule,
-    FontAwesomeModule,
-    TranslateModule,
-    TooltipModule,
-    FormsModule,
-    DropdownModule
-  ],
+  imports: [CommonModule, RouterModule, FontAwesomeModule, TranslateModule, TooltipModule, FormsModule, DropdownModule],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.scss'
+  styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
-
   items!: MenuItem[];
 
   @ViewChild('menubutton') menuButton!: ElementRef;
@@ -61,37 +52,37 @@ export class HeaderComponent {
 
     // Ustawienie wybranego języka
     const savedLanguage = localStorage.getItem('selectedLanguage');
-    const isLanguagesAvailable = this.languages.some(item => item.data.lang === savedLanguage);
-    
+    const isLanguagesAvailable = this.languages.some((item) => item.data.lang === savedLanguage);
+
     if (savedLanguage && isLanguagesAvailable) {
-      this.selectedLanguage = this.languages.find(item => item.data.lang === savedLanguage) as Language;
+      this.selectedLanguage = this.languages.find((item) => item.data.lang === savedLanguage) as Language;
       this.translateService.use(savedLanguage);
     } else {
-      this.selectedLanguage = this.languages.find(item => item.data.lang === environment.DEFAULT_LANGUAGE) as Language;
+      this.selectedLanguage = this.languages.find((item) => item.data.lang === environment.DEFAULT_LANGUAGE) as Language;
       this.translateService.setDefaultLang(environment.DEFAULT_LANGUAGE);
     }
   }
 
   set theme(val: string) {
     this.layoutService.config.update((config) => ({
-        ...config,
-        theme: val,
+      ...config,
+      theme: val,
     }));
   }
 
   get theme(): string {
-      return this.layoutService.config().theme;
+    return this.layoutService.config().theme;
   }
 
   set colorScheme(val: string) {
     this.layoutService.config.update((config) => ({
-        ...config,
-        colorScheme: val,
+      ...config,
+      colorScheme: val,
     }));
   }
 
   get colorScheme(): string {
-      return this.layoutService.config().colorScheme;
+    return this.layoutService.config().colorScheme;
   }
 
   changeTheme(theme: string, colorScheme: string) {
@@ -116,14 +107,12 @@ export class HeaderComponent {
   }
 
   logout() {
-    this.authService
-      .logout()
-      .subscribe({
-        next: (result) => {
-          this.router.navigate(['/login']);
-        },
-        error: (error) => { },
-      });
+    this.authService.logout().subscribe({
+      next: () => {
+        this.router.navigate(['/login']);
+      },
+      error: () => {},
+    });
   }
 
   changeLanguage(): void {

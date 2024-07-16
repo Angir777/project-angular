@@ -1,104 +1,90 @@
 <div class="row light-blur-bg rounded-3 p-3 pb-4">
-   <div class="col-12">
-      <h1 class="display-4 mt-4 mb-4 text-center">{{ 'appName' | translate }}</h1>
-   </div>
-   <div class="col-12">
-      <form [formGroup]="form" (ngSubmit)="login()">
-         <div class="field p-fluid">
-            <label for="email">{{ "login.form.email" | translate }}*</label>
-            <span class="p-input-icon-left">
-               <i><fa-icon [icon]="faUser"></fa-icon></i>
-               <input 
-                  pInputText
-                  pAutoFocus 
-                  [autofocus]="true"
-                  [ngClass]="getStatus('email')"
-                  id="email" 
-                  type="email" 
-                  [placeholder]="'login.form.email' | translate"
-                  formControlName="email"
-                  required 
-                  aria-describedby="email-required"
-                  [attr.aria-invalid]="getAriaInvalid('email')"
-                  (keydown)="clearServerErrors('email')"
-               >
-            </span>
-            <!-- {{ getFormValidationStatus('email') }} -->
-            <app-form-control-errors
-               *ngIf="isFormControlInvalid('email')"
-               [errors]="form.get('email')?.errors"
-               [serverErrors]="getServerErrors('email')"
-            ></app-form-control-errors>
-         </div>
-            
-         <div class="field p-fluid mt-3">
-            <label for="password">{{ "login.form.password" | translate }}*</label>
-            <span class="p-input-icon-left">
-               <i><fa-icon [icon]="faKey"></fa-icon></i>
-               <input
-                  pInputText
-                  [ngClass]="getStatus('password')"
-                  id="password"
-                  type="password" 
-                  [placeholder]="'login.form.password' | translate"
-                  formControlName="password"
-                  required
-                  aria-describedby="password-required"
-                  [attr.aria-invalid]="getAriaInvalid('password')"
-                  (keydown)="clearServerErrors('password')"
-               >
-            </span>
-            <!-- {{ getFormValidationStatus('password') }} -->
-            <app-form-control-errors
-               *ngIf="isFormControlInvalid('password')"
-               [errors]="form.get('password')?.errors"
-               [serverErrors]="getServerErrors('password')"
-            ></app-form-control-errors>
-         </div>
-      
-         <div class="mt-4">
-            <div class="d-flex align-items-center justify-content-between">
-               <div class="d-flex align-items-center mb-2">
-                  <p-checkbox id="remember" formControlName="remember" [binary]="true"></p-checkbox>
-                  <label for="remember" class="ms-2">{{ "login.form.remember" | translate }}</label>
-               </div>
-               <div>
-                  <a 
-                     class="link-secondary link-underline-opacity-0"
-                     [routerLink]="['/password-reset']"
-                  >{{ "login.form.forgotPassword" | translate }}</a>
-               </div>
-            </div>
-         </div>
-            
-         <button 
-            pButton 
-            pRipple 
-            class="p-button-success w-100 d-flex justify-content-center rounded mt-3" 
-            [disabled]="isLoading || !form.valid"
-         >
-            <span *ngIf="!isLoading">
-               {{ "login.button.login" | translate }}
-            </span>
-            <span *ngIf="isLoading">
-               <fa-icon [icon]="faSpinner" [spin]="true"></fa-icon>
-            </span>
-         </button>
+  <div class="col-12">
+    <h1 class="display-4 mt-4 mb-4 text-center">{{ 'appName' | translate }}</h1>
+  </div>
+  <div class="col-12">
+    <form [formGroup]="form" (ngSubmit)="login()">
+      <div class="field p-fluid">
+        <label for="email">{{ 'login.form.email' | translate }}*</label>
+        <span class="p-input-icon-left">
+          <i><fa-icon [icon]="faUser"></fa-icon></i>
+          <input
+            pInputText
+            pAutoFocus
+           
+            [ngClass]="getStatus('email')"
+            id="email"
+            type="email"
+            [placeholder]="'login.form.email' | translate"
+            formControlName="email"
+            required
+            aria-describedby="email-required"
+            [attr.aria-invalid]="getAriaInvalid('email')"
+            (keydown)="clearServerErrors('email')" />
+        </span>
+        <!-- {{ getFormValidationStatus('email') }} -->
+        <app-form-control-errors
+          *ngIf="isFormControlInvalid('email')"
+          [errors]="form.get('email')?.errors"
+          [serverErrors]="getServerErrors('email')"></app-form-control-errors>
+      </div>
 
-         <button 
-            type="button"
-            *ngIf="canRegistration"
-            pButton 
-            pRipple 
-            class="p-button-secondary w-100 d-flex justify-content-center rounded mt-3"
-            [routerLink]="['/register']"
-         >
-            {{ "login.form.register" | translate }}
-         </button>
+      <div class="field p-fluid mt-3">
+        <label for="password">{{ 'login.form.password' | translate }}*</label>
+        <span class="p-input-icon-left">
+          <i><fa-icon [icon]="faKey"></fa-icon></i>
+          <input
+            pInputText
+            [ngClass]="getStatus('password')"
+            id="password"
+            type="password"
+            [placeholder]="'login.form.password' | translate"
+            formControlName="password"
+            required
+            aria-describedby="password-required"
+            [attr.aria-invalid]="getAriaInvalid('password')"
+            (keydown)="clearServerErrors('password')" />
+        </span>
+        <!-- {{ getFormValidationStatus('password') }} -->
+        <app-form-control-errors
+          *ngIf="isFormControlInvalid('password')"
+          [errors]="form.get('password')?.errors"
+          [serverErrors]="getServerErrors('password')"></app-form-control-errors>
+      </div>
 
-      </form>
-   </div>
-   <div class="col-12 text-center text-black-50 mt-2">
-      <small>{{ "appVersion" | translate }}: v{{ appVersion }}</small>
-   </div>
+      <div class="mt-4">
+        <div class="d-flex align-items-center justify-content-between">
+          <div class="d-flex align-items-center mb-2">
+            <p-checkbox id="remember" formControlName="remember" [binary]="true"></p-checkbox>
+            <label for="remember" class="ms-2">{{ 'login.form.remember' | translate }}</label>
+          </div>
+          <div>
+            <a class="link-secondary link-underline-opacity-0" [routerLink]="['/password-reset']">{{ 'login.form.forgotPassword' | translate }}</a>
+          </div>
+        </div>
+      </div>
+
+      <button pButton pRipple class="p-button-success w-100 d-flex justify-content-center rounded mt-3" [disabled]="isLoading || !form.valid">
+        <span *ngIf="!isLoading">
+          {{ 'login.button.login' | translate }}
+        </span>
+        <span *ngIf="isLoading">
+          <fa-icon [icon]="faSpinner" [spin]="true"></fa-icon>
+        </span>
+      </button>
+
+      <button
+        type="button"
+        *ngIf="canRegistration"
+        pButton
+        pRipple
+        class="p-button-secondary w-100 d-flex justify-content-center rounded mt-3"
+        [routerLink]="['/register']">
+        {{ 'login.form.register' | translate }}
+      </button>
+    </form>
+  </div>
+  <div class="col-12 text-center text-black-50 mt-2">
+    <small>{{ 'appVersion' | translate }}: v{{ appVersion }}</small>
+  </div>
 </div>

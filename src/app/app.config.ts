@@ -16,9 +16,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
-    provideHttpClient(
-      withInterceptorsFromDi()
-    ),
+    provideHttpClient(withInterceptorsFromDi()),
     importProvidersFrom(
       NgxPermissionsModule.forRoot(),
       BrowserAnimationsModule,
@@ -26,11 +24,11 @@ export const appConfig: ApplicationConfig = {
         loader: {
           provide: TranslateLoader,
           useFactory: HttpLoaderFactory,
-          deps: [HttpClient]
-        }
-      }),
+          deps: [HttpClient],
+        },
+      })
     ),
     MessageService,
-    ...httpInterceptorProviders
-  ]
+    ...httpInterceptorProviders,
+  ],
 };

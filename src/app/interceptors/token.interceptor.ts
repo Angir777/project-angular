@@ -8,13 +8,10 @@ import { LoggedUserService } from '../services/logged-user/logged-user.service';
  * Token musi lecieć, jeśli w API mamy chronione routingi.
  */
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TokenInterceptor implements HttpInterceptor {
-
-  constructor(
-    private loggedUserService: LoggedUserService
-  ) { }
+  constructor(private loggedUserService: LoggedUserService) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     if (this.loggedUserService.getToken() !== null) {
@@ -26,5 +23,4 @@ export class TokenInterceptor implements HttpInterceptor {
     }
     return next.handle(request);
   }
-
 }

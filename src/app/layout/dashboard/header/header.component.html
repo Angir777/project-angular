@@ -1,61 +1,51 @@
 <div class="layout-topbar">
-    <a class="layout-topbar-logo" routerLink="">
-        <span>{{ 'appName' | translate }}</span>
-        <!-- https://sakai.primeng.org/uikit/formlayout -->
-    </a>
+  <a class="layout-topbar-logo" routerLink="">
+    <span>{{ 'appName' | translate }}</span>
+    <!-- https://sakai.primeng.org/uikit/formlayout -->
+  </a>
 
-    <button #menubutton class="p-link layout-menu-button layout-topbar-button" (click)="layoutService.onMenuToggle()">
-        <fa-icon [icon]="faBars"></fa-icon>
+  <button #menubutton class="p-link layout-menu-button layout-topbar-button" (click)="layoutService.onMenuToggle()">
+    <fa-icon [icon]="faBars"></fa-icon>
+  </button>
+
+  <button #topbarmenubutton class="p-link layout-topbar-menu-button layout-topbar-button" (click)="layoutService.showProfileSidebar()">
+    <fa-icon [icon]="faUser"></fa-icon>
+  </button>
+
+  <div
+    #topbarmenu
+    class="layout-topbar-menu d-flex align-items-center"
+    [ngClass]="{ 'layout-topbar-menu-mobile-active': layoutService.state.profileSidebarVisible }">
+    <!-- Language -->
+    @if (enableLanguageChange) {
+      <p-dropdown
+        class="ps-0"
+        [options]="languages"
+        [(ngModel)]="selectedLanguage"
+        optionLabel="title"
+        placeholder="{{ 'global.header.currentLang' | translate }}"
+        (onChange)="changeLanguage()">
+        <ng-template let-language pTemplate="selectedItem">
+          <div class="p-d-flex p-ai-center">
+            <i class="pi pi-language p-mr-2"></i>
+            <span class="ms-1">{{ language.title }}</span>
+          </div>
+        </ng-template>
+      </p-dropdown>
+      <span class="vertical-separator"></span>
+    }
+    <!-- Icons -->
+    <button class="p-link layout-topbar-button" (click)="changeTheme('lara-' + newColorTheme + '-indigo', newColorTheme)">
+      <fa-icon [icon]="faCircleHalfStroke" pTooltip="{{ 'nav.motyw' | translate }}" tooltipPosition="bottom"></fa-icon>
+      <span class="ms-1">{{ 'nav.motyw' | translate }}</span>
     </button>
-
-    <button #topbarmenubutton class="p-link layout-topbar-menu-button layout-topbar-button" (click)="layoutService.showProfileSidebar()">
-        <fa-icon [icon]="faUser"></fa-icon>
+    <button class="p-link layout-topbar-button" [routerLink]="'/settings'">
+      <fa-icon [icon]="faGear" pTooltip="{{ 'nav.settings' | translate }}" tooltipPosition="bottom"></fa-icon>
+      <span class="ms-1">{{ 'nav.settings' | translate }}</span>
     </button>
-
-    <div #topbarmenu class="layout-topbar-menu d-flex align-items-center" [ngClass]="{'layout-topbar-menu-mobile-active': layoutService.state.profileSidebarVisible}">
-        <!-- Language -->
-        @if (enableLanguageChange) {
-            <p-dropdown 
-                class="ps-0"
-                [options]="languages" 
-                [(ngModel)]="selectedLanguage" 
-                optionLabel="title"
-                placeholder="{{ 'global.header.currentLang' | translate }}"
-                (onChange)="changeLanguage()">
-                
-                <ng-template let-language pTemplate="selectedItem">
-                    <div class="p-d-flex p-ai-center">
-                        <i class="pi pi-language p-mr-2"></i>
-                        <span class="ms-1">{{ language.title }}</span>
-                    </div>
-                </ng-template>
-            </p-dropdown>
-            <span class="vertical-separator"></span>
-        }
-        <!-- Icons -->
-        <button class="p-link layout-topbar-button" (click)="changeTheme('lara-'+ newColorTheme +'-indigo', newColorTheme)">
-            <fa-icon 
-                [icon]="faCircleHalfStroke" 
-                pTooltip="{{ 'nav.motyw' | translate }}" 
-                tooltipPosition="bottom"
-            ></fa-icon>
-            <span class="ms-1">{{ "nav.motyw" | translate }}</span>
-        </button>
-        <button class="p-link layout-topbar-button" [routerLink]="'/settings'">
-            <fa-icon 
-                [icon]="faGear" 
-                pTooltip="{{ 'nav.settings' | translate }}" 
-                tooltipPosition="bottom"
-            ></fa-icon>
-            <span class="ms-1">{{ "nav.settings" | translate }}</span>
-        </button>
-        <button class="p-link layout-topbar-button" (click)="logout()">
-            <fa-icon 
-                [icon]="faArrowRightFromBracket"
-                pTooltip="{{ 'nav.logout' | translate }}" 
-                tooltipPosition="bottom"
-            ></fa-icon>
-            <span class="ms-1">{{ "nav.logout" | translate }}</span>
-        </button>
-    </div>
+    <button class="p-link layout-topbar-button" (click)="logout()">
+      <fa-icon [icon]="faArrowRightFromBracket" pTooltip="{{ 'nav.logout' | translate }}" tooltipPosition="bottom"></fa-icon>
+      <span class="ms-1">{{ 'nav.logout' | translate }}</span>
+    </button>
+  </div>
 </div>

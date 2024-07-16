@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AuthService } from '../../../../services/auth/auth.service';
 import { AbstractControl, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { BaseFormComponent } from '../../../../components/base-component';
@@ -33,17 +33,16 @@ import { AutoFocusModule } from 'primeng/autofocus';
     RippleModule,
     FontAwesomeModule,
     RouterModule,
-    AutoFocusModule
+    AutoFocusModule,
   ],
   templateUrl: './register.component.html',
-  styleUrl: './register.component.scss'
+  styleUrl: './register.component.scss',
 })
-export class RegisterComponent extends BaseFormComponent implements OnInit {
-
+export class RegisterComponent extends BaseFormComponent {
   faSignature = faSignature;
   faUser = faUser;
   faKey = faKey;
-  faSpinner = faSpinner
+  faSpinner = faSpinner;
 
   constructor(
     private authService: AuthService,
@@ -51,7 +50,7 @@ export class RegisterComponent extends BaseFormComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private translatedToastService: TranslatedToastService,
-    private translatedSwalService: TranslatedSwalService,
+    private translatedSwalService: TranslatedSwalService
   ) {
     super();
 
@@ -67,39 +66,25 @@ export class RegisterComponent extends BaseFormComponent implements OnInit {
 
       // Sprawdź, czy pola istnieją i czy ich wartości są równe
       if (password && passwordConfirmation && password.value !== passwordConfirmation.value) {
-        control.get('passwordConfirmation')?.setErrors({ 'passwordConfirmation': true });
-        return { 'passwordConfirmation': true };
+        control.get('passwordConfirmation')?.setErrors({ passwordConfirmation: true });
+        return { passwordConfirmation: true };
       }
 
       return null;
     };
 
     // Utworzenie formularza
-    this.form = this.formBuilder.group({
-      name: [
-        null,
-        [Validators.required, Validators.maxLength(191)],
-      ],
-      email: [
-        null,
-        [Validators.required, Validators.email, Validators.maxLength(191)],
-      ],
-      password: [
-        null,
-        [Validators.required, Validators.minLength(6), Validators.maxLength(191)]
-      ],
-      passwordConfirmation: [
-        null,
-        [Validators.required]
-      ],
-      acceptanceRegulations: [
-        null,
-        [Validators.required]
-      ]
-    }, { validator: passwordMatchValidator});
+    this.form = this.formBuilder.group(
+      {
+        name: [null, [Validators.required, Validators.maxLength(191)]],
+        email: [null, [Validators.required, Validators.email, Validators.maxLength(191)]],
+        password: [null, [Validators.required, Validators.minLength(6), Validators.maxLength(191)]],
+        passwordConfirmation: [null, [Validators.required]],
+        acceptanceRegulations: [null, [Validators.required]],
+      },
+      { validator: passwordMatchValidator }
+    );
   }
-
-  ngOnInit(): void { }
 
   register() {
     this.isLoading = true;
@@ -109,7 +94,7 @@ export class RegisterComponent extends BaseFormComponent implements OnInit {
       email: this.form.get('email')?.value,
       password: this.form.get('password')?.value,
       password_confirmation: this.form.get('passwordConfirmation')?.value,
-      acceptance_regulations: this.form.get('acceptanceRegulations')?.value
+      acceptance_regulations: this.form.get('acceptanceRegulations')?.value,
     };
 
     this.authService
@@ -132,14 +117,14 @@ export class RegisterComponent extends BaseFormComponent implements OnInit {
           // Obsługujemy pozostałe błędy
           if (error.error.error === 'YOU_DONT_ACCEPTANCE_REGULATIONS') {
             this.translatedToastService.error('register.error.youDontAcceptanceRegulationsText');
-            this.form.get('acceptanceRegulations')?.setErrors({ 'acceptanceRegulations': true });
+            this.form.get('acceptanceRegulations')?.setErrors({ acceptanceRegulations: true });
           } else if (error.error.error === 'REGISTRATION_DISABLED') {
             this.translatedToastService.error('register.error.registrationDisabledText');
           } else {
             this.translatedToastService.error('register.error.anotherErrorText');
           }
         },
-        complete: () => { },
+        complete: () => {},
       });
   }
 
@@ -157,8 +142,7 @@ export class RegisterComponent extends BaseFormComponent implements OnInit {
     );
 
     if (result) {
-      this.router.navigate(["login"]);
+      this.router.navigate(['login']);
     }
   }
-
 }
