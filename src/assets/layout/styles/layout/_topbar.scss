@@ -128,7 +128,7 @@
       animation: scalein 0.15s linear;
 
       &.layout-topbar-menu-mobile-active {
-        display: block;
+        visibility: hidden;
       }
 
       .layout-topbar-button {

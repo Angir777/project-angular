@@ -15,7 +15,7 @@
   <div
     #topbarmenu
     class="layout-topbar-menu d-flex align-items-center"
-    [ngClass]="{ 'layout-topbar-menu-mobile-active': layoutService.state.profileSidebarVisible }">
+    [ngClass]="{ 'layout-topbar-menu-mobile-active': !layoutService.state.profileSidebarVisible }">
     <!-- Language -->
     @if (enableLanguageChange) {
       <p-dropdown

@@ -75,7 +75,6 @@ export class LayoutService {
   }
 
   onMenuToggle() {
-    console.log('T1');
     if (this.isOverlay()) {
       this.state.overlayMenuActive = !this.state.overlayMenuActive;
 
@@ -86,9 +85,6 @@ export class LayoutService {
 
     if (this.isDesktop()) {
       this.state.staticMenuDesktopInactive = !this.state.staticMenuDesktopInactive;
-
-      console.log({ 'this.state.staticMenuDesktopInactive': this.state.staticMenuDesktopInactive });
-
       localStorage.setItem('staticMenuDesktopInactive', JSON.stringify(this.state.staticMenuDesktopInactive));
     } else {
       this.state.staticMenuMobileActive = !this.state.staticMenuMobileActive;
@@ -111,13 +107,10 @@ export class LayoutService {
   }
 
   isOverlay() {
-    console.log('T2');
-    console.log(this.config().menuMode);
     return this.config().menuMode === 'overlay';
   }
 
   isDesktop() {
-    console.log({ window: window.innerWidth > 991 });
     return window.innerWidth > 991;
   }
 
