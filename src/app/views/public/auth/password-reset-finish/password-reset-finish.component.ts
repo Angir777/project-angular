@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../../services/auth/auth.service';
 import { LoggedUserService } from '../../../../services/logged-user/logged-user.service';
-import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { ActivatedRoute, Params, Router, RouterModule } from '@angular/router';
 import { TranslatedToastService } from '../../../../services/translation/translated-toast.service';
 import { FormControlErrorsComponent } from '../../../../components/form-control-errors/form-control-errors.component';
 import { AbstractControl, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -83,7 +83,7 @@ export class PasswordResetFinishComponent extends BaseFormComponent implements O
   }
 
   ngOnInit(): void {
-    this.route.params.subscribe((params: any) => {
+    this.route.params.subscribe((params: Params) => {
       if (params['code'] != null) {
         this.code = params['code'];
       } else {

@@ -5,8 +5,9 @@ import { TranslateService } from '@ngx-translate/core';
 import { LoggedUserService } from './services/logged-user/logged-user.service';
 import { filter, map, mergeMap } from 'rxjs';
 import { PrimeNGConfig } from 'primeng/api';
-import { ToastModule } from 'primeng/toast';
+import { ToastModule, ToastPositionType } from 'primeng/toast';
 import { environment } from '../environments/environment';
+import { Language } from './interfaces/language.interface';
 
 @Component({
   selector: 'app-root',
@@ -17,8 +18,8 @@ import { environment } from '../environments/environment';
 })
 export class AppComponent implements OnInit {
   title: string = 'Angular_APP';
-  languageMenu: any = environment.LANGUAGES_AVAILABLE;
-  toastPosition: any = environment.TOAST_POSITION;
+  languageMenu: Language[] = environment.LANGUAGES_AVAILABLE;
+  toastPosition: ToastPositionType = environment.TOAST_POSITION as ToastPositionType;
 
   constructor(
     private translateService: TranslateService,
@@ -32,7 +33,7 @@ export class AppComponent implements OnInit {
     const selectedLanguage = localStorage.getItem('selectedLanguage');
 
     // Czy są dostępne języki?
-    const isLanguagesAvailable = this.languageMenu.some((item: any) => item.data.lang === selectedLanguage);
+    const isLanguagesAvailable = this.languageMenu.some((item: Language) => item.data.lang === selectedLanguage);
 
     // Jeśli jest zapisany to bierzemy z localstorage, a jak nie to używamy domyślny.
     if (selectedLanguage && isLanguagesAvailable) {

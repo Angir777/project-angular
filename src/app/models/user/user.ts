@@ -1,7 +1,6 @@
 import { Permission } from '../auth/permission';
 import { BaseModel } from '../base-model';
 import { Role } from '../role/role';
-import * as _ from 'lodash';
 
 /**
  * Model użytkownika.
@@ -18,7 +17,7 @@ export class User extends BaseModel {
 
   constructor(data?: any) {
     super();
-    if (!_.isNil(data?.permission)) {
+    if (data?.permission != null) {
       this.permissions = JSON.parse(JSON.stringify(data?.permissions));
     }
   }

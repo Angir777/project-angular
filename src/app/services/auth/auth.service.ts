@@ -20,8 +20,7 @@ export class AuthService {
 
   // Logowanie.
   login(authenticationData: LoginInterface): Observable<HttpResponse<LoggedUser>> {
-    return this.http
-      .post<LoggedUser>(environment.serverUrl + 'auth/login', authenticationData, {
+    return this.http.post<LoggedUser>(environment.serverUrl + 'auth/login', authenticationData, {
         observe: 'response',
       })
       .pipe(
@@ -37,8 +36,7 @@ export class AuthService {
 
   // Wylogowywanie.
   logout() {
-    return this.http
-      .get<any>(environment.serverUrl + 'auth/logout', {
+    return this.http.get(environment.serverUrl + 'auth/logout', {
         observe: 'response',
       })
       .pipe(
@@ -59,13 +57,13 @@ export class AuthService {
   }
 
   // Potwierdzanie konta.
-  confirmAccount(code: string): Observable<HttpResponse<any>> {
-    return this.http.get<any>(environment.serverUrl + 'auth/confirm-account/' + code, {
+  confirmAccount(code: string) {
+    return this.http.get(environment.serverUrl + 'auth/confirm-account/' + code, {
       observe: 'response',
     });
   }
 
-  // Proźba o zresetowanie hasła.
+  // Prośba o zresetowanie hasła.
   sendResetPasswordEmail(authenticationData: PasswordResetInterface): Observable<HttpResponse<LoggedUser>> {
     return this.http.post<LoggedUser>(environment.serverUrl + 'auth/send-reset-password-email', authenticationData, {
       observe: 'response',

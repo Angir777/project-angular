@@ -2,6 +2,10 @@ import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { MessageService } from 'primeng/api';
 
+export interface TranslationParameters  {
+  [key: string]: string | number | boolean
+}
+
 /**
  * Tłumaczone komunikaty toast.
  */
@@ -21,7 +25,7 @@ export class TranslatedToastService {
   ) {}
 
   // Przygotowanie tłumaczenia wiadomości.
-  private prepareMessage(message?: string, translationParameters: any = {}): string | undefined {
+  private prepareMessage(message?: string, translationParameters: TranslationParameters = {}): string | undefined {
     if (message != null) {
       return this.translateService.instant(message, translationParameters);
     }
@@ -29,7 +33,7 @@ export class TranslatedToastService {
   }
 
   // Przygotowanie tłumaczenia tytułu.
-  private prepareTitle(title?: string, translationParameters: any = {}): string | undefined {
+  private prepareTitle(title?: string, translationParameters: TranslationParameters = {}): string | undefined {
     if (title != null) {
       return this.translateService.instant(title, translationParameters);
     }
@@ -37,7 +41,7 @@ export class TranslatedToastService {
   }
 
   // Success toast.
-  success(message?: string, translationParameters: any = {}, title?: string) {
+  success(message?: string, translationParameters: TranslationParameters = {}, title?: string) {
     const successMessage = message ? this.prepareMessage(message, translationParameters) : this.messageNotFound;
     const prepareTitle = title ? this.prepareTitle(title, translationParameters) : this.translateService.instant('global.toast.defaultTitle.success');
     this.messageService.add({
@@ -48,7 +52,7 @@ export class TranslatedToastService {
   }
 
   // Info toast.
-  info(message?: string, translationParameters: any = {}, title?: string) {
+  info(message?: string, translationParameters: TranslationParameters = {}, title?: string) {
     const infoMessage = message ? this.prepareMessage(message, translationParameters) : this.messageNotFound;
     const prepareTitle = title ? this.prepareTitle(title, translationParameters) : this.translateService.instant('global.toast.defaultTitle.info');
     this.messageService.add({
@@ -59,7 +63,7 @@ export class TranslatedToastService {
   }
 
   // Warning toast.
-  warning(message?: string, translationParameters: any = {}, title?: string) {
+  warning(message?: string, translationParameters: TranslationParameters = {}, title?: string) {
     const warnMessage = message ? this.prepareMessage(message, translationParameters) : this.messageNotFound;
     const prepareTitle = title ? this.prepareTitle(title, translationParameters) : this.translateService.instant('global.toast.defaultTitle.warn');
     this.messageService.add({
@@ -70,7 +74,7 @@ export class TranslatedToastService {
   }
 
   // Error toast.
-  error(message?: string, translationParameters: any = {}, title?: string) {
+  error(message?: string, translationParameters: TranslationParameters = {}, title?: string) {
     const errorMessage = message ? this.prepareMessage(message, translationParameters) : this.messageNotFound;
     const prepareTitle = title ? this.prepareTitle(title, translationParameters) : this.translateService.instant('global.toast.defaultTitle.error');
     this.messageService.add({

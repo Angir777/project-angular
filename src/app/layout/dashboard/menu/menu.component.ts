@@ -4,6 +4,7 @@ import { MenuItemComponent } from './menu-item/menu-item.component';
 import { LoggedUserService } from '../../../services/logged-user/logged-user.service';
 import { PermissionsHelper } from '../../../helpers/permissions/permissionsHelper';
 import { PermissionModes } from '../../../constants/permission-modes.const';
+import { MenuItem } from '../../../interfaces/menu-item.interface';
 
 @Component({
   selector: 'app-menu',
@@ -13,7 +14,7 @@ import { PermissionModes } from '../../../constants/permission-modes.const';
   styleUrl: './menu.component.scss',
 })
 export class MenuComponent implements OnInit {
-  model: any[] = [];
+  model: MenuItem[] = [];
   userPermissions: string[] = [];
 
   constructor(private loggedUserService: LoggedUserService) {}
@@ -62,7 +63,7 @@ export class MenuComponent implements OnInit {
     this.model = this.filterNavItems(this.model, this.userPermissions);
   }
 
-  filterNavItems(navItems: any[], userPermissions: string[]): any[] {
+  filterNavItems(navItems: MenuItem[], userPermissions: string[]): MenuItem[] {
     return navItems.filter((item) => {
       if (item.items) {
         item.items = this.filterNavItems(item.items, userPermissions);

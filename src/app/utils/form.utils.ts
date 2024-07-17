@@ -1,6 +1,7 @@
 import { ElementRef } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup } from '@angular/forms';
 import * as _ from 'lodash';
+import { ServerErrors } from '../interfaces/server-errors.interface';
 
 /**
  * Funkcja wymusza walidacje na wszystkich polach z formularza.
@@ -9,7 +10,7 @@ import * as _ from 'lodash';
  * @param formGroup formularz
  */
 export const validateAllFormFields = (formGroup: FormGroup): void => {
-  Object.keys(formGroup.controls).forEach((field: any) => {
+  Object.keys(formGroup.controls).forEach((field: string) => {
     const control = formGroup.get(field);
     if (control instanceof FormControl) {
       control.markAsTouched({ onlySelf: true });
@@ -47,7 +48,7 @@ export const getValidationClass = (isInvalid: boolean): string => {
  * @param serverErrors
  * @param propName
  */
-export const getServerErrors = (serverErrors: any, propName: string): string[] => {
+export const getServerErrors = (serverErrors: ServerErrors, propName: string): string[] => {
   if (_.has(serverErrors, propName)) {
     return serverErrors[propName];
   }

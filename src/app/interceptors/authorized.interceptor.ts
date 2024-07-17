@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { catchError, Observable } from 'rxjs';
 import { LoggedUserService } from '../services/logged-user/logged-user.service';
+import { ServerErrors } from '../interfaces/server-errors.interface';
 
 /**
  * Interceptor przychwytujący błędy 401 dla zalogowanego użytkownika.
@@ -23,7 +24,7 @@ export class AuthorizedInterceptor implements HttpInterceptor {
     }
     // Jeśli jest zalogowany, a zapytanie zwróci błąd 401.
     return next.handle(request).pipe(
-      catchError((error: any) => {
+      catchError((error: ServerErrors) => {
         if (error instanceof HttpErrorResponse) {
           if (error.status === 401) {
             // Wylogowanie z aplikacji.

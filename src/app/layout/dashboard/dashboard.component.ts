@@ -17,9 +17,9 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 export class DashboardComponent implements OnDestroy {
   overlayMenuOpenSubscription: Subscription;
 
-  menuOutsideClickListener: any;
+  menuOutsideClickListener: (() => void) | null = null;
 
-  profileMenuOutsideClickListener: any;
+  profileMenuOutsideClickListener: (() => void) | null = null;
 
   @ViewChild(SidebarComponent) appSidebar!: SidebarComponent;
 

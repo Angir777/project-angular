@@ -40,7 +40,7 @@ export class LayoutService {
 
   private configUpdate = new Subject<AppConfig>();
 
-  private overlayOpen = new Subject<any>();
+  private overlayOpen = new Subject<void>();
 
   configUpdate$ = this.configUpdate.asObservable();
 
@@ -80,7 +80,7 @@ export class LayoutService {
       this.state.overlayMenuActive = !this.state.overlayMenuActive;
 
       if (this.state.overlayMenuActive) {
-        this.overlayOpen.next(null);
+        this.overlayOpen.next(undefined);
       }
     }
 
@@ -94,7 +94,7 @@ export class LayoutService {
       this.state.staticMenuMobileActive = !this.state.staticMenuMobileActive;
 
       if (this.state.staticMenuMobileActive) {
-        this.overlayOpen.next(null);
+        this.overlayOpen.next(undefined);
       }
     }
   }
@@ -102,7 +102,7 @@ export class LayoutService {
   showProfileSidebar() {
     this.state.profileSidebarVisible = !this.state.profileSidebarVisible;
     if (this.state.profileSidebarVisible) {
-      this.overlayOpen.next(null);
+      this.overlayOpen.next(undefined);
     }
   }
 

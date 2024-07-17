@@ -41,7 +41,7 @@ import { AutoFocusModule } from 'primeng/autofocus';
 export class LoginComponent extends BaseFormComponent {
   public loggedUser: LoggedUser | null = null;
   appVersion: string = environment.APP_VERSION;
-  canRegistration: any = environment.REGISTRATION_ENABLED;
+  canRegistration: boolean = environment.REGISTRATION_ENABLED;
 
   faUser = faUser;
   faKey = faKey;

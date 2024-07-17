@@ -2,6 +2,7 @@ import { AbstractControl, FormGroup } from '@angular/forms';
 import { ServerSideFormValidationInterface } from '../interfaces/server-side-form-validation.interface';
 import { getServerErrors, getValidationClass, getValidationStatus, isFormControlInvalid } from '../utils/form.utils';
 import * as _ from 'lodash';
+import { ServerErrors } from '../interfaces/server-errors.interface';
 
 /**
  * Bazowa klasa komponentu.
@@ -18,7 +19,7 @@ export abstract class BaseComponent {
 
 export abstract class BaseFormComponent extends BaseComponent implements ServerSideFormValidationInterface {
   form!: FormGroup;
-  serverErrors: any;
+  serverErrors: ServerErrors = {};
   error: string = '';
 
   // Sprawdza, czy dany kontroler formularza jest nieprawidłowy.
@@ -44,7 +45,7 @@ export abstract class BaseFormComponent extends BaseComponent implements ServerS
   }
 
   // Określa status walidacji danego kontrolera formularza.
-  getFormValidationStatus(formControlName: string, serverValidationPropName?: string): any {
+  getFormValidationStatus(formControlName: string, serverValidationPropName?: string): string {
     const abstractControl: AbstractControl | null = this.form.get(formControlName);
 
     if (abstractControl === null) {
@@ -86,13 +87,13 @@ export abstract class BaseFormComponent extends BaseComponent implements ServerS
   // Czyści błędy walidacji dla określonego pola.
   clearServerErrors(serverValidationPropName: string): void {
     if (_.has(this.serverErrors, serverValidationPropName)) {
-      delete this.serverErrors.serverValidationPropName;
+      delete this.serverErrors[serverValidationPropName];
     }
   }
 
   // Komunikowanie stanu walidacji formularza osobom korzystającym.
   // z czytników ekranowych
-  getAriaInvalid(formControlName: string): any {
+  getAriaInvalid(formControlName: string): null | true {
     const abstractControl: AbstractControl | null = this.form.get(formControlName);
 
     if (abstractControl === null) {

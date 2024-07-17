@@ -3,7 +3,6 @@ import { LoggedUser } from '../../models/auth/logged-user.model';
 import { Token } from '../../models/auth/token';
 import { NgxPermissionsService } from 'ngx-permissions';
 import { CREDENTIALS_KEY } from '../../constants/global';
-import * as _ from 'lodash';
 
 @Injectable({
   providedIn: 'root',
@@ -42,7 +41,7 @@ export class LoggedUserService {
 
   // Przeładowanie uprawnień usera.
   reloadPermissions() {
-    if (!_.isNil(this.loggedUser)) {
+    if (this.loggedUser != null) {
       this.permissionService.flushPermissions();
       this.permissionService.loadPermissions(this.getPermissions());
     }

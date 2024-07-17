@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../../services/auth/auth.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { finalize } from 'rxjs';
 import { TranslatedToastService } from '../../../../services/translation/translated-toast.service';
 import { TranslateModule } from '@ngx-translate/core';
@@ -29,7 +29,7 @@ export class AccountConfirmationComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.route.params.subscribe((params: any) => {
+    this.route.params.subscribe((params: Params) => {
       if (params['code'] != null) {
         this.accountConfirmation(params['code']);
       } else {
