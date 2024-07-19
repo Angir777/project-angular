@@ -145,6 +145,10 @@
   },
 
   "settings": {
+    "header": {
+      "access": "Access",
+      "account": "Account"
+    },
     "title": {
       "changePassword": "Change Password",
       "deleteAccount": "Delete Account"

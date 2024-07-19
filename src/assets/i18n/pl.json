@@ -145,6 +145,10 @@
   },
 
   "settings": {
+    "header": {
+      "access": "Dostęp",
+      "account": "Konto"
+    },
     "title": {
       "changePassword": "Zmiana hasła",
       "deleteAccount": "Usunięcie konta"
