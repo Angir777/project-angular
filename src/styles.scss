@@ -40,3 +40,14 @@ p,
 small {
   color: var(--text-color);
 }
+
+// Większy swal
+.swal-md {
+  width: 650px !important;
+  height: 350px !important;
+  div:where(.swal2-icon){
+    width: 8em !important;
+    height: 8em !important;
+    font-weight: 600 !important;
+  }
+}

@@ -142,5 +142,31 @@
 
   "home": {
     "hello": "Hello"
+  },
+
+  "settings": {
+    "title": {
+      "changePassword": "Change Password",
+      "deleteAccount": "Delete Account"
+    },
+    "question": {
+      "areYouShureToDeleteAccountText": "Are you sure you want to delete your account now? This operation is irreversible!"
+    },
+    "success": {
+      "changePasswordSuccessText": "Password changed successfully!",
+      "deletedYourAccountTitle": "Your account has been successfully deleted! You will be logged out of the application.",
+      "deletedYourAccountText": "We hope you will return to us someday.. Goodbye!"
+    },
+    "error": {
+      "wrongOldPasswordText": "The current password provided is incorrect!",
+      "anotherErrorText": "There was a problem changing the password. Please try again.",
+      "cantDeleteSuperAdminAccountText": "The super administrator account cannot be deleted!",
+      "anotherDeleteErrorText": "There was a problem deleting the account. Please try again."
+    },
+    "form": {
+      "oldPassword": "Current Password",
+      "password": "New Password",
+      "passwordConfirmation": "Confirm New Password"
+    }
   }
 }

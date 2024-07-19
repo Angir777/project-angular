@@ -1,1 +1,111 @@
-<p>settings works!</p>
+<div class="row">
+  <div class="col-12">
+    <p-tabView>
+      <p-tabPanel header="Dostęp">
+        <div class="row">
+          <div class="col-md-6 col-12">
+            <h4>{{ 'settings.title.changePassword' | translate }}</h4>
+
+            <form [formGroup]="form" (ngSubmit)="changePassword()">
+              <div class="field p-fluid mt-3">
+                <label for="password">{{ 'settings.form.oldPassword' | translate }}*</label>
+                <span class="p-input-icon-left">
+                  <i><fa-icon [icon]="faKey"></fa-icon></i>
+                  <input
+                    pInputText
+                    [ngClass]="getStatus('oldPassword')"
+                    id="oldPassword"
+                    type="password"
+                    [placeholder]="'settings.form.oldPassword' | translate"
+                    formControlName="oldPassword"
+                    required
+                    aria-describedby="oldPassword-required"
+                    [attr.aria-invalid]="getAriaInvalid('oldPassword')"
+                    (keydown)="clearServerErrors('oldPassword')" />
+                </span>
+                <app-form-control-errors
+                  *ngIf="isFormControlInvalid('oldPassword')"
+                  [errors]="form.get('oldPassword')?.errors"
+                  [serverErrors]="getServerErrors('oldPassword')"></app-form-control-errors>
+              </div>
+
+              <div class="field p-fluid mt-3">
+                <label for="password">{{ 'settings.form.password' | translate }}*</label>
+                <span class="p-input-icon-left">
+                  <i><fa-icon [icon]="faKey"></fa-icon></i>
+                  <input
+                    pInputText
+                    [ngClass]="getStatus('password')"
+                    id="password"
+                    type="password"
+                    [placeholder]="'settings.form.password' | translate"
+                    formControlName="password"
+                    required
+                    aria-describedby="password-required"
+                    [attr.aria-invalid]="getAriaInvalid('password')"
+                    (keydown)="clearServerErrors('password')" />
+                </span>
+                <app-form-control-errors
+                  *ngIf="isFormControlInvalid('password')"
+                  [errors]="form.get('password')?.errors"
+                  [serverErrors]="getServerErrors('password')"></app-form-control-errors>
+              </div>
+
+              <div class="field p-fluid mt-3">
+                <label for="password">{{ 'settings.form.passwordConfirmation' | translate }}*</label>
+                <span class="p-input-icon-left">
+                  <i><fa-icon [icon]="faKey"></fa-icon></i>
+                  <input
+                    pInputText
+                    [ngClass]="getStatus('passwordConfirmation')"
+                    id="passwordConfirmation"
+                    type="password"
+                    [placeholder]="'settings.form.passwordConfirmation' | translate"
+                    formControlName="passwordConfirmation"
+                    required
+                    aria-describedby="passwordConfirmation-required"
+                    [attr.aria-invalid]="getAriaInvalid('passwordConfirmation')"
+                    (keydown)="clearServerErrors('passwordConfirmation')" />
+                </span>
+                <app-form-control-errors
+                  *ngIf="isFormControlInvalid('passwordConfirmation')"
+                  [errors]="form.get('passwordConfirmation')?.errors"
+                  [serverErrors]="getServerErrors('passwordConfirmation')"></app-form-control-errors>
+              </div>
+
+              <button pButton pRipple class="p-button-success d-flex justify-content-center rounded mt-4" [disabled]="isLoading || !form.valid">
+                <span *ngIf="!isLoading">
+                  {{ 'register.button.register' | translate }}
+                </span>
+                <span *ngIf="isLoading">
+                  <fa-icon [icon]="faSpinner" [spin]="true"></fa-icon>
+                </span>
+              </button>
+            </form>
+          </div>
+        </div>
+      </p-tabPanel>
+      <p-tabPanel header="Konto">
+        <div class="row">
+          <div class="col-md-6 col-12">
+            <h4>{{ 'settings.title.deleteAccount' | translate }}</h4>
+
+            <button
+              pButton
+              pRipple
+              class="p-button-danger d-flex justify-content-center rounded mt-4"
+              [disabled]="isDeleting"
+              (click)="deleteAccount()">
+              <span *ngIf="!isDeleting">
+                {{ 'register.button.register' | translate }}
+              </span>
+              <span *ngIf="isDeleting">
+                <fa-icon [icon]="faSpinner" [spin]="true"></fa-icon>
+              </span>
+            </button>
+          </div>
+        </div>
+      </p-tabPanel>
+    </p-tabView>
+  </div>
+</div>

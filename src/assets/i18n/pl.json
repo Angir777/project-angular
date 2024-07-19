@@ -142,5 +142,31 @@
 
   "home": {
     "hello": "Cześć"
+  },
+
+  "settings": {
+    "title": {
+      "changePassword": "Zmiana hasła",
+      "deleteAccount": "Usunięcie konta"
+    },
+    "question": {
+      "areYouShureToDeleteAccountText": "Czy na pewno chcesz usunąć teraz swoje konto? Ta operacja jest nieodwracalna!"
+    },
+    "success": {
+      "changePasswordSuccessText": "Hasło zostało pomyslnie zmienione!",
+      "deletedYourAccountTitle": "Twoje konto zostało usunięte pomyślnie! Nastąpi wylogowanie z aplikacji.",
+      "deletedYourAccountText": "Mamy nadzieje że jeszcze kiedyś do nas wrócisz.. Cześć!"
+    },
+    "error": {
+      "wrongOldPasswordText": "Podano nieprawidłowe aktualne hasło!",
+      "anotherErrorText": "Wystąpił problem ze zmianą hasła. Spróbuj ponownie.",
+      "cantDeleteSuperAdminAccountText": "Nie można usunąć konta super administratora!",
+      "anotherDeleteErrorText": "Wystapił problem podczas usówania konta. Spróbuj ponownie."
+    },
+    "form": {
+      "oldPassword": "Dotychczasowe hasło",
+      "password": "Nowe hasło",
+      "passwordConfirmation": "Powtórz nowe hasło"
+    }
   }
 }
