@@ -33,7 +33,12 @@
     },
     "table": {
       "saveTableStatus": "Zapamiętaj stan tabeli",
-      "itemsPerPage": "Ilość wpisów na strone"
+      "itemsPerPage": "Ilość wpisów na strone",
+      "firstPageLabel": "Pierwsza strona",
+      "lastPageLabel": "Ostatnia strona",
+      "nextPageLabel": "Następna",
+      "previousPageLabel": "Poprzednia",
+      "ofPage": "z"
     }
   },
 

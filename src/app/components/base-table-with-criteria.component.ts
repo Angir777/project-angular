@@ -84,8 +84,23 @@ export abstract class BaseTableWithCriteriaComponent extends BaseComponent imple
     this.cdr.detectChanges(); // Dlatego tutaj wykrywamy ręcznie zmiany (ale musimy przekazywać cdr).
     this.prepareCriteriaChangedSubject();
 
-    // Zmiana tłumaczenia ilości wpisów na stronę
+    // Zmiana tłumaczeń mat-paginator'a
     this.paginator._intl.itemsPerPageLabel = this.translateService.instant('global.table.itemsPerPage');
+    this.paginator._intl.firstPageLabel = this.translateService.instant('global.table.firstPageLabel');
+    this.paginator._intl.lastPageLabel = this.translateService.instant('global.table.lastPageLabel');
+    this.paginator._intl.nextPageLabel = this.translateService.instant('global.table.nextPageLabel');
+    this.paginator._intl.previousPageLabel = this.translateService.instant('global.table.previousPageLabel');
+    const ofPage = this.translateService.instant('global.table.ofPage');
+    this.paginator._intl.getRangeLabel = (page: number, pageSize: number, length: number) => {
+      if (length === 0 || pageSize === 0) {
+        return `0 à ${length }`;
+      }
+      length = Math.max(length, 0);
+      const startIndex = page * pageSize;
+      // If the start index exceeds the list length, do not try and fix the end index to the end.
+      const endIndex = startIndex < length ? Math.min(startIndex + pageSize, length) : startIndex + pageSize;
+      return `${startIndex + 1} - ${endIndex} ${ofPage} ${length}`;
+    };
   }
 
   // Zapisanie stanu tabeli do pamięci lokalnej.

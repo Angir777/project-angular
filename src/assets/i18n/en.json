@@ -33,7 +33,12 @@
     },
     "table": {
       "saveTableStatus": "Remember table state",
-      "itemsPerPage": "Items per page"
+      "itemsPerPage": "Items per page",
+      "firstPageLabel": "First page",
+      "lastPageLabel": "Last page",
+      "nextPageLabel": "Next",
+      "previousPageLabel": "Previous",
+      "ofPage": "of"
     }
   },
 
