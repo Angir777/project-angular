@@ -7,6 +7,7 @@ import { BaseComponent } from './base-component';
 import { environment } from '../../environments/environment';
 import { TABLE_STATE_KEY } from '../constants/global';
 import { FILTERING_DEBOUNCE_TIME } from '../constants/filtering.const';
+import { TranslateService } from '@ngx-translate/core';
 
 /**
  * Abstrakcyjny komponent do wyświetlania danych tabelarycznych z użyciem angular material.
@@ -49,7 +50,8 @@ export abstract class BaseTableWithCriteriaComponent extends BaseComponent imple
 
   protected constructor(
     @Inject(String) private localStorageComponentKey: string,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private translateService: TranslateService,
   ) {
     super();
     this.LOCAL_STORAGE_SAVED_STATE_KEY = `${this.localStorageComponentKey}-${TABLE_STATE_KEY}`;
@@ -81,6 +83,9 @@ export abstract class BaseTableWithCriteriaComponent extends BaseComponent imple
     this.restoreState(); // W tym miejscu działa, ale wali błędem "Error: NG0100: ExpressionChangedAfterItHasBeenCheckedError".
     this.cdr.detectChanges(); // Dlatego tutaj wykrywamy ręcznie zmiany (ale musimy przekazywać cdr).
     this.prepareCriteriaChangedSubject();
+
+    // Zmiana tłumaczenia ilości wpisów na stronę
+    this.paginator._intl.itemsPerPageLabel = this.translateService.instant('global.table.itemsPerPage');
   }
 
   // Zapisanie stanu tabeli do pamięci lokalnej.

@@ -32,7 +32,8 @@
       "currentLang": "Select language"
     },
     "table": {
-      "saveTableStatus": "Remember table state"
+      "saveTableStatus": "Remember table state",
+      "itemsPerPage": "Items per page"
     }
   },
 

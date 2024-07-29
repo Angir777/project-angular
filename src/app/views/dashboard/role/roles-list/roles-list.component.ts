@@ -8,7 +8,7 @@ import { catchError, finalize, map, merge, of, startWith, switchMap } from 'rxjs
 import { prepareSortParams } from '../../../../utils/sort-params.utils';
 import { MatTableLoaderComponent } from '../../../../components/mat-table-loader/mat-table-loader.component';
 import { MatSortModule } from '@angular/material/sort';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -61,9 +61,10 @@ export class RolesListComponent extends BaseTableWithCriteriaComponent implement
     private roleService: RoleService,
     private translatedToastService: TranslatedToastService,
     private translatedSwalService: TranslatedSwalService,
-    cdr: ChangeDetectorRef
+    translateService: TranslateService,
+    cdr: ChangeDetectorRef,
   ) {
-    super('roles', cdr);
+    super('roles', cdr, translateService);
   }
 
   override ngAfterViewInit(): void {

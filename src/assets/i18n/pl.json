@@ -32,7 +32,8 @@
       "currentLang": "Wybierz język"
     },
     "table": {
-      "saveTableStatus": "Zapamiętaj stan tabeli"
+      "saveTableStatus": "Zapamiętaj stan tabeli",
+      "itemsPerPage": "Ilość wpisów na strone"
     }
   },
 
