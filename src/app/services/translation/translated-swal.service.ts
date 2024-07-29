@@ -60,7 +60,6 @@ export class TranslatedSwalService {
   // Przygotowanie tłumaczeń.
   private async prepareSettings(settings: SweetAlertOptions = {}, translationParameters: any = {}): Promise<SweetAlertOptions> {
     const translatedSettings: SweetAlertOptions = { ...settings };
-
     // Tytuł.
     if (settings.title != null) {
       translatedSettings.title = this.translateService.instant(settings.title.toString(), translationParameters.title);

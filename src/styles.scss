@@ -34,7 +34,7 @@ form {
   box-shadow: 0px 8px 16px -16px rgba(66, 68, 90, 1);
 }
 
-// Uzupełnienie dla styli by działłąy poprawnie motywy
+// Uzupełnienie dla styli by działały poprawnie motywy
 // https://primeng.org/colors
 p,
 small {
@@ -50,4 +50,15 @@ small {
     height: 8em !important;
     font-weight: 600 !important;
   }
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+// Poprawienie tabelek
+// Dodanie scroll bara do przewijania tabeli w bok
+.mat-table-custom-container {
+  overflow-x: auto;
+}
+.mat-table-custom-table-container {
+  min-width: 100%;
 }

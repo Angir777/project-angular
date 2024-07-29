@@ -7,7 +7,10 @@
       "ok": "OK",
       "yes": "Tak",
       "no": "Nie",
-      "goToHomePage": "Wróć na stronę główną"
+      "goToHomePage": "Wróć na stronę główną",
+      "add": "Dodaj",
+      "edit": "Edycja",
+      "delete": "Usunięcie"
     },
     "toast": {
       "defaultTitle": {
@@ -27,6 +30,9 @@
     },
     "header": {
       "currentLang": "Wybierz język"
+    },
+    "table": {
+      "saveTableStatus": "Zapamiętaj stan tabeli"
     }
   },
 
@@ -171,6 +177,38 @@
       "oldPassword": "Dotychczasowe hasło",
       "password": "Nowe hasło",
       "passwordConfirmation": "Powtórz nowe hasło"
+    }
+  },
+
+  "role": {
+    "pageTitle": "Role",
+    "addTitle": "Dodawanie roli",
+    "editTitle": "Edycja roli",
+    "columns": {
+      "actions": "Akcje",
+      "id": "Id",
+      "name": "Nazwa",
+      "guardName": "Guard"
+    },
+    "labels": {
+      "permissionGroups": "Uprawnienia"
+    },
+    "message": {
+      "areYouSureYouWantDelete": "Czy na pewno chcesz usunąć rolę: {{name}}?"
+    },
+    "success": {
+      "deletedSuccessfully": "Rola została usunięta pomyślnie.",
+      "createdSuccessfully": "Rola została utworzona pomyślnie.",
+      "updatedSuccessfully": "Rola została zaktualizowana pomyślnie."
+    },
+    "error": {
+      "cantQuery": "Nie udało sie pobrać danych dla tabeli ról!",
+      "cantRoleQuery": "Nie udało się pobrać roli.",
+      "cantPermissionsQuery": "Nie udało się pobrać uprawnień.",
+      "cantCreate": "Nie udało się utworzyć roli.",
+      "cantUpdate": "Nie udało się zaktualizować roli.",
+      "cantDelete": "Nie udało się usunąć roli.",
+      "needPermissions": "Należy wybrać uprawnienia!"
     }
   }
 }

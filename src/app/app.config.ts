@@ -8,6 +8,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { MessageService } from 'primeng/api';
 import { httpInterceptorProviders } from './interceptors';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -29,6 +30,6 @@ export const appConfig: ApplicationConfig = {
       })
     ),
     MessageService,
-    ...httpInterceptorProviders,
+    ...httpInterceptorProviders, provideAnimationsAsync(),
   ],
 };

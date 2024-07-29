@@ -5,8 +5,6 @@ import { DashboardComponent } from './layout/dashboard/dashboard.component';
 import { LoginComponent } from './views/public/auth/login/login.component';
 import { RegisterComponent } from './views/public/auth/register/register.component';
 import { HomeComponent } from './views/dashboard/home/home.component';
-import { UsersComponent } from './views/dashboard/users/users.component';
-import { RolesComponent } from './views/dashboard/roles/roles.component';
 import { ForbiddenComponent } from './views/error/forbidden/forbidden.component';
 import { NotfoundComponent } from './views/error/notfound/notfound.component';
 import { ErrorComponent } from './layout/error/error.component';
@@ -99,25 +97,27 @@ export const routes: Routes = [
       },
       {
         path: 'users',
-        component: UsersComponent,
-        canActivate: [NgxPermissionsGuard],
-        data: {
-          permissions: {
-            only: ['USER_MANAGE', 'USER_ACCESS'],
-            redirectTo: '/',
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('./views/dashboard/users/users.routes').then(
+                m => m.usersRoutes
+              ),
           },
-        },
+        ],
       },
       {
         path: 'roles',
-        component: RolesComponent,
-        canActivate: [NgxPermissionsGuard],
-        data: {
-          permissions: {
-            only: ['ROLE_MANAGE', 'ROLE_ACCESS'],
-            redirectTo: '/',
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('./views/dashboard/role/role.routes').then(
+                m => m.roleRoutes
+              ),
           },
-        },
+        ],
       },
     ],
   },

@@ -7,7 +7,10 @@
       "ok": "OK",
       "yes": "Yes",
       "no": "No",
-      "goToHomePage": "Go to home page"
+      "goToHomePage": "Go to home page",
+      "add": "Add",
+      "edit": "Edit",
+      "delete": "Delete"
     },
     "toast": {
       "defaultTitle": {
@@ -27,6 +30,9 @@
     },
     "header": {
       "currentLang": "Select language"
+    },
+    "table": {
+      "saveTableStatus": "Remember table state"
     }
   },
 
@@ -171,6 +177,38 @@
       "oldPassword": "Current Password",
       "password": "New Password",
       "passwordConfirmation": "Confirm New Password"
+    }
+  },
+
+  "role": {
+    "pageTitle": "Role",
+    "addTitle": "Add Role",
+    "editTitle": "Edit Role",
+    "columns": {
+      "actions": "Actions",
+      "id": "ID",
+      "name": "Name",
+      "guardName": "Guard"
+    },
+    "labels": {
+      "permissionGroups": "Permissions"
+    },
+    "message": {
+      "areYouSureYouWantDelete": "Are you sure you want to delete the role: {{name}}?"
+    },
+    "success": {
+      "deletedSuccessfully": "The role was deleted successfully.",
+      "createdSuccessfully": "The role was created successfully.",
+      "updatedSuccessfully": "The role was updated successfully."
+    },
+    "error": {
+      "cantQuery": "Failed to fetch data for the roles table!",
+      "cantRoleQuery": "Failed to fetch the role.",
+      "cantPermissionsQuery": "Failed to fetch permissions.",
+      "cantCreate": "Failed to create the role.",
+      "cantUpdate": "Failed to update the role.",
+      "cantDelete": "Failed to delete the role.",
+      "needPermissions": "Permissions need to be selected!"
     }
   }
 }
