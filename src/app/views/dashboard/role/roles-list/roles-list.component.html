@@ -24,14 +24,14 @@
 
         <div class="row mt-4">
           <div class="col">
-            <div class="mat-table-custom-container">
+            <div class="mat-table-custom-container loader-overlay">
               <app-mat-table-loader [isLoading]="isLoadingResults"></app-mat-table-loader>
 
               <div class="mat-table-custom-table-container">
                 <table
                   mat-table
                   [dataSource]="data"
-                  class="mat-table-custom-table"
+                  class="mat-table-custom-table mat-custom-bg"
                   matSort
                   matSortActive="id"
                   matSortDisableClear
@@ -130,6 +130,7 @@
 
               <mat-paginator
                 #paginator
+                class="mat-custom-bg"
                 [showFirstLastButtons]="true"
                 [length]="resultsLength"
                 [pageSize]="DEFAULT_PAGE_SIZE"

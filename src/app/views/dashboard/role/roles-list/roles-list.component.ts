@@ -21,6 +21,7 @@ import { MatTableModule } from '@angular/material/table';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
+import { LayoutService } from '../../../../services/layout/layout.service';
 
 @Component({
   selector: 'app-roles-list',
@@ -61,6 +62,7 @@ export class RolesListComponent extends BaseTableWithCriteriaComponent implement
     private roleService: RoleService,
     private translatedToastService: TranslatedToastService,
     private translatedSwalService: TranslatedSwalService,
+    public layoutService: LayoutService,
     translateService: TranslateService,
     cdr: ChangeDetectorRef,
   ) {

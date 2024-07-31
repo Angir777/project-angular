@@ -1,0 +1,50 @@
+.mat-custom-bg {
+    background-color: var(--surface-card)!important;
+    color: var(--surface-900)!important;
+    
+    .mat-mdc-cell, .mat-mdc-header-cell {
+        color: var(--surface-900)!important;
+        border-bottom-color: var(--surface-200)!important;
+    }
+
+    .mat-mdc-paginator-navigation-next,
+    .mat-mdc-paginator-navigation-previous,
+    .mat-mdc-paginator-navigation-last,
+    .mat-mdc-paginator-navigation-first {
+        .mat-mdc-paginator-icon {
+            fill: var(--surface-900)!important;
+        }
+    }
+
+    .mat-sort-header-content,
+    .mat-mdc-row,
+    label,
+    .text-bg-success,
+    .mat-mdc-paginator-page-size-label,
+    .mat-mdc-paginator-range-actions,
+    .mat-mdc-select,
+    .mat-mdc-select-arrow,
+    .ng-value-container {
+        color: var(--surface-900)!important;
+    }
+
+    .mat-mdc-form-field {
+        border: 1px solid var(--surface-900)!important;
+        border-radius: 0.3rem;
+    }
+}
+div .mat-mdc-select-panel {
+    background-color: var(--surface-card)!important;
+}
+.mat-mdc-option {
+    color: var(--text-color)!important;
+}
+.mat-mdc-option:hover:not(.mdc-list-item--disabled) {
+    background-color: var(--surface-200)!important;
+}
+.mat-mdc-option.mdc-list-item--selected:not(.mdc-list-item--disabled):not(.mat-mdc-option-multiple) {
+    background-color: var(--surface-100)!important;
+}
+.mat-mdc-option.mdc-list-item--selected:not(.mdc-list-item--disabled) .mdc-list-item__primary-text {
+    color: var(--text-color)!important;
+}
