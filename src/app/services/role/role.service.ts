@@ -17,7 +17,7 @@ export class RoleService extends BaseServiceWithDeleted<Role> {
   // Pobranie wszystkich uprawnień
   getPermissions(): Observable<HttpResponse<Permission[]>> {
     return this.http.get<Permission[]>(
-      `${this.resourceUrl}/getPermissions`,
+      `${this.resourceUrl}/get-permissions`,
       {
         observe: 'response',
       }

@@ -7,6 +7,6 @@ import { PermissionGroup } from './permission-group';
 export class Permission extends BaseModel {
   name: string | null = null;
   permissionGroup: PermissionGroup | null = null;
-
+  permissionGroupName: string | null = null;
   isSelected?: boolean = false;
 }

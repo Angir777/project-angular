@@ -22,10 +22,9 @@
             (keydown)="clearServerErrors('email')" />
         </span>
         <!-- {{ getFormValidationStatus('email') }} -->
-        <app-form-control-errors
-          *ngIf="isFormControlInvalid('email')"
-          [errors]="form.get('email')?.errors"
-          [serverErrors]="getServerErrors('email')"></app-form-control-errors>
+        @if (isFormControlInvalid('email')) {
+          <app-form-control-errors [errors]="form.get('email')?.errors" [serverErrors]="getServerErrors('email')" />
+        }
       </div>
 
       <div class="field p-fluid mt-3">
@@ -45,10 +44,9 @@
             (keydown)="clearServerErrors('password')" />
         </span>
         <!-- {{ getFormValidationStatus('password') }} -->
-        <app-form-control-errors
-          *ngIf="isFormControlInvalid('password')"
-          [errors]="form.get('password')?.errors"
-          [serverErrors]="getServerErrors('password')"></app-form-control-errors>
+        @if (isFormControlInvalid('password')) {
+          <app-form-control-errors [errors]="form.get('password')?.errors" [serverErrors]="getServerErrors('password')" />
+        }
       </div>
 
       <div class="mt-4">
@@ -64,23 +62,24 @@
       </div>
 
       <button pButton pRipple class="p-button-success w-100 d-flex justify-content-center rounded mt-3" [disabled]="isLoading || !form.valid">
-        <span *ngIf="!isLoading">
+        @if (!isLoading) {
           {{ 'login.button.login' | translate }}
-        </span>
-        <span *ngIf="isLoading">
+        }
+        @if (isLoading) {
           <fa-icon [icon]="faSpinner" [spin]="true"></fa-icon>
-        </span>
+        }
       </button>
 
-      <button
-        type="button"
-        *ngIf="canRegistration"
-        pButton
-        pRipple
-        class="p-button-secondary w-100 d-flex justify-content-center rounded mt-3"
-        [routerLink]="['/register']">
-        {{ 'login.form.register' | translate }}
-      </button>
+      @if (canRegistration) {
+        <button
+          type="button"
+          pButton
+          pRipple
+          class="p-button-secondary w-100 d-flex justify-content-center rounded mt-3"
+          [routerLink]="['/register']">
+          {{ 'login.form.register' | translate }}
+        </button>
+      }
     </form>
   </div>
   <div class="col-12 text-center text-black-50 mt-2">

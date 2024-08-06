@@ -11,7 +11,6 @@
           <input
             pInputText
             pAutoFocus
-           
             [ngClass]="getStatus('name')"
             id="name"
             type="name"
@@ -22,10 +21,9 @@
             [attr.aria-invalid]="getAriaInvalid('name')"
             (keydown)="clearServerErrors('name')" />
         </span>
-        <app-form-control-errors
-          *ngIf="isFormControlInvalid('name')"
-          [errors]="form.get('name')?.errors"
-          [serverErrors]="getServerErrors('name')"></app-form-control-errors>
+        @if (isFormControlInvalid('name')) {
+          <app-form-control-errors [errors]="form.get('name')?.errors" [serverErrors]="getServerErrors('name')" />
+        }
       </div>
 
       <div class="field p-fluid mt-3">
@@ -44,10 +42,9 @@
             [attr.aria-invalid]="getAriaInvalid('email')"
             (keydown)="clearServerErrors('email')" />
         </span>
-        <app-form-control-errors
-          *ngIf="isFormControlInvalid('email')"
-          [errors]="form.get('email')?.errors"
-          [serverErrors]="getServerErrors('email')"></app-form-control-errors>
+        @if (isFormControlInvalid('email')) {
+          <app-form-control-errors [errors]="form.get('email')?.errors" [serverErrors]="getServerErrors('email')" />
+        }
       </div>
 
       <div class="field p-fluid mt-3">
@@ -66,10 +63,9 @@
             [attr.aria-invalid]="getAriaInvalid('password')"
             (keydown)="clearServerErrors('password')" />
         </span>
-        <app-form-control-errors
-          *ngIf="isFormControlInvalid('password')"
-          [errors]="form.get('password')?.errors"
-          [serverErrors]="getServerErrors('password')"></app-form-control-errors>
+        @if (isFormControlInvalid('password')) {
+          <app-form-control-errors [errors]="form.get('password')?.errors" [serverErrors]="getServerErrors('password')" />
+        }
       </div>
 
       <div class="field p-fluid mt-3">
@@ -88,10 +84,9 @@
             [attr.aria-invalid]="getAriaInvalid('passwordConfirmation')"
             (keydown)="clearServerErrors('passwordConfirmation')" />
         </span>
-        <app-form-control-errors
-          *ngIf="isFormControlInvalid('passwordConfirmation')"
-          [errors]="form.get('passwordConfirmation')?.errors"
-          [serverErrors]="getServerErrors('passwordConfirmation')"></app-form-control-errors>
+        @if (isFormControlInvalid('passwordConfirmation')) {
+          <app-form-control-errors [errors]="form.get('passwordConfirmation')?.errors" [serverErrors]="getServerErrors('passwordConfirmation')" />
+        }
       </div>
 
       <div class="mt-4">
@@ -105,19 +100,18 @@
             (keydown)="clearServerErrors('passwordConfirmation')"></p-checkbox>
           <label for="acceptanceRegulations" class="ms-2">{{ 'register.form.acceptanceRegulations' | translate }}*</label>
         </div>
-        <app-form-control-errors
-          *ngIf="isFormControlInvalid('acceptanceRegulations')"
-          [errors]="form.get('acceptanceRegulations')?.errors"
-          [serverErrors]="getServerErrors('acceptanceRegulations')"></app-form-control-errors>
+        @if (isFormControlInvalid('acceptanceRegulations')) {
+          <app-form-control-errors [errors]="form.get('acceptanceRegulations')?.errors" [serverErrors]="getServerErrors('acceptanceRegulations')" />
+        }
       </div>
 
       <button pButton pRipple class="p-button-success w-100 d-flex justify-content-center rounded mt-3" [disabled]="isLoading || !form.valid">
-        <span *ngIf="!isLoading">
+        @if (!isLoading) {
           {{ 'register.button.register' | translate }}
-        </span>
-        <span *ngIf="isLoading">
+        }
+        @if (isLoading) {
           <fa-icon [icon]="faSpinner" [spin]="true"></fa-icon>
-        </span>
+        }
       </button>
 
       <div class="text-center">

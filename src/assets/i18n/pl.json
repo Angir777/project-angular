@@ -10,7 +10,9 @@
       "goToHomePage": "Wróć na stronę główną",
       "add": "Dodaj",
       "edit": "Edycja",
-      "delete": "Usunięcie"
+      "delete": "Usunięcie",
+      "cancel": "Anuluj",
+      "save": "Zapisz"
     },
     "toast": {
       "defaultTitle": {

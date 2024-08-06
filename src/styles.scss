@@ -37,8 +37,12 @@ form {
 // Uzupełnienie dla styli by działały poprawnie motywy
 // https://primeng.org/colors
 p,
-small {
+small,
+.card-body {
   color: var(--text-color);
+}
+button {
+  border-radius: 6px;
 }
 
 // Większy swal

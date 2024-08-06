@@ -23,10 +23,9 @@
                     [attr.aria-invalid]="getAriaInvalid('oldPassword')"
                     (keydown)="clearServerErrors('oldPassword')" />
                 </span>
-                <app-form-control-errors
-                  *ngIf="isFormControlInvalid('oldPassword')"
-                  [errors]="form.get('oldPassword')?.errors"
-                  [serverErrors]="getServerErrors('oldPassword')"></app-form-control-errors>
+                @if (isFormControlInvalid('oldPassword')) {
+                  <app-form-control-errors [errors]="form.get('oldPassword')?.errors" [serverErrors]="getServerErrors('oldPassword')" />
+                }
               </div>
 
               <div class="field p-fluid mt-3">
@@ -45,10 +44,9 @@
                     [attr.aria-invalid]="getAriaInvalid('password')"
                     (keydown)="clearServerErrors('password')" />
                 </span>
-                <app-form-control-errors
-                  *ngIf="isFormControlInvalid('password')"
-                  [errors]="form.get('password')?.errors"
-                  [serverErrors]="getServerErrors('password')"></app-form-control-errors>
+                @if (isFormControlInvalid('password')) {
+                  <app-form-control-errors [errors]="form.get('password')?.errors" [serverErrors]="getServerErrors('password')" />
+                }
               </div>
 
               <div class="field p-fluid mt-3">
@@ -67,19 +65,20 @@
                     [attr.aria-invalid]="getAriaInvalid('passwordConfirmation')"
                     (keydown)="clearServerErrors('passwordConfirmation')" />
                 </span>
-                <app-form-control-errors
-                  *ngIf="isFormControlInvalid('passwordConfirmation')"
-                  [errors]="form.get('passwordConfirmation')?.errors"
-                  [serverErrors]="getServerErrors('passwordConfirmation')"></app-form-control-errors>
+                @if (isFormControlInvalid('passwordConfirmation')) {
+                  <app-form-control-errors
+                    [errors]="form.get('passwordConfirmation')?.errors"
+                    [serverErrors]="getServerErrors('passwordConfirmation')" />
+                }
               </div>
 
               <button pButton pRipple class="p-button-success d-flex justify-content-center rounded mt-4" [disabled]="isLoading || !form.valid">
-                <span *ngIf="!isLoading">
+                @if (!isLoading) {
                   {{ 'register.button.register' | translate }}
-                </span>
-                <span *ngIf="isLoading">
+                }
+                @if (isLoading) {
                   <fa-icon [icon]="faSpinner" [spin]="true"></fa-icon>
-                </span>
+                }
               </button>
             </form>
           </div>
@@ -96,12 +95,12 @@
               class="p-button-danger d-flex justify-content-center rounded mt-4"
               [disabled]="isDeleting"
               (click)="deleteAccount()">
-              <span *ngIf="!isDeleting">
+              @if (!isDeleting) {
                 {{ 'register.button.register' | translate }}
-              </span>
-              <span *ngIf="isDeleting">
+              }
+              @if (isDeleting) {
                 <fa-icon [icon]="faSpinner" [spin]="true"></fa-icon>
-              </span>
+              }
             </button>
           </div>
         </div>
