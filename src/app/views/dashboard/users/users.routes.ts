@@ -1,6 +1,8 @@
 import { Route } from '@angular/router';
 import { NgxPermissionsGuard } from 'ngx-permissions';
-import { UsersComponent } from './users.component';
+import { UsersListComponent } from './users-list/users-list.component';
+import { DeleteUsersListComponent } from './delete-users-list/delete-users-list.component';
+import { UpdateUserComponent } from './update-user/update-user.component';
 
 /**
  * users routing
@@ -8,38 +10,50 @@ import { UsersComponent } from './users.component';
 export const usersRoutes: Route[] = [
   {
     path: '',
-    component: UsersComponent,
+    component: UsersListComponent,
     canActivate: [NgxPermissionsGuard],
     data: {
       permissions: {
         only: ['USER_MANAGE', 'USER_ACCESS'],
         redirectTo: '/',
       },
-      breadcrumb: 'odk.odkDictionary.odkFscStatement.pageTitle',
+      title: 'user.pageTitle',
     },
   },
-  // {
-  //   path: 'new',
-  //   component: UpdateRoleComponent,
-  //   canActivate: [NgxPermissionsGuard],
-  //   data: {
-  //     permissions: {
-  //       only: ['ROLE_MANAGE'],
-  //       redirectTo: '/',
-  //     },
-  //     breadcrumb: 'odk.odkDictionary.odkFscStatement.addTitle',
-  //   },
-  // },
-  // {
-  //   path: ':id/edit',
-  //   component: UpdateRoleComponent,
-  //   canActivate: [NgxPermissionsGuard],
-  //   data: {
-  //     permissions: {
-  //       only: ['ROLE_MANAGE'],
-  //       redirectTo: '/',
-  //     },
-  //     breadcrumb: 'odk.odkDictionary.odkFscStatement.editTitle',
-  //   },
-  // },
+  {
+    path: 'deleted',
+    component: DeleteUsersListComponent,
+    canActivate: [NgxPermissionsGuard],
+    data: {
+      permissions: {
+        only: ['USER_MANAGE', 'USER_ACCESS'],
+        redirectTo: '/',
+      },
+      title: 'user.deletedTitle',
+    },
+  },
+  {
+    path: 'new',
+    component: UpdateUserComponent,
+    canActivate: [NgxPermissionsGuard],
+    data: {
+      permissions: {
+        only: ['USER_MANAGE'],
+        redirectTo: '/',
+      },
+      title: 'user.addTitle',
+    },
+  },
+  {
+    path: ':id/edit',
+    component: UpdateUserComponent,
+    canActivate: [NgxPermissionsGuard],
+    data: {
+      permissions: {
+        only: ['USER_MANAGE'],
+        redirectTo: '/',
+      },
+      title: 'user.editTitle',
+    },
+  }
 ];

@@ -218,5 +218,31 @@
       "cantDelete": "Failed to delete the role.",
       "needPermissions": "Permissions need to be selected!"
     }
+  },
+
+  "user": {
+    "pageTitle": "Users",
+    "addTitle": "Add User",
+    "editTitle": "Edit User",
+    "columns": {
+      "actions": "Actions",
+      "id": "ID",
+      "name": "Name",
+      "email": "Email",
+      "roles": "Roles",
+      "confirmed": "Account Confirmed"
+    },
+    "roles": {
+      "USER": "User",
+      "ADMIN": "Administrator",
+      "SUPER_ADMIN": "Super Administrator"
+    },
+    "message": {
+      "areYouSureYouWantDelete": "Are you sure you want to delete the user: {{email}}?"
+    },
+    "success": {},
+    "error": {
+      "cantQuery": "Failed to fetch data for users table!"
+    }
   }
 }

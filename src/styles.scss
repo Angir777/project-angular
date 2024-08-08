@@ -4,8 +4,8 @@ $gutter: 1rem; // for primeflex grid system
 @import 'assets/layout/styles/layout/layout.scss';
 
 // PrimeNG
-@import '../node_modules/primeng/resources/primeng.min.css';
 @import '../node_modules/primeicons/primeicons.css';
+@import '../node_modules/primeng/resources/primeng.min.css';
 
 .layout-main,
 .landing-wrapper {
@@ -22,6 +22,9 @@ form {
   .ng-valid-success {
     border: 1px solid #78da9c;
   }
+}
+.p-inputtext {
+  height: 35px!important; // ustalona wysokość input-ów
 }
 
 // Tło blur
@@ -73,3 +76,74 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   width: 100%;
   height: 100%;
 }
+
+
+
+
+
+
+// // TODO
+
+// /* Nadpisanie domyślnych stylów ng-select */
+// .ng-select {
+//   --background: var(--primary-dark-bg);
+//   --border-color: var(--primary-dark-border);
+//   --hover-border-color: var(--primary-dark-border-hover);
+//   --arrow-color: var(--primary-dark-text);
+//   --text-color: var(--primary-dark-text);
+//   --placeholder-color: var(--primary-dark-placeholder);
+//   --dropdown-background: var(--primary-dark-bg);
+//   --dropdown-border-color: var(--primary-dark-border);
+//   --item-hover-background: var(--primary-dark-hover);
+//   --item-selected-background: var(--primary-dark-selected);
+// }
+
+// .ng-select .ng-select-container {
+//   background-color: var(--background);
+//   border-color: var(--border-color);
+//   color: var(--text-color);
+// }
+
+// .ng-select .ng-select-container:hover {
+//   border-color: var(--hover-border-color);
+// }
+
+// .ng-select .ng-select-container .ng-arrow-wrapper .ng-arrow {
+//   // border-color: var(--arrow-color);
+// }
+
+// .ng-select .ng-select-container .ng-select-placeholder {
+//   color: var(--placeholder-color);
+// }
+
+// /* Stylowanie panelu rozwijanej listy */
+// .ng-select .ng-dropdown-panel {
+//   background-color: var(--dropdown-background);
+//   border-color: var(--dropdown-border-color);
+// }
+
+// .ng-select .ng-dropdown-panel .ng-dropdown-panel-items .ng-option {
+//   background-color: var(--dropdown-background);
+//   color: var(--item-text-color);
+// }
+
+// .ng-select .ng-dropdown-panel .ng-dropdown-panel-items .ng-option:hover {
+//   background-color: var(--item-hover-background);
+// }
+
+// .ng-select .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.selected {
+//   background-color: var(--item-selected-background);
+//   color: var(--item-text-color);
+// }
+
+// /* Stylowanie pozycji rozwijanej listy */
+// .ng-select .ng-dropdown-panel .ng-dropdown-panel-items .ng-option.disabled {
+//   color: var(--placeholder-color);
+//   background-color: var(--dropdown-background);
+//   cursor: not-allowed;
+// }
+
+// /* Dostosowanie pozycji, gdy lista jest rozwinięta */
+// .ng-select .ng-dropdown-panel .ng-dropdown-panel-items .ng-option-marked {
+//   background-color: var(--item-hover-background);
+// }

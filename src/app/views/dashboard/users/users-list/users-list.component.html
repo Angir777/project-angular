@@ -1,0 +1,221 @@
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-body position-relative">
+        <div class="row">
+          <div class="col-sm-5">
+            <h4 class="mb-0">
+              {{ 'pageTitle.users' | translate }}
+            </h4>
+          </div>
+          <div class="col-sm-7 d-flex justify-content-end">
+            <a class="btn btn-success me-2" *ngxPermissionsOnly="['USER_MANAGE']" [routerLink]="['new']">
+              <fa-icon [icon]="faPlusCircle"></fa-icon>
+              <span class="d-none d-lg-inline">
+                {{ 'global.button.add' | translate }}
+              </span>
+            </a>
+          </div>
+        </div>
+
+        <div class="row mt-4">
+          <div class="col">
+            <div class="mat-table-custom-container loader-overlay">
+              <app-mat-table-loader [isLoading]="isLoadingResults"></app-mat-table-loader>
+
+              <div class="mat-table-custom-table-container">
+                <table
+                  mat-table
+                  [dataSource]="data"
+                  class="mat-table-custom-table mat-custom-bg"
+                  matSort
+                  matSortActive="id"
+                  matSortDisableClear
+                  matSortDirection="desc">
+                  <ng-container matColumnDef="actions">
+                    <th mat-header-cell *matHeaderCellDef>
+                      <div class="form-group">
+                        <div>
+                          <small>{{ 'user.columns.actions' | translate }}</small>
+                        </div>
+                        <input pInputText type="text" disabled class="invisible" />
+                      </div>
+                    </th>
+                    <td mat-cell *matCellDef="let user">
+                      <!-- Jeśli dany użytkownik ma rolę SUPER_ADMIN -->
+                      @if (isSuperAdmin(user.roles)) {
+                        <!-- Jeśli edytujący ma rolę SUPER_ADMIN to może edytować danego użytkownika -->
+                        <ng-container *ngxPermissionsOnly="['SUPER_ADMIN']">
+                          <a
+                            class="btn btn-primary me-1"
+                            *ngxPermissionsOnly="['USER_MANAGE']"
+                            [routerLink]="[user.id, 'edit']"
+                            [matTooltip]="'global.button.edit' | translate"
+                            [matTooltipPosition]="'above'"
+                            matTooltipClass="bigger-tooltip">
+                            <fa-icon [icon]="faEdit"></fa-icon>
+                          </a>
+                          <button
+                            class="btn btn-danger"
+                            *ngxPermissionsOnly="['USER_MANAGE']"
+                            [matTooltip]="'global.button.delete' | translate"
+                            [matTooltipPosition]="'above'"
+                            matTooltipClass="bigger-tooltip"
+                            (click)="delete(user)">
+                            @if (user.isDeleting) {
+                              <fa-icon [icon]="faSpinner" animation="spin"></fa-icon>
+                            }
+                            @if (!user.isDeleting) {
+                              <fa-icon [icon]="faTrash"></fa-icon>
+                            }
+                          </button>
+                        </ng-container>
+                      }
+                      @if (!isSuperAdmin(user.roles)) {
+                        <a
+                          class="btn btn-primary me-1"
+                          *ngxPermissionsOnly="['USER_MANAGE']"
+                          [routerLink]="[user.id, 'edit']"
+                          [matTooltip]="'global.button.edit' | translate"
+                          [matTooltipPosition]="'above'"
+                          matTooltipClass="bigger-tooltip">
+                          <fa-icon [icon]="faEdit"></fa-icon>
+                        </a>
+                        <button
+                          class="btn btn-danger"
+                          *ngxPermissionsOnly="['USER_MANAGE']"
+                          [matTooltip]="'global.button.delete' | translate"
+                          [matTooltipPosition]="'above'"
+                          matTooltipClass="bigger-tooltip"
+                          (click)="delete(user)">
+                          @if (user.isDeleting) {
+                            <fa-icon [icon]="faSpinner" animation="spin"></fa-icon>
+                          }
+                          @if (!user.isDeleting) {
+                            <fa-icon [icon]="faTrash"></fa-icon>
+                          }
+                        </button>
+                      }
+                    </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="id">
+                    <th mat-header-cell *matHeaderCellDef>
+                      <div class="form-group table-filter-form-group mb-2">
+                        <div>
+                          <small mat-sort-header="id" disableClear>
+                            {{ 'user.columns.id' | translate }}
+                          </small>
+                        </div>
+                        <input class="w-100" pInputText type="text" [(ngModel)]="criteria['filter[id]']" (keyup)="search($event)" />
+                      </div>
+                    </th>
+                    <td mat-cell *matCellDef="let user">{{ user.id }}</td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef>
+                      <div class="form-group table-filter-form-group mb-2">
+                        <div>
+                          <small mat-sort-header disableClear>
+                            {{ 'user.columns.name' | translate }}
+                          </small>
+                        </div>
+                        <input class="w-100" pInputText type="text" [(ngModel)]="criteria['filter[name]']" (keyup)="search($event)" />
+                      </div>
+                    </th>
+                    <td mat-cell *matCellDef="let user">{{ user.name }}</td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="email">
+                    <th mat-header-cell *matHeaderCellDef>
+                      <div class="form-group table-filter-form-group mb-2">
+                        <div>
+                          <small mat-sort-header disableClear>
+                            {{ 'user.columns.email' | translate }}
+                          </small>
+                        </div>
+                        <input class="w-100" pInputText type="text" [(ngModel)]="criteria['filter[email]']" (keyup)="search($event)" />
+                      </div>
+                    </th>
+                    <td mat-cell *matCellDef="let user">{{ user.email }}</td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="roles">
+                    <th mat-header-cell *matHeaderCellDef>
+                      <div class="form-group table-filter-form-group mb-2">
+                        <div>
+                          <small mat-sort-header disableClear>
+                            {{ 'user.columns.roles' | translate }}
+                          </small>
+                        </div>
+                        <ng-select appendTo="body" [multiple]="true" [(ngModel)]="criteria['filter[roles]']" (change)="onFilterSelect()">
+                          @for (role of roles; track role) {
+                            <ng-option [value]="role.name">
+                              {{ 'user.roles.' + role.name | translate }}
+                            </ng-option>
+                          }
+                        </ng-select>
+                      </div>
+                    </th>
+                    <td mat-cell *matCellDef="let row">
+                      <span class="badge rounded-pill bg-secondary m-1" *ngFor="let role of row.roles">
+                        {{ 'user.roles.' + role | translate }}
+                      </span>
+                    </td>
+                  </ng-container>
+
+                  <ng-container matColumnDef="confirmed">
+                    <th mat-header-cell *matHeaderCellDef>
+                      <div class="form-group table-filter-form-group mb-2">
+                        <div>
+                          <small mat-sort-header disableClear>
+                            {{ 'user.columns.confirmed' | translate }}
+                          </small>
+                        </div>
+                        <ng-select appendTo="body" [multiple]="false" [(ngModel)]="criteria['filter[confirmed]']" (change)="onFilterSelect()">
+                          <ng-option [value]="1">
+                            {{ 'global.button.yes' | translate }}
+                          </ng-option>
+                          <ng-option [value]="0">
+                            {{ 'global.button.no' | translate }}
+                          </ng-option>
+                        </ng-select>
+                      </div>
+                    </th>
+                    <td mat-cell *matCellDef="let user">
+                      @if (user.confirmed) {
+                        {{ 'global.button.yes' | translate }}
+                      }
+                      @if (!user.confirmed) {
+                        {{ 'global.button.no' | translate }}
+                      }
+                    </td>
+                  </ng-container>
+
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+                </table>
+              </div>
+
+              @if (saveActive) {
+                <div class="d-flex justify-content-end mt-3">
+                  <small class="mt-1 me-2">{{ 'global.table.saveTableStatus' | translate }}</small>
+                  <p-inputSwitch [(ngModel)]="saveState" />
+                </div>
+              }
+
+              <mat-paginator
+                #paginator
+                class="mat-custom-bg"
+                [showFirstLastButtons]="true"
+                [length]="resultsLength"
+                [pageSize]="DEFAULT_PAGE_SIZE"
+                [pageSizeOptions]="PAGE_SIZES"></mat-paginator>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
