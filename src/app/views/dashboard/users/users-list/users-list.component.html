@@ -15,6 +15,12 @@
                 {{ 'global.button.add' | translate }}
               </span>
             </a>
+            <a class="btn btn-primary me-2" [routerLink]="['deleted']">
+              <fa-icon [icon]="faTrash"></fa-icon>
+              <span class="d-none d-lg-inline">
+                {{ 'user.button.deleted' | translate }}
+              </span>
+            </a>
           </div>
         </div>
 

@@ -12,7 +12,8 @@
       "edit": "Edit",
       "delete": "Delete",
       "cancel": "Cancel",
-      "save": "Save"
+      "save": "Save",
+      "back": "Back"
     },
     "toast": {
       "defaultTitle": {
@@ -230,7 +231,12 @@
       "name": "Name",
       "email": "Email",
       "roles": "Roles",
-      "confirmed": "Account Confirmed"
+      "confirmed": "Account Confirmed",
+      "deletedAt": "Deletion Date"
+    },
+    "button": {
+      "deleted": "Deleted",
+      "restore": "Restore User"
     },
     "roles": {
       "USER": "User",
@@ -238,11 +244,18 @@
       "SUPER_ADMIN": "Super Administrator"
     },
     "message": {
-      "areYouSureYouWantDelete": "Are you sure you want to delete the user: {{email}}?"
+      "areYouSureYouWantDelete": "Are you sure you want to delete the user: {{email}}?",
+      "areYouSureYouWantRestore": "Are you sure you want to restore the user {{email}}?"
     },
-    "success": {},
+    "success": {
+      "deletedSuccessfully": "User was successfully deleted.",
+      "restoredSuccessfully": "User was successfully restored."
+    },
     "error": {
-      "cantQuery": "Failed to fetch data for users table!"
+      "cantQuery": "Failed to retrieve data for the users table!",
+      "cantDelete": "Failed to delete the user.",
+      "cantRestore": "Failed to restore the user.",
+      "cantDeleteOwnAccount": "You cannot delete your own account!"
     }
   }
 }

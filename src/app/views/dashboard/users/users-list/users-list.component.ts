@@ -163,8 +163,7 @@ export class UsersListComponent extends BaseTableWithCriteriaComponent implement
 
     if (result.isConfirmed) {
       user.isDeleting = true;
-
-      this.roleService
+      this.userService
         .delete(user.id)
         .pipe(
           finalize(() => {

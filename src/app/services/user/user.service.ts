@@ -14,7 +14,7 @@ export class UserService extends BaseServiceWithDeleted<User> {
   }
 
    // Przywrócenie użytkownika.
-   restore(id: number): Observable<HttpResponse<User>> {
+   restore(id: any): Observable<HttpResponse<User>> {
     return this.http.post<User>(
       `${this.resourceUrl}/${id}/restore`,
       {},

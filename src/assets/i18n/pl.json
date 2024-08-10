@@ -12,7 +12,8 @@
       "edit": "Edycja",
       "delete": "Usunięcie",
       "cancel": "Anuluj",
-      "save": "Zapisz"
+      "save": "Zapisz",
+      "back": "Powrót"
     },
     "toast": {
       "defaultTitle": {
@@ -230,7 +231,12 @@
       "name": "Nazwa",
       "email": "Email",
       "roles": "Role",
-      "confirmed": "Konto potwierdzone"
+      "confirmed": "Konto potwierdzone",
+      "deletedAt": "Data usunięcia"
+    },
+    "button": {
+      "deleted": "Usunięci",
+      "restore": "Przywróć użytkownika"
     },
     "roles": {
       "USER": "Użytkownik",
@@ -238,11 +244,18 @@
       "SUPER_ADMIN": "Super administrator"
     },
     "message": {
-      "areYouSureYouWantDelete": "Czy na pewno chcesz usunąć użytkownika: {{email}}?"
+      "areYouSureYouWantDelete": "Czy na pewno chcesz usunąć użytkownika: {{email}}?",
+      "areYouSureYouWantRestore": "Czy na pewno chcesz przywrócić uzytkownika {{email}}?"
     },
-    "success": {},
+    "success": {
+      "deletedSuccessfully": "Uzytkownik został usunięty pomyślnie.",
+      "restoredSuccessfully": "Uzytkownik przywrócony pomyślnie."
+    },
     "error": {
-      "cantQuery": "Nie udało sie pobrać danych dla tabeli użytkowników!"
+      "cantQuery": "Nie udało sie pobrać danych dla tabeli użytkowników!",
+      "cantDelete": "Nie udało się usunąć użytkownika.",
+      "cantRestore": "Nie udało się przywrócić użytkownika.",
+      "cantDeleteOwnAccount": "Nie możesz usunąć swojego konta!"
     }
   }
 }
