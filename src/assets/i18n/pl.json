@@ -203,7 +203,7 @@
       "permissionGroups": "Uprawnienia"
     },
     "message": {
-      "areYouSureYouWantDelete": "Czy na pewno chcesz usunąć rolę: {{name}}?"
+      "areYouSureYouWantDelete": "Czy na pewno chcesz usunąć rolę {{name}}?"
     },
     "success": {
       "deletedSuccessfully": "Rola została usunięta pomyślnie.",
@@ -244,18 +244,25 @@
       "SUPER_ADMIN": "Super administrator"
     },
     "message": {
-      "areYouSureYouWantDelete": "Czy na pewno chcesz usunąć użytkownika: {{email}}?",
-      "areYouSureYouWantRestore": "Czy na pewno chcesz przywrócić uzytkownika {{email}}?"
+      "areYouSureYouWantDelete": "Czy na pewno chcesz usunąć użytkownika {{email}}?",
+      "areYouSureYouWantRestore": "Czy na pewno chcesz przywrócić użytkownika {{email}}?"
     },
     "success": {
-      "deletedSuccessfully": "Uzytkownik został usunięty pomyślnie.",
-      "restoredSuccessfully": "Uzytkownik przywrócony pomyślnie."
+      "deletedSuccessfully": "Użytkownik został usunięty pomyślnie.",
+      "restoredSuccessfully": "Użytkownik przywrócony pomyślnie.",
+      "createdSuccessfully": "Użytkownik został utworzony pomyślnie.",
+      "updatedSuccessfully": "Użytkownik został zaktualizowany pomyślnie."
+    },
+    "warning": {
+      "chooseRole": "Wybierz rolę!"
     },
     "error": {
       "cantQuery": "Nie udało sie pobrać danych dla tabeli użytkowników!",
       "cantDelete": "Nie udało się usunąć użytkownika.",
       "cantRestore": "Nie udało się przywrócić użytkownika.",
-      "cantDeleteOwnAccount": "Nie możesz usunąć swojego konta!"
+      "cantDeleteOwnAccount": "Nie możesz usunąć swojego konta!",
+      "cantCreate": "Nie udało się dodać użytkownika.",
+      "cantUpdate": "Nie udało się zaktualizować użytkownika."
     }
   }
 }

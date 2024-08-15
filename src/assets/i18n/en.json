@@ -244,18 +244,25 @@
       "SUPER_ADMIN": "Super Administrator"
     },
     "message": {
-      "areYouSureYouWantDelete": "Are you sure you want to delete the user: {{email}}?",
+      "areYouSureYouWantDelete": "Are you sure you want to delete the user {{email}}?",
       "areYouSureYouWantRestore": "Are you sure you want to restore the user {{email}}?"
     },
     "success": {
       "deletedSuccessfully": "User was successfully deleted.",
-      "restoredSuccessfully": "User was successfully restored."
+      "restoredSuccessfully": "User was successfully restored.",
+      "createdSuccessfully": "User was created successfully.",
+      "updatedSuccessfully": "User was updated successfully."
+    },
+    "warning": {
+      "chooseRole": "Choose a role!"
     },
     "error": {
       "cantQuery": "Failed to retrieve data for the users table!",
       "cantDelete": "Failed to delete the user.",
       "cantRestore": "Failed to restore the user.",
-      "cantDeleteOwnAccount": "You cannot delete your own account!"
+      "cantDeleteOwnAccount": "You cannot delete your own account!",
+      "cantCreate": "Failed to add user.",
+      "cantUpdate": "Failed to update user."
     }
   }
 }

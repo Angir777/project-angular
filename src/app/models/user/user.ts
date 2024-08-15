@@ -17,8 +17,13 @@ export class User extends BaseModel {
 
   constructor(data?: any) {
     super();
-    if (data?.permission != null) {
-      this.permissions = JSON.parse(JSON.stringify(data?.permissions));
+    if (data) {
+      this.id = data.id || null;
+      this.name = data.name || null;
+      this.email = data.email || null;
+      this.confirmed = data.confirmed || false;
+      this.permissions = data.permissions ? JSON.parse(JSON.stringify(data.permissions)) : [];
+      this.roles = data.roles || [];
     }
   }
 

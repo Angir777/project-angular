@@ -52,14 +52,13 @@ export class UpdateRoleComponent extends BaseFormComponent implements OnInit {
   faSpinner = faSpinner;
   faSave = faSave;
   
-  title: string = '';
+  title = '';
 
-  isLoadingRole: boolean = false;
+  isLoadingRole = false;
   role: Role | null = null;
 
-  isLoadingPermissionGroups: boolean = false;
+  isLoadingPermissionGroups = false;
   permissionGroups: PermissionGroup[] = [];
-
 
   constructor(
     private roleService: RoleService,
@@ -132,7 +131,6 @@ export class UpdateRoleComponent extends BaseFormComponent implements OnInit {
         next: (response) => {
           // Tworzy nowy obiekt.
           this.role = new Role(response.body);
-          console.log(this.role);
           // Dodatkowe sprawdzenie, czy nie jest on 'null'.
           if (this.role !== null) {
             // Aktualizacja formularza.

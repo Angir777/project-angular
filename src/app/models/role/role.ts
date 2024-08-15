@@ -9,6 +9,7 @@ export class Role extends BaseModel {
   guardName: string | null = null;
   permissions: Permission[] = [];
   permissionIds?: number[];
+  isSelected?: boolean;
 
   constructor(data?: any) {
     super();
