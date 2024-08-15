@@ -1,66 +1,97 @@
-# ProjectAngular
+# Project Angular
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.2.3.
+![Project](https://github.com/Angir777/project-angular/blob/main/screen.jpg)
 
-## Development server
+## Description
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Project Angular is an advanced web application built with Angular. This project demonstrates skills in creating modern, dynamic frontend applications using the latest technologies and best practices.
 
-## Code scaffolding
+## Features
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- **Interactive UI**: A modern user interface built with Angular Material and PrimeNG.
+- **Responsiveness**: Optimized components for various devices using Bootstrap and Bootstrap Icons.
+- **Form Handling and Validation**: Advanced forms with validation using Reactive Forms.
+- **Translations**: Multi-language support using ngx-translate.
+- **Permission Management**: Dynamic user permissions management using ngx-permissions.
+- **API Integration**: Communication with APIs using HttpClient.
 
-## Build
+## Technologies
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- **Angular**: [https://angular.io/](https://angular.io/)
+- **TypeScript**: [https://www.typescriptlang.org/](https://www.typescriptlang.org/)
+- **RxJS**: [https://rxjs.dev/](https://rxjs.dev/)
+- **Bootstrap**: [https://getbootstrap.com/](https://getbootstrap.com/)
+- **PrimeNG**: [https://www.primefaces.org/primeng/](https://www.primefaces.org/primeng/)
+- **Ngx-translate**: [https://github.com/ngx-translate/core](https://github.com/ngx-translate/core)
+- **Ngx-permissions**: [https://github.com/ewrigh/ngx-permissions](https://github.com/ewrigh/ngx-permissions)
+- **SweetAlert2**: [https://sweetalert2.github.io/](https://sweetalert2.github.io/)
 
-## Running unit tests
+## Installation
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+1. **Clone the repository**
 
-## Running end-to-end tests
+    ```bash
+    git clone https://github.com/YourUsername/project-angular.git
+    ```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+2. **Navigate to the project directory**
 
-## Further help
+    ```bash
+    cd project-angular
+    ```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+3. **Install dependencies**
 
-## Create new project
+    ```bash
+    npm install
+    ```
 
-1. Instalacja czystego projektu: npm init @angular project-angular
+4. **Run the application**
 
-2. Edycja pliku package.json
+    ```bash
+    npm start
+    ```
 
-Dodaj do "scripts": "build-dev": "ng build --configuration dev && npm run post-build",
+    The application will be available at [http://localhost:4200](http://localhost:4200).
 
-3. Instalacja podstawowych pakietów.
+## Scripts
 
-4. Edycja pliku angular.json
+- **Start**: Launches the development server and runs the application in development mode.
+  
+    ```bash
+    npm start
+    ```
 
-Dodaj do "configurations" budowanie wersji "dev" oraz "fileReplacements".
+- **Build**: Creates a production build of the application.
+  
+    ```bash
+    npm run build
+    ```
 
-## Configure Prettier and ESLint
-(https://dev.to/this-is-angular/configure-prettier-and-eslint-with-angular-526c)
+- **Build-Dev**: Creates a build of the application in development mode and runs additional scripts post-build.
+  
+    ```bash
+    npm run build-dev
+    ```
 
-0. settings.json dla VC
+- **Watch**: Watches for changes in the code and builds the application continuously in development mode.
+  
+    ```bash
+    npm run watch
+    ```
 
-1. ng add @angular-eslint/schematics
+- **Test**: Runs unit tests.
+  
+    ```bash
+    npm test
+    ```
 
-2. npm install prettier --save-dev
+- **Lint**: Checks the code for linting issues.
+  
+    ```bash
+    npm run lint
+    ```
 
-3. 
+## License
 
-Then we need to add .prettierrc.json and .prettierignore files in our root project directory.
-Inside .prettierignore it’s better to add whatever we have inside .gitignore file.
-
-4. install prettier-eslint eslint-config-prettier eslint-plugin-prettier --save-dev
-
-5. Sformatowanie całego projektu: npx prettier --write .
-
-6. Formatowanie ręczne: 'Shift+Alt+F'
-Kliknij na ikonę koła zębatego w lewym dolnym rogu i wybierz Settings.
-W pasku wyszukiwania wpisz „default formatter” i wybierz opcję Editor: Default Formatter.
-Wybierz Prettier - Code formatter z rozwijanej listy.
-
-7. Sprawdzenie błędów i poprawa możliwych: ng lint --fix
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
