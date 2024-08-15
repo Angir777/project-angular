@@ -119,7 +119,9 @@ export class SettingsComponent extends BaseFormComponent {
   async deleteAccount() {
     const result = await this.translatedSwalService.showAsync(
       {
-        customClass: 'swal-md',
+        customClass: {
+          container: 'swal-md',
+        },
         icon: 'question',
         iconColor: '#ff3d41',
         title: 'settings.question.areYouShureToDeleteAccountText',
@@ -166,7 +168,9 @@ export class SettingsComponent extends BaseFormComponent {
   async deletedSuccess() {
     const result = await this.translatedSwalService.showAsync(
       {
-        customClass: 'swal-md',
+        customClass: {
+          container: 'swal-md',
+        },
         icon: 'success',
         title: 'settings.success.deletedYourAccountTitle',
         text: 'settings.success.deletedYourAccountText',

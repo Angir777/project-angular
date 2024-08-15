@@ -123,7 +123,7 @@
                     <div class="d-flex justify-content-end">
                       <button pButton pRipple class="p-button-success me-2" type="submit" (click)="save()" [disabled]="isSaving || !form.valid">
                         @if (isSaving) {
-                          <fa-icon [icon]="faSpinner" [spin]="true"></fa-icon>
+                          <fa-icon [icon]="faSpinner" [animation]="isSaving ? 'spin' : undefined"></fa-icon>
                         }
                         @if (!isSaving) {
                           <fa-icon [icon]="faSave"></fa-icon>
