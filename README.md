@@ -31,7 +31,7 @@ Project Angular is an advanced web application built with Angular. This project 
 1. **Clone the repository**
 
     ```bash
-    git clone https://github.com/YourUsername/project-angular.git
+    git clone https://github.com/Angir777/project-angular.git
     ```
 
 2. **Navigate to the project directory**
