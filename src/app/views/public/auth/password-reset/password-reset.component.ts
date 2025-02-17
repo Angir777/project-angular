@@ -17,22 +17,21 @@ import { TranslatedToastService } from '../../../../services/translation/transla
 import { AutoFocusModule } from 'primeng/autofocus';
 
 @Component({
-  selector: 'app-password-reset',
-  standalone: true,
-  imports: [
-    FormControlErrorsComponent,
-    ReactiveFormsModule,
-    InputTextModule,
-    ButtonModule,
-    CommonModule,
-    TranslateModule,
-    RippleModule,
-    FontAwesomeModule,
-    RouterModule,
-    AutoFocusModule,
-  ],
-  templateUrl: './password-reset.component.html',
-  styleUrl: './password-reset.component.scss',
+    selector: 'app-password-reset',
+    imports: [
+        FormControlErrorsComponent,
+        ReactiveFormsModule,
+        InputTextModule,
+        ButtonModule,
+        CommonModule,
+        TranslateModule,
+        RippleModule,
+        FontAwesomeModule,
+        RouterModule,
+        AutoFocusModule,
+    ],
+    templateUrl: './password-reset.component.html',
+    styleUrl: './password-reset.component.scss'
 })
 export class PasswordResetComponent extends BaseFormComponent {
   faUser = faUser;

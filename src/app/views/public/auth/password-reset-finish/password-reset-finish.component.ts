@@ -18,22 +18,21 @@ import { faKey, faSpinner, faUser } from '@fortawesome/free-solid-svg-icons';
 import { finalize } from 'rxjs';
 
 @Component({
-  selector: 'app-new-password',
-  standalone: true,
-  imports: [
-    FormControlErrorsComponent,
-    ReactiveFormsModule,
-    InputTextModule,
-    ButtonModule,
-    CommonModule,
-    TranslateModule,
-    RippleModule,
-    FontAwesomeModule,
-    RouterModule,
-    AutoFocusModule,
-  ],
-  templateUrl: './password-reset-finish.component.html',
-  styleUrl: './password-reset-finish.component.scss',
+    selector: 'app-new-password',
+    imports: [
+        FormControlErrorsComponent,
+        ReactiveFormsModule,
+        InputTextModule,
+        ButtonModule,
+        CommonModule,
+        TranslateModule,
+        RippleModule,
+        FontAwesomeModule,
+        RouterModule,
+        AutoFocusModule,
+    ],
+    templateUrl: './password-reset-finish.component.html',
+    styleUrl: './password-reset-finish.component.scss'
 })
 export class PasswordResetFinishComponent extends BaseFormComponent implements OnInit {
   faUser = faUser;

@@ -13,7 +13,8 @@ import { TranslateService } from '@ngx-translate/core';
  * Abstrakcyjny komponent do wyświetlania danych tabelarycznych z użyciem angular material.
  */
 @Component({
-  template: '',
+    template: '',
+    standalone: false
 })
 export abstract class BaseTableWithCriteriaComponent extends BaseComponent implements AfterViewInit, OnInit, OnDestroy {
   @ViewChild(MatPaginator) paginator!: MatPaginator;

@@ -3,11 +3,10 @@ import { LoggedUserService } from '../../../services/logged-user/logged-user.ser
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-home',
-  standalone: true,
-  imports: [TranslateModule],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.scss',
+    selector: 'app-home',
+    imports: [TranslateModule],
+    templateUrl: './home.component.html',
+    styleUrl: './home.component.scss'
 })
 export class HomeComponent {
   userName!: string | null | undefined;

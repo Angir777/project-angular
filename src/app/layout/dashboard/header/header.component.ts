@@ -15,11 +15,10 @@ import { AppConfig } from '../../../interfaces/app-config.interface';
 import { Language } from '../../../interfaces/language.interface';
 
 @Component({
-  selector: 'app-header',
-  standalone: true,
-  imports: [CommonModule, RouterModule, FontAwesomeModule, TranslateModule, TooltipModule, FormsModule, DropdownModule],
-  templateUrl: './header.component.html',
-  styleUrl: './header.component.scss',
+    selector: 'app-header',
+    imports: [CommonModule, RouterModule, FontAwesomeModule, TranslateModule, TooltipModule, FormsModule, DropdownModule],
+    templateUrl: './header.component.html',
+    styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
   items!: MenuItem[];

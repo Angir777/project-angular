@@ -8,28 +8,21 @@ import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
-  selector: 'app-menu-item',
-  standalone: true,
-  imports: [CommonModule, RouterModule, TranslateModule],
-  templateUrl: './menu-item.component.html',
-  styleUrl: './menu-item.component.scss',
-  animations: [
-    trigger('children', [
-      state(
-        'collapsed',
-        style({
-          height: '0',
-        })
-      ),
-      state(
-        'expanded',
-        style({
-          height: '*',
-        })
-      ),
-      transition('collapsed <=> expanded', animate('400ms cubic-bezier(0.86, 0, 0.07, 1)')),
-    ]),
-  ],
+    selector: 'app-menu-item',
+    imports: [CommonModule, RouterModule, TranslateModule],
+    templateUrl: './menu-item.component.html',
+    styleUrl: './menu-item.component.scss',
+    animations: [
+        trigger('children', [
+            state('collapsed', style({
+                height: '0',
+            })),
+            state('expanded', style({
+                height: '*',
+            })),
+            transition('collapsed <=> expanded', animate('400ms cubic-bezier(0.86, 0, 0.07, 1)')),
+        ]),
+    ]
 })
 export class MenuItemComponent implements OnInit, OnDestroy {
   @Input() item: any;

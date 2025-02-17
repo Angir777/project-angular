@@ -6,11 +6,10 @@ import { TranslateModule } from '@ngx-translate/core';
  * Komponent wyświetlający błędy walidacji dla ReactiveForms.
  */
 @Component({
-  selector: 'app-form-control-errors',
-  standalone: true,
-  imports: [CommonModule, TranslateModule],
-  templateUrl: './form-control-errors.component.html',
-  styleUrls: ['./form-control-errors.component.scss'],
+    selector: 'app-form-control-errors',
+    imports: [CommonModule, TranslateModule],
+    templateUrl: './form-control-errors.component.html',
+    styleUrls: ['./form-control-errors.component.scss']
 })
 export class FormControlErrorsComponent {
   /**

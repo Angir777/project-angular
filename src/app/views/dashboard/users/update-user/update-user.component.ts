@@ -27,27 +27,26 @@ import { ToggleButtonModule } from 'primeng/togglebutton';
 import { FormControlErrorsComponent } from '../../../../components/form-control-errors/form-control-errors.component';
 
 @Component({
-  selector: 'app-update-user',
-  standalone: true,
-  imports: [
-    FormControlErrorsComponent,
-    FormsModule,
-    ReactiveFormsModule,
-    MatTableLoaderComponent,
-    CommonModule,
-    NgxPermissionsModule,
-    TranslateModule,
-    InputTextModule,
-    AutoFocusModule,
-    ToggleButtonModule,
-    InputSwitchModule,
-    RippleModule,
-    ButtonModule,
-    FontAwesomeModule,
-    RouterModule
-  ],
-  templateUrl: './update-user.component.html',
-  styleUrl: './update-user.component.scss'
+    selector: 'app-update-user',
+    imports: [
+        FormControlErrorsComponent,
+        FormsModule,
+        ReactiveFormsModule,
+        MatTableLoaderComponent,
+        CommonModule,
+        NgxPermissionsModule,
+        TranslateModule,
+        InputTextModule,
+        AutoFocusModule,
+        ToggleButtonModule,
+        InputSwitchModule,
+        RippleModule,
+        ButtonModule,
+        FontAwesomeModule,
+        RouterModule
+    ],
+    templateUrl: './update-user.component.html',
+    styleUrl: './update-user.component.scss'
 })
 export class UpdateUserComponent extends BaseFormComponent implements OnInit {
   faSpinner = faSpinner;

@@ -26,27 +26,26 @@ import { ButtonModule } from 'primeng/button';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @Component({
-  selector: 'app-update-role',
-  standalone: true,
-  imports: [
-    FormControlErrorsComponent,
-    FormsModule,
-    ReactiveFormsModule,
-    MatTableLoaderComponent,
-    CommonModule,
-    NgxPermissionsModule,
-    TranslateModule,
-    InputTextModule,
-    AutoFocusModule,
-    ToggleButtonModule,
-    InputSwitchModule,
-    RippleModule,
-    ButtonModule,
-    FontAwesomeModule,
-    RouterModule
-  ],
-  templateUrl: './update-role.component.html',
-  styleUrl: './update-role.component.scss',
+    selector: 'app-update-role',
+    imports: [
+        FormControlErrorsComponent,
+        FormsModule,
+        ReactiveFormsModule,
+        MatTableLoaderComponent,
+        CommonModule,
+        NgxPermissionsModule,
+        TranslateModule,
+        InputTextModule,
+        AutoFocusModule,
+        ToggleButtonModule,
+        InputSwitchModule,
+        RippleModule,
+        ButtonModule,
+        FontAwesomeModule,
+        RouterModule
+    ],
+    templateUrl: './update-role.component.html',
+    styleUrl: './update-role.component.scss'
 })
 export class UpdateRoleComponent extends BaseFormComponent implements OnInit {
   faSpinner = faSpinner;
