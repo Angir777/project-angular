@@ -24,27 +24,26 @@ import { InputTextModule } from 'primeng/inputtext';
 import { MatTableLoaderComponent } from '../../../../components/mat-table-loader/mat-table-loader.component';
 
 @Component({
-  selector: 'app-delete-users-list',
-  standalone: true,
-  imports: [
-    ButtonModule,
-    CommonModule,
-    FontAwesomeModule,
-    FormsModule,
-    InputSwitchModule,
-    InputTextModule,
-    MatPaginatorModule,
-    MatSortModule,
-    MatTableLoaderComponent,
-    MatTableModule,
-    MatTooltipModule,
-    NgxPermissionsModule,
-    ReactiveFormsModule,
-    RouterModule,
-    TranslateModule
-  ],
-  templateUrl: './delete-users-list.component.html',
-  styleUrl: './delete-users-list.component.scss'
+    selector: 'app-delete-users-list',
+    imports: [
+        ButtonModule,
+        CommonModule,
+        FontAwesomeModule,
+        FormsModule,
+        InputSwitchModule,
+        InputTextModule,
+        MatPaginatorModule,
+        MatSortModule,
+        MatTableLoaderComponent,
+        MatTableModule,
+        MatTooltipModule,
+        NgxPermissionsModule,
+        ReactiveFormsModule,
+        RouterModule,
+        TranslateModule
+    ],
+    templateUrl: './delete-users-list.component.html',
+    styleUrl: './delete-users-list.component.scss'
 })
 export class DeleteUsersListComponent  extends BaseTableWithCriteriaComponent implements AfterViewInit {
   // font-awesome icons

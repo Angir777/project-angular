@@ -19,22 +19,21 @@ import { finalize } from 'rxjs';
 import { AuthService } from '../../../services/auth/auth.service';
 
 @Component({
-  selector: 'app-settings',
-  standalone: true,
-  imports: [
-    ButtonModule,
-    CommonModule,
-    FontAwesomeModule,
-    FormControlErrorsComponent,
-    InputTextModule,
-    ReactiveFormsModule,
-    RippleModule,
-    RouterModule,
-    TabViewModule,
-    TranslateModule,
-  ],
-  templateUrl: './settings.component.html',
-  styleUrl: './settings.component.scss',
+    selector: 'app-settings',
+    imports: [
+        ButtonModule,
+        CommonModule,
+        FontAwesomeModule,
+        FormControlErrorsComponent,
+        InputTextModule,
+        ReactiveFormsModule,
+        RippleModule,
+        RouterModule,
+        TabViewModule,
+        TranslateModule,
+    ],
+    templateUrl: './settings.component.html',
+    styleUrl: './settings.component.scss'
 })
 export class SettingsComponent extends BaseFormComponent {
   faKey = faKey;

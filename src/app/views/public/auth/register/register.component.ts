@@ -20,23 +20,22 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { AutoFocusModule } from 'primeng/autofocus';
 
 @Component({
-  selector: 'app-register',
-  standalone: true,
-  imports: [
-    FormControlErrorsComponent,
-    ReactiveFormsModule,
-    InputTextModule,
-    CheckboxModule,
-    ButtonModule,
-    CommonModule,
-    TranslateModule,
-    RippleModule,
-    FontAwesomeModule,
-    RouterModule,
-    AutoFocusModule,
-  ],
-  templateUrl: './register.component.html',
-  styleUrl: './register.component.scss',
+    selector: 'app-register',
+    imports: [
+        FormControlErrorsComponent,
+        ReactiveFormsModule,
+        InputTextModule,
+        CheckboxModule,
+        ButtonModule,
+        CommonModule,
+        TranslateModule,
+        RippleModule,
+        FontAwesomeModule,
+        RouterModule,
+        AutoFocusModule,
+    ],
+    templateUrl: './register.component.html',
+    styleUrl: './register.component.scss'
 })
 export class RegisterComponent extends BaseFormComponent {
   faSignature = faSignature;

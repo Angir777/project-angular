@@ -24,27 +24,26 @@ import { ButtonModule } from 'primeng/button';
 import { LayoutService } from '../../../../services/layout/layout.service';
 
 @Component({
-  selector: 'app-roles-list',
-  standalone: true,
-  imports: [
-    ButtonModule,
-    CommonModule,
-    FontAwesomeModule,
-    FormsModule,
-    InputSwitchModule,
-    InputTextModule,
-    MatPaginatorModule,
-    MatSortModule,
-    MatTableLoaderComponent,
-    MatTableModule,
-    MatTooltipModule,
-    NgxPermissionsModule,
-    ReactiveFormsModule,
-    RouterModule,
-    TranslateModule,
-  ],
-  templateUrl: './roles-list.component.html',
-  styleUrl: './roles-list.component.scss',
+    selector: 'app-roles-list',
+    imports: [
+        ButtonModule,
+        CommonModule,
+        FontAwesomeModule,
+        FormsModule,
+        InputSwitchModule,
+        InputTextModule,
+        MatPaginatorModule,
+        MatSortModule,
+        MatTableLoaderComponent,
+        MatTableModule,
+        MatTooltipModule,
+        NgxPermissionsModule,
+        ReactiveFormsModule,
+        RouterModule,
+        TranslateModule,
+    ],
+    templateUrl: './roles-list.component.html',
+    styleUrl: './roles-list.component.scss'
 })
 export class RolesListComponent extends BaseTableWithCriteriaComponent implements AfterViewInit {
   // font-awesome icons

@@ -8,11 +8,10 @@ import { CommonModule } from '@angular/common';
 import { LoggedUserService } from '../../../../services/logged-user/logged-user.service';
 
 @Component({
-  selector: 'app-account-confirmation',
-  standalone: true,
-  imports: [CommonModule, TranslateModule],
-  templateUrl: './account-confirmation.component.html',
-  styleUrl: './account-confirmation.component.scss',
+    selector: 'app-account-confirmation',
+    imports: [CommonModule, TranslateModule],
+    templateUrl: './account-confirmation.component.html',
+    styleUrl: './account-confirmation.component.scss'
 })
 export class AccountConfirmationComponent implements OnInit {
   constructor(

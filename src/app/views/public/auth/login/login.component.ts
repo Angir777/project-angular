@@ -20,23 +20,22 @@ import { faKey, faSpinner, faUser } from '@fortawesome/free-solid-svg-icons';
 import { AutoFocusModule } from 'primeng/autofocus';
 
 @Component({
-  selector: 'app-login',
-  standalone: true,
-  imports: [
-    FormControlErrorsComponent,
-    ReactiveFormsModule,
-    InputTextModule,
-    CheckboxModule,
-    ButtonModule,
-    CommonModule,
-    TranslateModule,
-    RippleModule,
-    FontAwesomeModule,
-    RouterModule,
-    AutoFocusModule,
-  ],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.scss',
+    selector: 'app-login',
+    imports: [
+        FormControlErrorsComponent,
+        ReactiveFormsModule,
+        InputTextModule,
+        CheckboxModule,
+        ButtonModule,
+        CommonModule,
+        TranslateModule,
+        RippleModule,
+        FontAwesomeModule,
+        RouterModule,
+        AutoFocusModule,
+    ],
+    templateUrl: './login.component.html',
+    styleUrl: './login.component.scss'
 })
 export class LoginComponent extends BaseFormComponent {
   public loggedUser: LoggedUser | null = null;

@@ -8,11 +8,10 @@ import { LayoutService } from '../../services/layout/layout.service';
 import { SidebarComponent } from './sidebar/sidebar.component';
 
 @Component({
-  selector: 'app-dashboard',
-  standalone: true,
-  imports: [CommonModule, RouterOutlet, HeaderComponent, FooterComponent, SidebarComponent],
-  templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.scss',
+    selector: 'app-dashboard',
+    imports: [CommonModule, RouterOutlet, HeaderComponent, FooterComponent, SidebarComponent],
+    templateUrl: './dashboard.component.html',
+    styleUrl: './dashboard.component.scss'
 })
 export class DashboardComponent implements OnDestroy {
   overlayMenuOpenSubscription: Subscription;

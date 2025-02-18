@@ -29,28 +29,27 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { NgSelectModule } from '@ng-select/ng-select';
 
 @Component({
-  selector: 'app-users-list',
-  standalone: true,
-  imports: [
-    ButtonModule,
-    CommonModule,
-    FontAwesomeModule,
-    FormsModule,
-    InputSwitchModule,
-    InputTextModule,
-    MatPaginatorModule,
-    MatSortModule,
-    MatTableLoaderComponent,
-    MatTableModule,
-    MatTooltipModule,
-    NgxPermissionsModule,
-    ReactiveFormsModule,
-    RouterModule,
-    TranslateModule,
-    NgSelectModule,
-  ],
-  templateUrl: './users-list.component.html',
-  styleUrl: './users-list.component.scss',
+    selector: 'app-users-list',
+    imports: [
+        ButtonModule,
+        CommonModule,
+        FontAwesomeModule,
+        FormsModule,
+        InputSwitchModule,
+        InputTextModule,
+        MatPaginatorModule,
+        MatSortModule,
+        MatTableLoaderComponent,
+        MatTableModule,
+        MatTooltipModule,
+        NgxPermissionsModule,
+        ReactiveFormsModule,
+        RouterModule,
+        TranslateModule,
+        NgSelectModule,
+    ],
+    templateUrl: './users-list.component.html',
+    styleUrl: './users-list.component.scss'
 })
 export class UsersListComponent extends BaseTableWithCriteriaComponent implements AfterViewInit {
   // font-awesome icons
