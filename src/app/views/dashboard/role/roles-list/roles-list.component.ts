@@ -22,6 +22,7 @@ import { InputSwitchModule } from 'primeng/inputswitch';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { LayoutService } from '../../../../services/layout/layout.service';
+import { ToggleSwitchModule } from 'primeng/toggleswitch';
 
 @Component({
     selector: 'app-roles-list',
@@ -30,7 +31,7 @@ import { LayoutService } from '../../../../services/layout/layout.service';
         CommonModule,
         FontAwesomeModule,
         FormsModule,
-        InputSwitchModule,
+        ToggleSwitchModule,
         InputTextModule,
         MatPaginatorModule,
         MatSortModule,

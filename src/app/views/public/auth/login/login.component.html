@@ -67,7 +67,7 @@
         </div>
       </div>
 
-      <button pButton pRipple class="p-button-success w-100 d-flex justify-content-center rounded mt-3" [disabled]="isLoading || !form.valid">
+      <button pButton pRipple class="m-button-success w-100 d-flex justify-content-center rounded mt-3" [disabled]="isLoading || !form.valid">
         @if (!isLoading) {
           {{ 'login.button.login' | translate }}
         }
@@ -81,7 +81,7 @@
           type="button"
           pButton
           pRipple
-          class="p-button-secondary w-100 d-flex justify-content-center rounded mt-3"
+          class="m-button-secondary w-100 d-flex justify-content-center rounded mt-3"
           [routerLink]="['/register']">
           {{ 'login.form.register' | translate }}
         </button>

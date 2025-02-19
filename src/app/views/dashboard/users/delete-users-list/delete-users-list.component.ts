@@ -22,6 +22,7 @@ import { ButtonModule } from 'primeng/button';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { InputTextModule } from 'primeng/inputtext';
 import { MatTableLoaderComponent } from '../../../../components/mat-table-loader/mat-table-loader.component';
+import { ToggleSwitchModule } from 'primeng/toggleswitch';
 
 @Component({
     selector: 'app-delete-users-list',
@@ -30,7 +31,7 @@ import { MatTableLoaderComponent } from '../../../../components/mat-table-loader
         CommonModule,
         FontAwesomeModule,
         FormsModule,
-        InputSwitchModule,
+        ToggleSwitchModule,
         InputTextModule,
         MatPaginatorModule,
         MatSortModule,

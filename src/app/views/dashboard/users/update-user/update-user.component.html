@@ -21,7 +21,7 @@
                   <form [formGroup]="form" (ngSubmit)="save()" name="editForm" role="form" novalidate>
 
                     <div class="row mb-3">
-                      <div class="col-4">
+                      <div class="col-12 col-sm-6 col-md-4">
                         <div class="form-group row mb-2">
                           <label class="col-md-12 col-form-label" for="name">
                             {{ 'user.columns.name' | translate }}
@@ -48,7 +48,7 @@
                           </div>
                         </div>
                       </div>
-                      <div class="col-4">
+                      <div class="col-12 col-sm-6 col-md-4">
                         <div class="form-group row mb-2">
                           <label class="col-md-12 col-form-label" for="email">
                             {{ 'user.columns.email' | translate }}
@@ -73,7 +73,7 @@
                           </div>
                         </div>
                       </div>
-                      <div class="col-4">
+                      <div class="col-12 col-sm-12 col-md-4">
                         <div class="form-group row mb-2">
                           <label class="col-md-12 col-form-label" for="confirmed">
                             {{ 'user.columns.confirmed' | translate }}
@@ -120,8 +120,8 @@
                         </div>
                       }
                     </div>
-                    <div class="d-flex justify-content-end">
-                      <button pButton pRipple class="p-button-success me-2" type="submit" (click)="save()" [disabled]="isSaving || !form.valid">
+                    <div class="mt-4 d-flex justify-content-end">
+                      <button pButton pRipple class="m-button-success me-2 btn-full-mobile" type="submit" (click)="save()" [disabled]="isSaving || !form.valid">
                         @if (isSaving) {
                           <fa-icon [icon]="faSpinner" [animation]="isSaving ? 'spin' : undefined"></fa-icon>
                         }
@@ -130,7 +130,7 @@
                         }
                         <span class="ms-1">{{ 'global.button.save' | translate }}</span>
                       </button>
-                      <a pButton pRipple class="p-button-secondary me-2" [routerLink]="['/users']">
+                      <a pButton pRipple class="m-button-secondary me-2 btn-full-mobile" [routerLink]="['/users']">
                         {{ 'global.button.cancel' | translate }}
                       </a>
                     </div>

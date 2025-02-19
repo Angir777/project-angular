@@ -27,6 +27,7 @@ import { AuthUser } from '../../../../models/auth/auth-user';
 import { LoggedUserService } from '../../../../services/logged-user/logged-user.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { ToggleSwitchModule } from 'primeng/toggleswitch';
 
 @Component({
     selector: 'app-users-list',
@@ -35,7 +36,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
         CommonModule,
         FontAwesomeModule,
         FormsModule,
-        InputSwitchModule,
+        ToggleSwitchModule,
         InputTextModule,
         MatPaginatorModule,
         MatSortModule,

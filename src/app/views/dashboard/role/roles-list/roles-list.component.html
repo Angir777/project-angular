@@ -10,12 +10,12 @@
           </div>
           <div class="col-sm-7 d-flex justify-content-end">
             <a
-            class="btn btn-success me-2"
+            class="btn m-button-success me-2 btn-full-mobile"
               *ngxPermissionsOnly="['ROLE_MANAGE']"
               [routerLink]="['new']"
             >
               <fa-icon [icon]="faPlusCircle"></fa-icon>
-              <span class="d-none d-lg-inline">
+              <span>
                 {{ 'global.button.add' | translate }}
               </span>
             </a>
@@ -124,7 +124,7 @@
               @if (saveActive) {
                 <div class="d-flex justify-content-end mt-3">
                   <small class="mt-1 me-2">{{ 'global.table.saveTableStatus' | translate }}</small>
-                  <p-inputSwitch [(ngModel)]="saveState" />
+                  <p-toggleswitch [(ngModel)]="saveState" />
                 </div>
               }
 
