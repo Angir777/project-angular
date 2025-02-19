@@ -18,13 +18,13 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { TranslateModule } from '@ngx-translate/core';
 import { NgxPermissionsModule } from 'ngx-permissions';
 import { ButtonModule } from 'primeng/button';
-import { InputSwitchModule } from 'primeng/inputswitch';
 import { InputTextModule } from 'primeng/inputtext';
 import { MatTableLoaderComponent } from '../../../../components/mat-table-loader/mat-table-loader.component';
 import { AutoFocusModule } from 'primeng/autofocus';
 import { RippleModule } from 'primeng/ripple';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 import { FormControlErrorsComponent } from '../../../../components/form-control-errors/form-control-errors.component';
+import { ToggleSwitchModule } from 'primeng/toggleswitch';
 
 @Component({
     selector: 'app-update-user',
@@ -39,11 +39,11 @@ import { FormControlErrorsComponent } from '../../../../components/form-control-
         InputTextModule,
         AutoFocusModule,
         ToggleButtonModule,
-        InputSwitchModule,
         RippleModule,
         ButtonModule,
         FontAwesomeModule,
-        RouterModule
+        RouterModule,
+        ToggleSwitchModule
     ],
     templateUrl: './update-user.component.html',
     styleUrl: './update-user.component.scss'

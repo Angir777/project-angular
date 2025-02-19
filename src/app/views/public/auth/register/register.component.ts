@@ -18,6 +18,8 @@ import { RegisterInterface } from '../../../../interfaces/register.interface';
 import { TranslatedSwalService } from '../../../../services/translation/translated-swal.service';
 import { CheckboxModule } from 'primeng/checkbox';
 import { AutoFocusModule } from 'primeng/autofocus';
+import { IconFieldModule } from 'primeng/iconfield';
+import { InputIconModule } from 'primeng/inputicon';
 
 @Component({
     selector: 'app-register',
@@ -33,6 +35,8 @@ import { AutoFocusModule } from 'primeng/autofocus';
         FontAwesomeModule,
         RouterModule,
         AutoFocusModule,
+        IconFieldModule,
+        InputIconModule
     ],
     templateUrl: './register.component.html',
     styleUrl: './register.component.scss'

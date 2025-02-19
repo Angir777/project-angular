@@ -4,7 +4,6 @@ import { ActivatedRoute, NavigationEnd, Router, RouterOutlet } from '@angular/ro
 import { TranslateService } from '@ngx-translate/core';
 import { LoggedUserService } from './services/logged-user/logged-user.service';
 import { filter, map, mergeMap } from 'rxjs';
-import { PrimeNGConfig } from 'primeng/api';
 import { ToastModule, ToastPositionType } from 'primeng/toast';
 import { environment } from '../environments/environment';
 import { Language } from './interfaces/language.interface';
@@ -26,7 +25,6 @@ export class AppComponent implements OnInit {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private loggedUserService: LoggedUserService,
-    private primengConfig: PrimeNGConfig
   ) {
     // Wybrany język zapisany w localStorage.
     const selectedLanguage = localStorage.getItem('selectedLanguage');
@@ -71,8 +69,5 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     // Przeładowanie uprawnień.
     this.loggedUserService.reloadPermissions();
-
-    // PrimeNG - Ustawienie 'Ripple'.
-    this.primengConfig.ripple = true;
   }
 }

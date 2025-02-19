@@ -6,11 +6,14 @@
     <form [formGroup]="form" (ngSubmit)="login()">
       <div class="field p-fluid">
         <label for="email">{{ 'login.form.email' | translate }}*</label>
-        <span class="p-input-icon-left">
-          <i><fa-icon [icon]="faUser"></fa-icon></i>
+        <p-iconfield>
+          <p-inputicon>
+            <fa-icon [icon]="faUser"></fa-icon>
+          </p-inputicon>
           <input
+            class="w-100"
             pInputText
-            pAutoFocus
+            [pAutoFocus]="true"
             [ngClass]="getStatus('email')"
             id="email"
             type="email"
@@ -20,7 +23,7 @@
             aria-describedby="email-required"
             [attr.aria-invalid]="getAriaInvalid('email')"
             (keydown)="clearServerErrors('email')" />
-        </span>
+        </p-iconfield>
         <!-- {{ getFormValidationStatus('email') }} -->
         @if (isFormControlInvalid('email')) {
           <app-form-control-errors [errors]="form.get('email')?.errors" [serverErrors]="getServerErrors('email')" />
@@ -29,9 +32,12 @@
 
       <div class="field p-fluid mt-3">
         <label for="password">{{ 'login.form.password' | translate }}*</label>
-        <span class="p-input-icon-left">
-          <i><fa-icon [icon]="faKey"></fa-icon></i>
+        <p-iconfield>
+          <p-inputicon>
+            <fa-icon [icon]="faKey"></fa-icon>
+          </p-inputicon>
           <input
+            class="w-100"
             pInputText
             [ngClass]="getStatus('password')"
             id="password"
@@ -42,7 +48,7 @@
             aria-describedby="password-required"
             [attr.aria-invalid]="getAriaInvalid('password')"
             (keydown)="clearServerErrors('password')" />
-        </span>
+        </p-iconfield>
         <!-- {{ getFormValidationStatus('password') }} -->
         @if (isFormControlInvalid('password')) {
           <app-form-control-errors [errors]="form.get('password')?.errors" [serverErrors]="getServerErrors('password')" />

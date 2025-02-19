@@ -19,11 +19,11 @@ import { InputTextModule } from 'primeng/inputtext';
 import { AutoFocusModule } from 'primeng/autofocus';
 import { FormControlErrorsComponent } from '../../../../components/form-control-errors/form-control-errors.component';
 import { ToggleButtonModule } from 'primeng/togglebutton';
-import { InputSwitchModule } from 'primeng/inputswitch';
 import { faSave, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { RippleModule } from 'primeng/ripple';
 import { ButtonModule } from 'primeng/button';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ToggleSwitchModule } from 'primeng/toggleswitch';
 
 @Component({
     selector: 'app-update-role',
@@ -38,7 +38,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
         InputTextModule,
         AutoFocusModule,
         ToggleButtonModule,
-        InputSwitchModule,
+        ToggleSwitchModule,
         RippleModule,
         ButtonModule,
         FontAwesomeModule,

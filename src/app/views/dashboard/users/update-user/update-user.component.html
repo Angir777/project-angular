@@ -30,7 +30,7 @@
                             <input
                               class="w-100"
                               pInputText
-                              pAutoFocus
+                              [pAutoFocus]="true"
                               [autofocus]="true"
                               [ngClass]="getStatus('name')"
                               id="name"
@@ -79,7 +79,7 @@
                             {{ 'user.columns.confirmed' | translate }}
                           </label>
                           <div class="col-md-12">
-                            <p-inputSwitch 
+                            <p-toggleswitch 
                               formControlName="confirmed"
                               name="confirmed"
                               id="confirmed" />
@@ -105,7 +105,7 @@
                             <div class="col-md-4 pt-2 ps-3" *ngxPermissionsOnly="['SUPER_ADMIN']">
                               <div class="form-group d-flex">
                                 <span class="w-100 me-2">{{ role.name }}</span>
-                                <p-inputSwitch [(ngModel)]="role.isSelected" [ngModelOptions]="{ standalone: true }" />
+                                <p-toggleswitch [(ngModel)]="role.isSelected" [ngModelOptions]="{ standalone: true }" />
                               </div>
                             </div>
                           }
@@ -113,7 +113,7 @@
                             <div class="col-md-4 pt-2 ps-3">
                               <div class="form-group d-flex">
                                 <span class="w-100 me-2">{{ role.name }}</span>
-                                <p-inputSwitch [(ngModel)]="role.isSelected" [ngModelOptions]="{ standalone: true }" />
+                                <p-toggleswitch [(ngModel)]="role.isSelected" [ngModelOptions]="{ standalone: true }" />
                               </div>
                             </div>
                           }
@@ -130,7 +130,7 @@
                         }
                         <span class="ms-1">{{ 'global.button.save' | translate }}</span>
                       </button>
-                      <a pButton pRipple class="p-button-secondary text-light me-2" [routerLink]="['/users']">
+                      <a pButton pRipple class="p-button-secondary me-2" [routerLink]="['/users']">
                         {{ 'global.button.cancel' | translate }}
                       </a>
                     </div>

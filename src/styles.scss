@@ -1,11 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 
 $gutter: 1rem; // for primeflex grid system
-@import 'assets/layout/styles/layout/layout.scss';
+@use 'assets/layout/styles/layout/layout.scss';
 
 // PrimeNG
-@import '../node_modules/primeicons/primeicons.css';
-@import '../node_modules/primeng/resources/primeng.min.css';
+@use '../node_modules/primeicons/primeicons.css';
 
 .layout-main,
 .landing-wrapper {
@@ -48,16 +47,6 @@ button {
   border-radius: 6px;
 }
 
-// Większy swal
-.swal-md {
-  width: 650px !important;
-  height: 350px !important;
-  div:where(.swal2-icon){
-    width: 8em !important;
-    height: 8em !important;
-    font-weight: 600 !important;
-  }
-}
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
@@ -76,8 +65,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   width: 100%;
   height: 100%;
 }
-
-
 
 
 

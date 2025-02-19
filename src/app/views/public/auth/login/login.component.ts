@@ -18,6 +18,8 @@ import { TranslatedToastService } from '../../../../services/translation/transla
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faKey, faSpinner, faUser } from '@fortawesome/free-solid-svg-icons';
 import { AutoFocusModule } from 'primeng/autofocus';
+import { IconFieldModule } from 'primeng/iconfield';
+import { InputIconModule } from 'primeng/inputicon';
 
 @Component({
     selector: 'app-login',
@@ -33,6 +35,8 @@ import { AutoFocusModule } from 'primeng/autofocus';
         FontAwesomeModule,
         RouterModule,
         AutoFocusModule,
+        IconFieldModule,
+        InputIconModule
     ],
     templateUrl: './login.component.html',
     styleUrl: './login.component.scss'

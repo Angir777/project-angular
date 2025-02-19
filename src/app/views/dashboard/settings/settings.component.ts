@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { TabViewModule } from 'primeng/tabview';
 import { FormControlErrorsComponent } from '../../../components/form-control-errors/form-control-errors.component';
 import { AbstractControl, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
@@ -17,6 +16,9 @@ import { ChangePasswordInterface } from '../../../interfaces/change-password.int
 import { SettingService } from '../../../services/setting/setting.service';
 import { finalize } from 'rxjs';
 import { AuthService } from '../../../services/auth/auth.service';
+import { IconFieldModule } from 'primeng/iconfield';
+import { InputIconModule } from 'primeng/inputicon';
+import { TabsModule } from 'primeng/tabs';
 
 @Component({
     selector: 'app-settings',
@@ -29,8 +31,10 @@ import { AuthService } from '../../../services/auth/auth.service';
         ReactiveFormsModule,
         RippleModule,
         RouterModule,
-        TabViewModule,
         TranslateModule,
+        IconFieldModule,
+        InputIconModule,
+        TabsModule
     ],
     templateUrl: './settings.component.html',
     styleUrl: './settings.component.scss'
@@ -118,9 +122,6 @@ export class SettingsComponent extends BaseFormComponent {
   async deleteAccount() {
     const result = await this.translatedSwalService.showAsync(
       {
-        customClass: {
-          container: 'swal-md',
-        },
         icon: 'question',
         iconColor: '#ff3d41',
         title: 'settings.question.areYouShureToDeleteAccountText',

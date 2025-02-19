@@ -16,6 +16,8 @@ import { BaseFormComponent } from '../../../../components/base-component';
 import { FinishResetPasswordInterface } from '../../../../interfaces/finish-reset-password.interface';
 import { faKey, faSpinner, faUser } from '@fortawesome/free-solid-svg-icons';
 import { finalize } from 'rxjs';
+import { IconFieldModule } from 'primeng/iconfield';
+import { InputIconModule } from 'primeng/inputicon';
 
 @Component({
     selector: 'app-new-password',
@@ -30,6 +32,8 @@ import { finalize } from 'rxjs';
         FontAwesomeModule,
         RouterModule,
         AutoFocusModule,
+        IconFieldModule,
+        InputIconModule
     ],
     templateUrl: './password-reset-finish.component.html',
     styleUrl: './password-reset-finish.component.scss'

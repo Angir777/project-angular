@@ -1,3 +1,6 @@
+@use './_variables';
+@use './_mixins';
+
 .layout-topbar {
   position: fixed;
   height: 5rem;
@@ -7,7 +10,7 @@
   width: 100%;
   padding: 0 2rem;
   background-color: var(--surface-card);
-  transition: left $transitionDuration;
+  transition: left variables.$transitionDuration;
   display: flex;
   align-items: center;
   box-shadow:
@@ -30,11 +33,13 @@
     }
 
     &:focus {
-      @include focused();
+      @include mixins.focused();
     }
   }
 
   .layout-topbar-button {
+    background: transparent;
+    border-color: transparent;
     display: inline-flex;
     justify-content: center;
     align-items: center;
@@ -44,7 +49,7 @@
     width: 3rem;
     height: 3rem;
     cursor: pointer;
-    transition: background-color $transitionDuration;
+    transition: background-color variables.$transitionDuration;
 
     &:hover {
       color: var(--text-color);
@@ -52,7 +57,7 @@
     }
 
     &:focus {
-      @include focused();
+      @include mixins.focused();
     }
 
     i {

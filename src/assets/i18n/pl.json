@@ -45,6 +45,17 @@
     }
   },
 
+  "ngSelect": {
+    "provideMin3Characters": "Wprowadź co najmniej 3 znaki",
+    "provideMin2Characters": "Wprowadź co najmniej 2 znaki",
+    "provideMin1Characters": "Wprowadź co najmniej 1 znak",
+    "nothingFound": "Brak danych",
+    "loading": "Wczytywanie",
+    "selectAll": "Wszystko",
+    "clear": "Wyczyść",
+    "typeToSearchText": "Wpisz czego szukasz"
+  },
+
   "nav": {
     "motyw": "Motyw",
     "settings": "Ustawienia",
@@ -262,7 +273,8 @@
       "cantRestore": "Nie udało się przywrócić użytkownika.",
       "cantDeleteOwnAccount": "Nie możesz usunąć swojego konta!",
       "cantCreate": "Nie udało się dodać użytkownika.",
-      "cantUpdate": "Nie udało się zaktualizować użytkownika."
+      "cantUpdate": "Nie udało się zaktualizować użytkownika.",
+      "cantRoleQuery": "Nie udało się pobrać słownika ról."
     }
   }
 }

@@ -29,7 +29,7 @@
                             <input
                               class="w-100"
                               pInputText
-                              pAutoFocus
+                              [pAutoFocus]="true"
                               [autofocus]="true"
                               [ngClass]="getStatus('name')"
                               id="name"
@@ -86,7 +86,7 @@
                           <ng-container *ngFor="let permission of permissionGroup.permissions">
                             <div class="form-group d-flex mt-3">
                               <span class="w-100 me-2">{{ permission.name }}</span>
-                              <p-inputSwitch [(ngModel)]="permission.isSelected" [ngModelOptions]="{ standalone: true }" />
+                              <p-toggleswitch [(ngModel)]="permission.isSelected" [ngModelOptions]="{ standalone: true }" />
                             </div>
                           </ng-container>
                         </div>
@@ -103,7 +103,7 @@
                         }
                         <span class="ms-1">{{ 'global.button.save' | translate }}</span>
                       </button>
-                      <a pButton pRipple class="p-button-secondary text-light me-2" [routerLink]="['/roles']">
+                      <a pButton pRipple class="p-button-secondary me-2" [routerLink]="['/roles']">
                         {{ 'global.button.cancel' | translate }}
                       </a>
                     </div>

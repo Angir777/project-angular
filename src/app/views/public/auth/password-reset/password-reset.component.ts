@@ -15,6 +15,8 @@ import { faSpinner, faUser } from '@fortawesome/free-solid-svg-icons';
 import { finalize } from 'rxjs';
 import { TranslatedToastService } from '../../../../services/translation/translated-toast.service';
 import { AutoFocusModule } from 'primeng/autofocus';
+import { IconFieldModule } from 'primeng/iconfield';
+import { InputIconModule } from 'primeng/inputicon';
 
 @Component({
     selector: 'app-password-reset',
@@ -29,6 +31,8 @@ import { AutoFocusModule } from 'primeng/autofocus';
         FontAwesomeModule,
         RouterModule,
         AutoFocusModule,
+        IconFieldModule,
+        InputIconModule
     ],
     templateUrl: './password-reset.component.html',
     styleUrl: './password-reset.component.scss'
