@@ -6,11 +6,14 @@
     <form [formGroup]="form" (ngSubmit)="register()">
       <div class="field p-fluid">
         <label for="email">{{ 'register.form.name' | translate }}*</label>
-        <span class="p-input-icon-left">
-          <i><fa-icon [icon]="faSignature"></fa-icon></i>
+        <p-iconfield>
+          <p-inputicon>
+            <fa-icon [icon]="faSignature"></fa-icon>
+          </p-inputicon>
           <input
+            class="w-100"
             pInputText
-            pAutoFocus
+            [pAutoFocus]="true"
             [ngClass]="getStatus('name')"
             id="name"
             type="name"
@@ -20,7 +23,7 @@
             aria-describedby="name-required"
             [attr.aria-invalid]="getAriaInvalid('name')"
             (keydown)="clearServerErrors('name')" />
-        </span>
+        </p-iconfield>
         @if (isFormControlInvalid('name')) {
           <app-form-control-errors [errors]="form.get('name')?.errors" [serverErrors]="getServerErrors('name')" />
         }
@@ -28,9 +31,12 @@
 
       <div class="field p-fluid mt-3">
         <label for="email">{{ 'register.form.email' | translate }}*</label>
-        <span class="p-input-icon-left">
-          <i><fa-icon [icon]="faUser"></fa-icon></i>
+        <p-iconfield>
+          <p-inputicon>
+            <fa-icon [icon]="faUser"></fa-icon>
+          </p-inputicon>
           <input
+            class="w-100"
             pInputText
             [ngClass]="getStatus('email')"
             id="email"
@@ -41,7 +47,7 @@
             aria-describedby="email-required"
             [attr.aria-invalid]="getAriaInvalid('email')"
             (keydown)="clearServerErrors('email')" />
-        </span>
+        </p-iconfield>
         @if (isFormControlInvalid('email')) {
           <app-form-control-errors [errors]="form.get('email')?.errors" [serverErrors]="getServerErrors('email')" />
         }
@@ -49,9 +55,12 @@
 
       <div class="field p-fluid mt-3">
         <label for="password">{{ 'register.form.password' | translate }}*</label>
-        <span class="p-input-icon-left">
-          <i><fa-icon [icon]="faKey"></fa-icon></i>
+        <p-iconfield>
+          <p-inputicon>
+            <fa-icon [icon]="faKey"></fa-icon>
+          </p-inputicon>
           <input
+            class="w-100"
             pInputText
             [ngClass]="getStatus('password')"
             id="password"
@@ -62,7 +71,7 @@
             aria-describedby="password-required"
             [attr.aria-invalid]="getAriaInvalid('password')"
             (keydown)="clearServerErrors('password')" />
-        </span>
+        </p-iconfield>
         @if (isFormControlInvalid('password')) {
           <app-form-control-errors [errors]="form.get('password')?.errors" [serverErrors]="getServerErrors('password')" />
         }
@@ -70,9 +79,12 @@
 
       <div class="field p-fluid mt-3">
         <label for="password">{{ 'register.form.passwordConfirmation' | translate }}*</label>
-        <span class="p-input-icon-left">
-          <i><fa-icon [icon]="faKey"></fa-icon></i>
+        <p-iconfield>
+          <p-inputicon>
+            <fa-icon [icon]="faKey"></fa-icon>
+          </p-inputicon>
           <input
+            class="w-100"
             pInputText
             [ngClass]="getStatus('passwordConfirmation')"
             id="passwordConfirmation"
@@ -83,7 +95,7 @@
             aria-describedby="passwordConfirmation-required"
             [attr.aria-invalid]="getAriaInvalid('passwordConfirmation')"
             (keydown)="clearServerErrors('passwordConfirmation')" />
-        </span>
+        </p-iconfield>
         @if (isFormControlInvalid('passwordConfirmation')) {
           <app-form-control-errors [errors]="form.get('passwordConfirmation')?.errors" [serverErrors]="getServerErrors('passwordConfirmation')" />
         }
@@ -105,12 +117,12 @@
         }
       </div>
 
-      <button pButton pRipple class="p-button-success w-100 d-flex justify-content-center rounded mt-3" [disabled]="isLoading || !form.valid">
-        @if (!isLoading) {
+      <button pButton pRipple class="m-button-success w-100 d-flex justify-content-center rounded mt-3" [disabled]="isLoading() || !form.valid">
+        @if (!isLoading()) {
           {{ 'register.button.register' | translate }}
         }
-        @if (isLoading) {
-          <fa-icon [icon]="faSpinner" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        @if (isLoading()) {
+          <fa-icon [icon]="faSpinner" [animation]="isLoading() ? 'spin' : undefined"></fa-icon>
         }
       </button>
 

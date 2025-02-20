@@ -45,6 +45,17 @@
     }
   },
 
+  "ngSelect": {
+    "provideMin3Characters": "Enter at least 3 characters",
+    "provideMin2Characters": "Enter at least 2 characters",
+    "provideMin1Characters": "Enter at least 1 character",
+    "nothingFound": "No data found",
+    "loading": "Loading",
+    "selectAll": "Select All",
+    "clear": "Clear",
+    "typeToSearchText": "Type to search"
+  },
+
   "nav": {
     "motyw": "Theme",
     "settings": "Settings",
@@ -262,7 +273,8 @@
       "cantRestore": "Failed to restore the user.",
       "cantDeleteOwnAccount": "You cannot delete your own account!",
       "cantCreate": "Failed to add user.",
-      "cantUpdate": "Failed to update user."
+      "cantUpdate": "Failed to update user.",
+      "cantRoleQuery": "Failed to download role dictionary."
     }
   }
 }

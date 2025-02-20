@@ -7,11 +7,10 @@ import { PermissionModes } from '../../../constants/permission-modes.const';
 import { MenuItem } from '../../../interfaces/menu-item.interface';
 
 @Component({
-  selector: 'app-menu',
-  standalone: true,
-  imports: [CommonModule, MenuItemComponent],
-  templateUrl: './menu.component.html',
-  styleUrl: './menu.component.scss',
+    selector: 'app-menu',
+    imports: [CommonModule, MenuItemComponent],
+    templateUrl: './menu.component.html',
+    styleUrl: './menu.component.scss'
 })
 export class MenuComponent implements OnInit {
   model: MenuItem[] = [];

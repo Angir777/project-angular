@@ -5,7 +5,7 @@
         <div class="row">
           <div class="col-sm-5">
             <h4 class="mb-0">
-              {{ title | translate }}
+              {{ title() | translate }}
             </h4>
           </div>
           <div class="col-sm-7 d-flex justify-content-end"></div>
@@ -15,13 +15,13 @@
           <div class="row mt-4">
             <div class="col">
               <div class="loader-overlay">
-                <app-mat-table-loader [isLoading]="isLoadingUser || isLoadingRole"></app-mat-table-loader>
+                <app-mat-table-loader [isLoading]="isLoadingUser() || isLoadingRole()"></app-mat-table-loader>
               
-                @if (!isLoadingUser && !isLoadingRole) {
+                @if (!isLoadingUser() && !isLoadingRole()) {
                   <form [formGroup]="form" (ngSubmit)="save()" name="editForm" role="form" novalidate>
 
                     <div class="row mb-3">
-                      <div class="col-4">
+                      <div class="col-12 col-sm-6 col-md-4">
                         <div class="form-group row mb-2">
                           <label class="col-md-12 col-form-label" for="name">
                             {{ 'user.columns.name' | translate }}
@@ -30,7 +30,7 @@
                             <input
                               class="w-100"
                               pInputText
-                              pAutoFocus
+                              [pAutoFocus]="true"
                               [autofocus]="true"
                               [ngClass]="getStatus('name')"
                               id="name"
@@ -48,7 +48,7 @@
                           </div>
                         </div>
                       </div>
-                      <div class="col-4">
+                      <div class="col-12 col-sm-6 col-md-4">
                         <div class="form-group row mb-2">
                           <label class="col-md-12 col-form-label" for="email">
                             {{ 'user.columns.email' | translate }}
@@ -73,13 +73,13 @@
                           </div>
                         </div>
                       </div>
-                      <div class="col-4">
+                      <div class="col-12 col-sm-12 col-md-4">
                         <div class="form-group row mb-2">
                           <label class="col-md-12 col-form-label" for="confirmed">
                             {{ 'user.columns.confirmed' | translate }}
                           </label>
                           <div class="col-md-12">
-                            <p-inputSwitch 
+                            <p-toggleswitch 
                               formControlName="confirmed"
                               name="confirmed"
                               id="confirmed" />
@@ -99,13 +99,13 @@
                           {{ 'user.columns.roles' | translate }}
                         </label>
                       </div>
-                      @for (role of roles; track role) {
+                      @for (role of roles(); track role) {
                         <div class="row">
                           @if (role.name === 'SUPER_ADMIN') {
                             <div class="col-md-4 pt-2 ps-3" *ngxPermissionsOnly="['SUPER_ADMIN']">
                               <div class="form-group d-flex">
                                 <span class="w-100 me-2">{{ role.name }}</span>
-                                <p-inputSwitch [(ngModel)]="role.isSelected" [ngModelOptions]="{ standalone: true }" />
+                                <p-toggleswitch [(ngModel)]="role.isSelected" [ngModelOptions]="{ standalone: true }" />
                               </div>
                             </div>
                           }
@@ -113,24 +113,24 @@
                             <div class="col-md-4 pt-2 ps-3">
                               <div class="form-group d-flex">
                                 <span class="w-100 me-2">{{ role.name }}</span>
-                                <p-inputSwitch [(ngModel)]="role.isSelected" [ngModelOptions]="{ standalone: true }" />
+                                <p-toggleswitch [(ngModel)]="role.isSelected" [ngModelOptions]="{ standalone: true }" />
                               </div>
                             </div>
                           }
                         </div>
                       }
                     </div>
-                    <div class="d-flex justify-content-end">
-                      <button pButton pRipple class="p-button-success me-2" type="submit" (click)="save()" [disabled]="isSaving || !form.valid">
-                        @if (isSaving) {
-                          <fa-icon [icon]="faSpinner" [animation]="isSaving ? 'spin' : undefined"></fa-icon>
+                    <div class="mt-4 d-flex justify-content-end">
+                      <button pButton pRipple class="m-button-success me-2 btn-full-mobile" type="submit" (click)="save()" [disabled]="isSaving() || !form.valid">
+                        @if (isSaving()) {
+                          <fa-icon [icon]="faSpinner" [animation]="isSaving() ? 'spin' : undefined"></fa-icon>
                         }
-                        @if (!isSaving) {
+                        @if (!isSaving()) {
                           <fa-icon [icon]="faSave"></fa-icon>
                         }
                         <span class="ms-1">{{ 'global.button.save' | translate }}</span>
                       </button>
-                      <a pButton pRipple class="p-button-secondary text-light me-2" [routerLink]="['/users']">
+                      <a pButton pRipple class="m-button-secondary me-2 btn-full-mobile" [routerLink]="['/users']">
                         {{ 'global.button.cancel' | translate }}
                       </a>
                     </div>

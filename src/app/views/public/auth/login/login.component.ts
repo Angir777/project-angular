@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { AuthService } from '../../../../services/auth/auth.service';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { BaseFormComponent } from '../../../../components/base-component';
@@ -18,34 +18,38 @@ import { TranslatedToastService } from '../../../../services/translation/transla
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faKey, faSpinner, faUser } from '@fortawesome/free-solid-svg-icons';
 import { AutoFocusModule } from 'primeng/autofocus';
+import { IconFieldModule } from 'primeng/iconfield';
+import { InputIconModule } from 'primeng/inputicon';
 
 @Component({
-  selector: 'app-login',
-  standalone: true,
-  imports: [
-    FormControlErrorsComponent,
-    ReactiveFormsModule,
-    InputTextModule,
-    CheckboxModule,
-    ButtonModule,
-    CommonModule,
-    TranslateModule,
-    RippleModule,
-    FontAwesomeModule,
-    RouterModule,
-    AutoFocusModule,
-  ],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.scss',
+    selector: 'app-login',
+    imports: [
+        FormControlErrorsComponent,
+        ReactiveFormsModule,
+        InputTextModule,
+        CheckboxModule,
+        ButtonModule,
+        CommonModule,
+        TranslateModule,
+        RippleModule,
+        FontAwesomeModule,
+        RouterModule,
+        AutoFocusModule,
+        IconFieldModule,
+        InputIconModule
+    ],
+    templateUrl: './login.component.html',
+    styleUrl: './login.component.scss'
 })
 export class LoginComponent extends BaseFormComponent {
-  public loggedUser: LoggedUser | null = null;
-  appVersion: string = environment.APP_VERSION;
-  canRegistration: boolean = environment.REGISTRATION_ENABLED;
+  readonly faUser = faUser;
+  readonly faKey = faKey;
+  readonly faSpinner = faSpinner;
 
-  faUser = faUser;
-  faKey = faKey;
-  faSpinner = faSpinner;
+  public loggedUser = signal<LoggedUser | null>(null);
+  
+  appVersion = signal(environment.APP_VERSION);
+  canRegistration = signal(environment.REGISTRATION_ENABLED);
 
   constructor(
     private authService: AuthService,
@@ -70,18 +74,18 @@ export class LoginComponent extends BaseFormComponent {
   }
 
   login() {
-    this.isLoading = true;
+    this.isLoading.set(true);
     this.authService
       .login(this.form.value)
       .pipe(
         finalize(() => {
-          this.isLoading = false;
+          this.isLoading.set(false);
         })
       )
       .subscribe({
         next: (response) => {
-          this.loggedUser = response.body;
-          if (this.loggedUser !== null) {
+          this.loggedUser.set(response.body);
+          if (this.loggedUser() !== null) {
             this.form.reset();
             this.router.navigate(['home']);
           }

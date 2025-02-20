@@ -18,31 +18,34 @@ import { RegisterInterface } from '../../../../interfaces/register.interface';
 import { TranslatedSwalService } from '../../../../services/translation/translated-swal.service';
 import { CheckboxModule } from 'primeng/checkbox';
 import { AutoFocusModule } from 'primeng/autofocus';
+import { IconFieldModule } from 'primeng/iconfield';
+import { InputIconModule } from 'primeng/inputicon';
 
 @Component({
-  selector: 'app-register',
-  standalone: true,
-  imports: [
-    FormControlErrorsComponent,
-    ReactiveFormsModule,
-    InputTextModule,
-    CheckboxModule,
-    ButtonModule,
-    CommonModule,
-    TranslateModule,
-    RippleModule,
-    FontAwesomeModule,
-    RouterModule,
-    AutoFocusModule,
-  ],
-  templateUrl: './register.component.html',
-  styleUrl: './register.component.scss',
+    selector: 'app-register',
+    imports: [
+        FormControlErrorsComponent,
+        ReactiveFormsModule,
+        InputTextModule,
+        CheckboxModule,
+        ButtonModule,
+        CommonModule,
+        TranslateModule,
+        RippleModule,
+        FontAwesomeModule,
+        RouterModule,
+        AutoFocusModule,
+        IconFieldModule,
+        InputIconModule
+    ],
+    templateUrl: './register.component.html',
+    styleUrl: './register.component.scss'
 })
 export class RegisterComponent extends BaseFormComponent {
-  faSignature = faSignature;
-  faUser = faUser;
-  faKey = faKey;
-  faSpinner = faSpinner;
+  readonly faSignature = faSignature;
+  readonly faUser = faUser;
+  readonly faKey = faKey;
+  readonly faSpinner = faSpinner;
 
   constructor(
     private authService: AuthService,
@@ -87,7 +90,7 @@ export class RegisterComponent extends BaseFormComponent {
   }
 
   register() {
-    this.isLoading = true;
+    this.isLoading.set(true);
 
     const dataToSave: RegisterInterface = {
       name: this.form.get('name')?.value,
@@ -101,7 +104,7 @@ export class RegisterComponent extends BaseFormComponent {
       .register(dataToSave)
       .pipe(
         finalize(() => {
-          this.isLoading = false;
+          this.isLoading.set(false);
         })
       )
       .subscribe({

@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-import { TabViewModule } from 'primeng/tabview';
+import { Component, signal } from '@angular/core';
 import { FormControlErrorsComponent } from '../../../components/form-control-errors/form-control-errors.component';
 import { AbstractControl, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
@@ -17,30 +16,34 @@ import { ChangePasswordInterface } from '../../../interfaces/change-password.int
 import { SettingService } from '../../../services/setting/setting.service';
 import { finalize } from 'rxjs';
 import { AuthService } from '../../../services/auth/auth.service';
+import { IconFieldModule } from 'primeng/iconfield';
+import { InputIconModule } from 'primeng/inputicon';
+import { TabsModule } from 'primeng/tabs';
 
 @Component({
-  selector: 'app-settings',
-  standalone: true,
-  imports: [
-    ButtonModule,
-    CommonModule,
-    FontAwesomeModule,
-    FormControlErrorsComponent,
-    InputTextModule,
-    ReactiveFormsModule,
-    RippleModule,
-    RouterModule,
-    TabViewModule,
-    TranslateModule,
-  ],
-  templateUrl: './settings.component.html',
-  styleUrl: './settings.component.scss',
+    selector: 'app-settings',
+    imports: [
+        ButtonModule,
+        CommonModule,
+        FontAwesomeModule,
+        FormControlErrorsComponent,
+        InputTextModule,
+        ReactiveFormsModule,
+        RippleModule,
+        RouterModule,
+        TranslateModule,
+        IconFieldModule,
+        InputIconModule,
+        TabsModule
+    ],
+    templateUrl: './settings.component.html',
+    styleUrl: './settings.component.scss'
 })
 export class SettingsComponent extends BaseFormComponent {
-  faKey = faKey;
-  faSpinner = faSpinner;
+  readonly faKey = faKey;
+  readonly faSpinner = faSpinner;
 
-  isDeleting = false;
+  isDeleting = signal(false);
 
   constructor(
     private settingService: SettingService,
@@ -79,7 +82,7 @@ export class SettingsComponent extends BaseFormComponent {
 
   // Zmiana hasła przez użytkownika
   changePassword() {
-    this.isLoading = true;
+    this.isLoading.set(true);
 
     const dataToSave: ChangePasswordInterface = {
       old_password: this.form.get('oldPassword')?.value,
@@ -91,7 +94,7 @@ export class SettingsComponent extends BaseFormComponent {
       .changePassword(dataToSave)
       .pipe(
         finalize(() => {
-          this.isLoading = false;
+          this.isLoading.set(false);
         })
       )
       .subscribe({
@@ -119,9 +122,6 @@ export class SettingsComponent extends BaseFormComponent {
   async deleteAccount() {
     const result = await this.translatedSwalService.showAsync(
       {
-        customClass: {
-          container: 'swal-md',
-        },
         icon: 'question',
         iconColor: '#ff3d41',
         title: 'settings.question.areYouShureToDeleteAccountText',
@@ -134,13 +134,13 @@ export class SettingsComponent extends BaseFormComponent {
     );
 
     if (result.isConfirmed) {
-      this.isDeleting = true;
+      this.isDeleting.set(true);
 
       this.settingService
         .deleteAccount()
         .pipe(
           finalize(() => {
-            this.isDeleting = false;
+            this.isDeleting.set(false);
           })
         )
         .subscribe({

@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectorRef, Component } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, signal } from '@angular/core';
 import { Role } from '../../../../models/role/role';
 import { BaseTableWithCriteriaComponent } from '../../../../components/base-table-with-criteria.component';
 import { RoleService } from '../../../../services/role/role.service';
@@ -18,45 +18,44 @@ import { NgxPermissionsModule } from 'ngx-permissions';
 import { RouterModule } from '@angular/router';
 import { faEdit, faHistory, faPlusCircle, faSortDown, faSpinner, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { MatTableModule } from '@angular/material/table';
-import { InputSwitchModule } from 'primeng/inputswitch';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { LayoutService } from '../../../../services/layout/layout.service';
+import { ToggleSwitchModule } from 'primeng/toggleswitch';
 
 @Component({
-  selector: 'app-roles-list',
-  standalone: true,
-  imports: [
-    ButtonModule,
-    CommonModule,
-    FontAwesomeModule,
-    FormsModule,
-    InputSwitchModule,
-    InputTextModule,
-    MatPaginatorModule,
-    MatSortModule,
-    MatTableLoaderComponent,
-    MatTableModule,
-    MatTooltipModule,
-    NgxPermissionsModule,
-    ReactiveFormsModule,
-    RouterModule,
-    TranslateModule,
-  ],
-  templateUrl: './roles-list.component.html',
-  styleUrl: './roles-list.component.scss',
+    selector: 'app-roles-list',
+    imports: [
+        ButtonModule,
+        CommonModule,
+        FontAwesomeModule,
+        FormsModule,
+        ToggleSwitchModule,
+        InputTextModule,
+        MatPaginatorModule,
+        MatSortModule,
+        MatTableLoaderComponent,
+        MatTableModule,
+        MatTooltipModule,
+        NgxPermissionsModule,
+        ReactiveFormsModule,
+        RouterModule,
+        TranslateModule,
+    ],
+    templateUrl: './roles-list.component.html',
+    styleUrl: './roles-list.component.scss'
 })
 export class RolesListComponent extends BaseTableWithCriteriaComponent implements AfterViewInit {
   // font-awesome icons
-  faSpinner = faSpinner;
-  faPlusCircle = faPlusCircle;
-  faSortDown = faSortDown;
-  faHistory = faHistory;
-  faEdit = faEdit;
-  faTrash = faTrash;
+  readonly faSpinner = faSpinner;
+  readonly faPlusCircle = faPlusCircle;
+  readonly faSortDown = faSortDown;
+  readonly faHistory = faHistory;
+  readonly faEdit = faEdit;
+  readonly faTrash = faTrash;
 
   override displayedColumns: string[] = ['actions', 'id', 'name', 'guardName'];
-  data: Role[] = [];
+  data = signal<Role[]>([]);
 
   constructor(
     private roleService: RoleService,
@@ -100,7 +99,7 @@ export class RolesListComponent extends BaseTableWithCriteriaComponent implement
           return of([]);
         })
       )
-      .subscribe((data) => (this.data = data));
+      .subscribe((data) => (this.data.set(data)));
   }
 
   // Usunięcie wybranej roli

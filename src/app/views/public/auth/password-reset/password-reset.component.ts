@@ -15,28 +15,31 @@ import { faSpinner, faUser } from '@fortawesome/free-solid-svg-icons';
 import { finalize } from 'rxjs';
 import { TranslatedToastService } from '../../../../services/translation/translated-toast.service';
 import { AutoFocusModule } from 'primeng/autofocus';
+import { IconFieldModule } from 'primeng/iconfield';
+import { InputIconModule } from 'primeng/inputicon';
 
 @Component({
-  selector: 'app-password-reset',
-  standalone: true,
-  imports: [
-    FormControlErrorsComponent,
-    ReactiveFormsModule,
-    InputTextModule,
-    ButtonModule,
-    CommonModule,
-    TranslateModule,
-    RippleModule,
-    FontAwesomeModule,
-    RouterModule,
-    AutoFocusModule,
-  ],
-  templateUrl: './password-reset.component.html',
-  styleUrl: './password-reset.component.scss',
+    selector: 'app-password-reset',
+    imports: [
+        FormControlErrorsComponent,
+        ReactiveFormsModule,
+        InputTextModule,
+        ButtonModule,
+        CommonModule,
+        TranslateModule,
+        RippleModule,
+        FontAwesomeModule,
+        RouterModule,
+        AutoFocusModule,
+        IconFieldModule,
+        InputIconModule
+    ],
+    templateUrl: './password-reset.component.html',
+    styleUrl: './password-reset.component.scss'
 })
 export class PasswordResetComponent extends BaseFormComponent {
-  faUser = faUser;
-  faSpinner = faSpinner;
+  readonly faUser = faUser;
+  readonly faSpinner = faSpinner;
 
   constructor(
     private authService: AuthService,
@@ -59,12 +62,12 @@ export class PasswordResetComponent extends BaseFormComponent {
   }
 
   passwordReset() {
-    this.isLoading = true;
+    this.isLoading.set(true);
     this.authService
       .sendResetPasswordEmail(this.form.value)
       .pipe(
         finalize(() => {
-          this.isLoading = false;
+          this.isLoading.set(false);
         })
       )
       .subscribe({

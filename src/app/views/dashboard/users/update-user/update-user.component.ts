@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { User } from '../../../../models/user/user';
 import { Role } from '../../../../models/role/role';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -18,49 +18,48 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { TranslateModule } from '@ngx-translate/core';
 import { NgxPermissionsModule } from 'ngx-permissions';
 import { ButtonModule } from 'primeng/button';
-import { InputSwitchModule } from 'primeng/inputswitch';
 import { InputTextModule } from 'primeng/inputtext';
 import { MatTableLoaderComponent } from '../../../../components/mat-table-loader/mat-table-loader.component';
 import { AutoFocusModule } from 'primeng/autofocus';
 import { RippleModule } from 'primeng/ripple';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 import { FormControlErrorsComponent } from '../../../../components/form-control-errors/form-control-errors.component';
+import { ToggleSwitchModule } from 'primeng/toggleswitch';
 
 @Component({
-  selector: 'app-update-user',
-  standalone: true,
-  imports: [
-    FormControlErrorsComponent,
-    FormsModule,
-    ReactiveFormsModule,
-    MatTableLoaderComponent,
-    CommonModule,
-    NgxPermissionsModule,
-    TranslateModule,
-    InputTextModule,
-    AutoFocusModule,
-    ToggleButtonModule,
-    InputSwitchModule,
-    RippleModule,
-    ButtonModule,
-    FontAwesomeModule,
-    RouterModule
-  ],
-  templateUrl: './update-user.component.html',
-  styleUrl: './update-user.component.scss'
+    selector: 'app-update-user',
+    imports: [
+        FormControlErrorsComponent,
+        FormsModule,
+        ReactiveFormsModule,
+        MatTableLoaderComponent,
+        CommonModule,
+        NgxPermissionsModule,
+        TranslateModule,
+        InputTextModule,
+        AutoFocusModule,
+        ToggleButtonModule,
+        RippleModule,
+        ButtonModule,
+        FontAwesomeModule,
+        RouterModule,
+        ToggleSwitchModule
+    ],
+    templateUrl: './update-user.component.html',
+    styleUrl: './update-user.component.scss'
 })
 export class UpdateUserComponent extends BaseFormComponent implements OnInit {
-  faSpinner = faSpinner;
-  faSave = faSave;
+  readonly faSpinner = faSpinner;
+  readonly faSave = faSave;
   
-  canEditSuperAdminAccount = false;
-  title = '';
+  canEditSuperAdminAccount = signal(false);
+  title = signal('');
 
-  isLoadingUser = false;
-  user: User | null = null;
+  isLoadingUser = signal(false);
+  user = signal<User | null>(null);
 
-  isLoadingRole = false;
-  roles: Role[] = [];
+  isLoadingRole = signal(false);
+  roles = signal<Role[]>([]);
 
   constructor(
     private roleService: RoleService,
@@ -74,7 +73,7 @@ export class UpdateUserComponent extends BaseFormComponent implements OnInit {
   ) {
     super();
     // Sprawdzenie, czy aktualnie zalogowany użytkownik ma rolę 'SUPER_ADMIN'.
-    this.canEditSuperAdminAccount = hasPermission('SUPER_ADMIN', loggedUserService.getPermissions());
+    this.canEditSuperAdminAccount.set(hasPermission('SUPER_ADMIN', loggedUserService.getPermissions()));
   }
 
   ngOnInit(): void {
@@ -84,10 +83,10 @@ export class UpdateUserComponent extends BaseFormComponent implements OnInit {
     // Określenie czy jest to edycja, czy dodanie nowego użytkownika.
     this.route.params.subscribe((params: Params) => {
       if (params['id'] != null) {
-        this.title = 'user.editTitle';
+        this.title.set('user.editTitle');
         this.getUser(+params['id']);
       } else {
-        this.title = 'user.addTitle';
+        this.title.set('user.addTitle');
       }
     });
   }
@@ -108,7 +107,7 @@ export class UpdateUserComponent extends BaseFormComponent implements OnInit {
     // Jeśli tak to następuje sprawdzenie, czy zalogowany użytkownik może edytować takie konto.
     if (this.isSuperAdmin(user.roles)) {
       // Jeśli nie ma uprawnień, to blokujemy dostęp.
-      if (!this.canEditSuperAdminAccount) {
+      if (!this.canEditSuperAdminAccount()) {
         this.translatedToastService.error('global.errors.noPermissions');
         this.router.navigate(['/user']);
       }
@@ -119,22 +118,23 @@ export class UpdateUserComponent extends BaseFormComponent implements OnInit {
 
   // Pobranie użytkownika, jeśli to jest edycja.
   getUser(id: number) {
-    this.isLoadingUser = true;
+    this.isLoadingUser.set(true);
     this.userService
       .getById(id)
       .pipe(
         finalize(() => {
-          this.isLoadingUser = false;
+          this.isLoadingUser.set(false);
         })
       )
       .subscribe({
         next: (response) => {
           // Tworzy nowy obiekt.
-          this.user = new User(response.body);
+          this.user.set(new User(response.body));
+          const currentUser = this.user();
           // Dodatkowe sprawdzenie, czy nie jest on 'null'.
-          if (this.user !== null) {
+          if (currentUser !== null) {
             // Aktualizacja formularza.
-            this.updateForm(this.user);
+            this.updateForm(currentUser);
             // Zaznaczenie aktywnych ról.
             this.prepareRolesToShow();
           }
@@ -147,18 +147,18 @@ export class UpdateUserComponent extends BaseFormComponent implements OnInit {
 
   // Pobranie wszystkich roli, jakie można przypisać użytkownikowi.
   getRole(): void {
-    this.isLoadingRole = true;
+    this.isLoadingRole.set(true);
     this.roleService
       .getAll()
       .pipe(
         finalize(() => {
-          this.isLoadingRole = false;
+          this.isLoadingRole.set(false);
         })
       )
       .subscribe({
         next: (response) => {
           if (response.body) {
-            this.roles = response.body;
+            this.roles.set(response.body);
           }
         },
         error: () => {
@@ -181,7 +181,7 @@ export class UpdateUserComponent extends BaseFormComponent implements OnInit {
     validateAllFormFields(this.form);
 
     // Sprawdzenie, czy edytowany/nowy użytkownik ma wybraną rolę.
-    const isSelectedExists = this.roles.some((role) => role.isSelected === true);
+    const isSelectedExists = this.roles().some((role) => role.isSelected === true);
     if (!isSelectedExists) {
       this.translatedSwalService.show(
         {
@@ -195,14 +195,14 @@ export class UpdateUserComponent extends BaseFormComponent implements OnInit {
     }
 
     const dataToSave: User = new User({
-      id: this.user != null ? this.user.id : null,
+      id: this.user() != null ? this.user()?.id : null,
       name: this.form.get(['name'])!.value,
       email: this.form.get(['email'])!.value,
       confirmed: this.form.get(['confirmed'])!.value,
       roles: this.prepareRolesToSave(),
     });
 
-    if (this.user == null) {
+    if (this.user() == null) {
       this.create(dataToSave);
     } else {
       this.update(dataToSave);
@@ -210,12 +210,12 @@ export class UpdateUserComponent extends BaseFormComponent implements OnInit {
   }
 
   private create(user: User): void {
-    this.isSaving = true;
+    this.isSaving.set(true);
     this.userService
       .create(user)
       .pipe(
         finalize(() => {
-          this.isSaving = false;
+          this.isSaving.set(false);
         })
       )
       .subscribe({
@@ -233,12 +233,12 @@ export class UpdateUserComponent extends BaseFormComponent implements OnInit {
   }
 
   private update(user: User): void {
-    this.isSaving = true;
+    this.isSaving.set(true);
     this.userService
       .update(user)
       .pipe(
         finalize(() => {
-          this.isSaving = false;
+          this.isSaving.set(false);
         })
       )
       .subscribe({
@@ -257,17 +257,17 @@ export class UpdateUserComponent extends BaseFormComponent implements OnInit {
 
   // Zaznaczenie przypisanych aktualnie ról.
   private prepareRolesToShow() {
-    this.roles.forEach((role, index) => {
-      this.roles[index].isSelected =
+    this.roles().forEach((role, index) => {
+      this.roles()[index].isSelected =
         this.user !== null &&
         role.name !== null &&
-        this.user.hasRole(role.name);
+        this.user()?.hasRole(role.name);
     });
   }
 
   // Przygotowanie ról do zapisu
   private prepareRolesToSave(): string[] {
-    const selectedRoles: any[] = this.roles
+    const selectedRoles: any[] = this.roles()
       .filter((role) => role.name !== null && role.isSelected)
       .map((role) => role.name);
     return selectedRoles;

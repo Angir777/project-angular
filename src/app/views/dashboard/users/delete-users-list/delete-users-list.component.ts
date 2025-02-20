@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectorRef, Component } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, signal } from '@angular/core';
 import { faArrowLeftLong, faSpinner, faTrashArrowUp } from '@fortawesome/free-solid-svg-icons';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { BaseTableWithCriteriaComponent } from '../../../../components/base-table-with-criteria.component';
@@ -19,41 +19,40 @@ import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgxPermissionsModule } from 'ngx-permissions';
 import { ButtonModule } from 'primeng/button';
-import { InputSwitchModule } from 'primeng/inputswitch';
 import { InputTextModule } from 'primeng/inputtext';
 import { MatTableLoaderComponent } from '../../../../components/mat-table-loader/mat-table-loader.component';
+import { ToggleSwitchModule } from 'primeng/toggleswitch';
 
 @Component({
-  selector: 'app-delete-users-list',
-  standalone: true,
-  imports: [
-    ButtonModule,
-    CommonModule,
-    FontAwesomeModule,
-    FormsModule,
-    InputSwitchModule,
-    InputTextModule,
-    MatPaginatorModule,
-    MatSortModule,
-    MatTableLoaderComponent,
-    MatTableModule,
-    MatTooltipModule,
-    NgxPermissionsModule,
-    ReactiveFormsModule,
-    RouterModule,
-    TranslateModule
-  ],
-  templateUrl: './delete-users-list.component.html',
-  styleUrl: './delete-users-list.component.scss'
+    selector: 'app-delete-users-list',
+    imports: [
+        ButtonModule,
+        CommonModule,
+        FontAwesomeModule,
+        FormsModule,
+        ToggleSwitchModule,
+        InputTextModule,
+        MatPaginatorModule,
+        MatSortModule,
+        MatTableLoaderComponent,
+        MatTableModule,
+        MatTooltipModule,
+        NgxPermissionsModule,
+        ReactiveFormsModule,
+        RouterModule,
+        TranslateModule
+    ],
+    templateUrl: './delete-users-list.component.html',
+    styleUrl: './delete-users-list.component.scss'
 })
 export class DeleteUsersListComponent  extends BaseTableWithCriteriaComponent implements AfterViewInit {
   // font-awesome icons
-  faSpinner = faSpinner;
-  faArrowLeftLong = faArrowLeftLong;
-  faTrashArrowUp = faTrashArrowUp;
+  readonly faSpinner = faSpinner;
+  readonly faArrowLeftLong = faArrowLeftLong;
+  readonly faTrashArrowUp = faTrashArrowUp;
 
   override displayedColumns: string[] = ['actions', 'id', 'name', 'email', 'deletedAt'];
-  data: User[] = [];
+  data = signal<User[]>([]);
 
   constructor(
     private userService: UserService,
@@ -96,7 +95,7 @@ export class DeleteUsersListComponent  extends BaseTableWithCriteriaComponent im
           return of([]);
         })
       )
-      .subscribe((data) => (this.data = data));
+      .subscribe((data) => (this.data.set(data)));
   }
 
   // Przywrócenie wybranego użytkownika
