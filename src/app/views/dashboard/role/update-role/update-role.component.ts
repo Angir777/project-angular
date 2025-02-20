@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { BaseFormComponent } from '../../../../components/base-component';
 import { Role } from '../../../../models/role/role';
 import { PermissionGroup } from '../../../../models/auth/permission-group';
@@ -48,16 +48,16 @@ import { ToggleSwitchModule } from 'primeng/toggleswitch';
     styleUrl: './update-role.component.scss'
 })
 export class UpdateRoleComponent extends BaseFormComponent implements OnInit {
-  faSpinner = faSpinner;
-  faSave = faSave;
+  readonly faSpinner = faSpinner;
+  readonly faSave = faSave;
   
-  title = '';
+  title = signal('');
 
-  isLoadingRole = false;
-  role: Role | null = null;
+  isLoadingRole = signal(false);
+  role = signal<Role | null>(null);
 
-  isLoadingPermissionGroups = false;
-  permissionGroups: PermissionGroup[] = [];
+  isLoadingPermissionGroups = signal(false);
+  permissionGroups = signal<PermissionGroup[]>([]);
 
   constructor(
     private roleService: RoleService,
@@ -76,10 +76,10 @@ export class UpdateRoleComponent extends BaseFormComponent implements OnInit {
     // Określenie czy jest to edycja, czy dodanie nowej roli.
     this.route.params.subscribe((params: Params) => {
       if (params['id'] != null) {
-        this.title = 'role.editTitle';
+        this.title.set('role.editTitle');
         this.getRole(+params['id']);
       } else {
-        this.title = 'role.addTitle';
+        this.title.set('role.addTitle');
         this.getPermissionGroups();
       }
     });
@@ -96,12 +96,12 @@ export class UpdateRoleComponent extends BaseFormComponent implements OnInit {
 
   // Pobranie uprawnień jakie można nadać
   getPermissionGroups(): void {
-    this.isLoadingPermissionGroups = true;
+    this.isLoadingPermissionGroups.set(true);
     this.roleService
       .getPermissions()
       .pipe(
         finalize(() => {
-          this.isLoadingPermissionGroups = false;
+          this.isLoadingPermissionGroups.set(false);
         })
       )
       .subscribe({
@@ -118,22 +118,23 @@ export class UpdateRoleComponent extends BaseFormComponent implements OnInit {
 
   // Pobranie roli, jeśli to jest edycja.
   getRole(id: number) {
-    this.isLoadingRole = true;
+    this.isLoadingRole.set(true);
     this.roleService
       .getById(id)
       .pipe(
         finalize(() => {
-          this.isLoadingRole = false;
+          this.isLoadingRole.set(false);
         })
       )
       .subscribe({
         next: (response) => {
           // Tworzy nowy obiekt.
-          this.role = new Role(response.body);
+          this.role.set(new Role(response.body));
+          const currentRole = this.role();
           // Dodatkowe sprawdzenie, czy nie jest on 'null'.
-          if (this.role !== null) {
+          if (currentRole !== null) {
             // Aktualizacja formularza.
-            this.updateForm(this.role);
+            this.updateForm(currentRole);
             this.getPermissionGroups();
           }
           
@@ -162,7 +163,7 @@ export class UpdateRoleComponent extends BaseFormComponent implements OnInit {
     validateAllFormFields(this.form);
 
     const dataToSave: Role = new Role({
-      id: this.role != null ? this.role.id : null,
+      id: this.role() != null ? this.role()?.id : null,
       name: this.form.get(['name'])!.value,
       guardName: this.form.get(['guardName'])!.value,
       permissionIds: this.preparePermissionsToSave(),
@@ -181,7 +182,7 @@ export class UpdateRoleComponent extends BaseFormComponent implements OnInit {
       return;
     }
 
-    if (this.role == null) {
+    if (this.role() == null) {
       this.create(dataToSave);
     } else {
       this.update(dataToSave);
@@ -189,12 +190,12 @@ export class UpdateRoleComponent extends BaseFormComponent implements OnInit {
   }
 
   private create(role: Role): void {
-    this.isSaving = true;
+    this.isSaving.set(true);
     this.roleService
       .create(role)
       .pipe(
         finalize(() => {
-          this.isSaving = false;
+          this.isSaving.set(false);
         })
       )
       .subscribe({
@@ -212,12 +213,12 @@ export class UpdateRoleComponent extends BaseFormComponent implements OnInit {
   }
 
   private update(role: Role): void {
-    this.isSaving = true;
+    this.isSaving.set(true);
     this.roleService
       .update(role)
       .pipe(
         finalize(() => {
-          this.isSaving = false;
+          this.isSaving.set(false);
         })
       )
       .subscribe({
@@ -236,14 +237,14 @@ export class UpdateRoleComponent extends BaseFormComponent implements OnInit {
 
   private preparePermissionsToShow(permissions: Permission[]) {
     permissions.forEach((permission, index) => {
-      permissions[index].isSelected = this.role !== null && this.role.hasPermission(permission);
+      permissions[index].isSelected = this.role !== null && this.role()?.hasPermission(permission);
     });
-    this.permissionGroups = this.permissionService.groupPermissions(permissions);
+    this.permissionGroups.set(this.permissionService.groupPermissions(permissions));
   }
 
   private preparePermissionsToSave(): number[] {
     let selectedPermissions: number[] = [];
-    this.permissionGroups.forEach((permissionGroup: PermissionGroup) => {
+    this.permissionGroups().forEach((permissionGroup: PermissionGroup) => {
       const selectedPermissionInGroup: number[] = permissionGroup.permissions
         .filter((permission: Permission) => permission.isSelected) // Filtracja tylko zaznaczonych
         .map((permission: Permission) => permission.id) // Mapowanie na id

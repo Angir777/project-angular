@@ -92,6 +92,14 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   } 
 }
 
+.p-tabpanels {
+  background: transparent!important;
+  color: var(--surface-900)!important;
+}
+.p-tablist-tab-list {
+  background: transparent!important;
+}
+
 .m-button-success {
   background: #22c55e!important;
   border: 1px solid #22c55e!important;

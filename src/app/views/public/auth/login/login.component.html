@@ -67,16 +67,16 @@
         </div>
       </div>
 
-      <button pButton pRipple class="m-button-success w-100 d-flex justify-content-center rounded mt-3" [disabled]="isLoading || !form.valid">
-        @if (!isLoading) {
+      <button pButton pRipple class="m-button-success w-100 d-flex justify-content-center rounded mt-3" [disabled]="isLoading() || !form.valid">
+        @if (!isLoading()) {
           {{ 'login.button.login' | translate }}
         }
-        @if (isLoading) {
-          <fa-icon [icon]="faSpinner" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        @if (isLoading()) {
+          <fa-icon [icon]="faSpinner" [animation]="isLoading() ? 'spin' : undefined"></fa-icon>
         }
       </button>
 
-      @if (canRegistration) {
+      @if (canRegistration()) {
         <button
           type="button"
           pButton
@@ -89,6 +89,6 @@
     </form>
   </div>
   <div class="col-12 text-center text-black-50 mt-2">
-    <small>{{ 'appVersion' | translate }}: v{{ appVersion }}</small>
+    <small>{{ 'appVersion' | translate }}: v{{ appVersion() }}</small>
   </div>
 </div>

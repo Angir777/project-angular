@@ -3,13 +3,14 @@ import { ServerSideFormValidationInterface } from '../interfaces/server-side-for
 import { getServerErrors, getValidationClass, getValidationStatus, isFormControlInvalid } from '../utils/form.utils';
 import * as _ from 'lodash';
 import { ServerErrors } from '../interfaces/server-errors.interface';
+import { signal } from '@angular/core';
 
 /**
  * Bazowa klasa komponentu.
  */
 export abstract class BaseComponent {
-  isLoading: boolean = false;
-  isSaving: boolean = false;
+  isLoading = signal(false);
+  isSaving = signal(false);
 
   // Przeniesienie do poprzedniego widoku/routingu.
   previousState(): void {

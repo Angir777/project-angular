@@ -86,12 +86,12 @@
                   }
                 </div>
 
-                <button pButton pRipple class="m-button-success d-flex justify-content-center rounded mt-4" [disabled]="isLoading || !form.valid">
-                  @if (!isLoading) {
+                <button pButton pRipple class="m-button-success d-flex justify-content-center rounded mt-4" [disabled]="isLoading() || !form.valid">
+                  @if (!isLoading()) {
                     {{ 'register.button.register' | translate }}
                   }
-                  @if (isLoading) {
-                    <fa-icon [icon]="faSpinner" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+                  @if (isLoading()) {
+                    <fa-icon [icon]="faSpinner" [animation]="isLoading() ? 'spin' : undefined"></fa-icon>
                   }
                 </button>
               </form>
@@ -107,13 +107,13 @@
                 pButton
                 pRipple
                 class="p-button-danger d-flex justify-content-center rounded mt-4"
-                [disabled]="isDeleting"
+                [disabled]="isDeleting()"
                 (click)="deleteAccount()">
-                @if (!isDeleting) {
+                @if (!isDeleting()) {
                   {{ 'register.button.register' | translate }}
                 }
-                @if (isDeleting) {
-                  <fa-icon [icon]="faSpinner" [animation]="isDeleting ? 'spin' : undefined"></fa-icon>
+                @if (isDeleting()) {
+                  <fa-icon [icon]="faSpinner" [animation]="isDeleting() ? 'spin' : undefined"></fa-icon>
                 }
               </button>
             </div>

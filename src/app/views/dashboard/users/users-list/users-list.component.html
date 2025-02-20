@@ -32,7 +32,7 @@
               <div class="mat-table-custom-table-container">
                 <table
                   mat-table
-                  [dataSource]="data"
+                  [dataSource]="data()"
                   class="mat-table-custom-table mat-custom-bg"
                   matSort
                   matSortActive="id"
@@ -156,7 +156,7 @@
                           </small>
                         </div>
                         <ng-select appendTo="body" [multiple]="true" [(ngModel)]="criteria['filter[roles]']" (change)="onFilterSelect()" [notFoundText]="'ngSelect.nothingFound' | translate">
-                          @for (role of roles; track role) {
+                          @for (role of roles(); track role) {
                             <ng-option [value]="role.name">
                               {{ 'user.roles.' + role.name | translate }}
                             </ng-option>

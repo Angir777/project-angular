@@ -14,7 +14,7 @@ import { TranslateService } from '@ngx-translate/core';
  */
 @Component({
     template: '',
-    standalone: false
+    standalone: true
 })
 export abstract class BaseTableWithCriteriaComponent extends BaseComponent implements AfterViewInit, OnInit, OnDestroy {
   @ViewChild(MatPaginator) paginator!: MatPaginator;

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FormControlErrorsComponent } from '../../../components/form-control-errors/form-control-errors.component';
 import { AbstractControl, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
@@ -40,10 +40,10 @@ import { TabsModule } from 'primeng/tabs';
     styleUrl: './settings.component.scss'
 })
 export class SettingsComponent extends BaseFormComponent {
-  faKey = faKey;
-  faSpinner = faSpinner;
+  readonly faKey = faKey;
+  readonly faSpinner = faSpinner;
 
-  isDeleting = false;
+  isDeleting = signal(false);
 
   constructor(
     private settingService: SettingService,
@@ -82,7 +82,7 @@ export class SettingsComponent extends BaseFormComponent {
 
   // Zmiana hasła przez użytkownika
   changePassword() {
-    this.isLoading = true;
+    this.isLoading.set(true);
 
     const dataToSave: ChangePasswordInterface = {
       old_password: this.form.get('oldPassword')?.value,
@@ -94,7 +94,7 @@ export class SettingsComponent extends BaseFormComponent {
       .changePassword(dataToSave)
       .pipe(
         finalize(() => {
-          this.isLoading = false;
+          this.isLoading.set(false);
         })
       )
       .subscribe({
@@ -134,13 +134,13 @@ export class SettingsComponent extends BaseFormComponent {
     );
 
     if (result.isConfirmed) {
-      this.isDeleting = true;
+      this.isDeleting.set(true);
 
       this.settingService
         .deleteAccount()
         .pipe(
           finalize(() => {
-            this.isDeleting = false;
+            this.isDeleting.set(false);
           })
         )
         .subscribe({

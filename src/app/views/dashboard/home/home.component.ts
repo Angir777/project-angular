@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { LoggedUserService } from '../../../services/logged-user/logged-user.service';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -9,9 +9,9 @@ import { TranslateModule } from '@ngx-translate/core';
     styleUrl: './home.component.scss'
 })
 export class HomeComponent {
-  userName!: string | null | undefined;
+  userName = signal<string | null | undefined>(null);
 
   constructor(private loggedUserService: LoggedUserService) {
-    this.userName = loggedUserService.get()?.name;
+    this.userName.set(loggedUserService.get()?.name);
   }
 }

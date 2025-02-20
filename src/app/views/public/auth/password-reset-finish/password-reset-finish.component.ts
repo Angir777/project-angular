@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { AuthService } from '../../../../services/auth/auth.service';
 import { LoggedUserService } from '../../../../services/logged-user/logged-user.service';
 import { ActivatedRoute, Params, Router, RouterModule } from '@angular/router';
@@ -39,11 +39,11 @@ import { InputIconModule } from 'primeng/inputicon';
     styleUrl: './password-reset-finish.component.scss'
 })
 export class PasswordResetFinishComponent extends BaseFormComponent implements OnInit {
-  faUser = faUser;
-  faKey = faKey;
-  faSpinner = faSpinner;
+  readonly faUser = faUser;
+  readonly faKey = faKey;
+  readonly faSpinner = faSpinner;
 
-  code!: string;
+  code = signal('');
 
   constructor(
     private authService: AuthService,
@@ -88,7 +88,7 @@ export class PasswordResetFinishComponent extends BaseFormComponent implements O
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
       if (params['code'] != null) {
-        this.code = params['code'];
+        this.code.set(params['code']);
       } else {
         this.router.navigate(['login']);
       }
@@ -96,20 +96,20 @@ export class PasswordResetFinishComponent extends BaseFormComponent implements O
   }
 
   finishResetPassword() {
-    this.isLoading = true;
+    this.isLoading.set(true);
 
     const dataToSave: FinishResetPasswordInterface = {
       email: this.form.get('email')?.value,
       password: this.form.get('password')?.value,
       password_confirmation: this.form.get('passwordConfirmation')?.value,
-      token: this.code,
+      token: this.code(),
     };
 
     this.authService
       .resetPassword(dataToSave)
       .pipe(
         finalize(() => {
-          this.isLoading = false;
+          this.isLoading.set(false);
         })
       )
       .subscribe({

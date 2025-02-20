@@ -42,10 +42,10 @@ import { InputIconModule } from 'primeng/inputicon';
     styleUrl: './register.component.scss'
 })
 export class RegisterComponent extends BaseFormComponent {
-  faSignature = faSignature;
-  faUser = faUser;
-  faKey = faKey;
-  faSpinner = faSpinner;
+  readonly faSignature = faSignature;
+  readonly faUser = faUser;
+  readonly faKey = faKey;
+  readonly faSpinner = faSpinner;
 
   constructor(
     private authService: AuthService,
@@ -90,7 +90,7 @@ export class RegisterComponent extends BaseFormComponent {
   }
 
   register() {
-    this.isLoading = true;
+    this.isLoading.set(true);
 
     const dataToSave: RegisterInterface = {
       name: this.form.get('name')?.value,
@@ -104,7 +104,7 @@ export class RegisterComponent extends BaseFormComponent {
       .register(dataToSave)
       .pipe(
         finalize(() => {
-          this.isLoading = false;
+          this.isLoading.set(false);
         })
       )
       .subscribe({

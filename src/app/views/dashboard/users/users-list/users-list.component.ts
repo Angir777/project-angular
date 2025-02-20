@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectorRef, Component } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, signal } from '@angular/core';
 import { User } from '../../../../models/user/user';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -12,7 +12,6 @@ import { faSpinner, faPlusCircle, faSortDown, faHistory, faEdit, faTrash } from 
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { NgxPermissionsModule } from 'ngx-permissions';
 import { ButtonModule } from 'primeng/button';
-import { InputSwitchModule } from 'primeng/inputswitch';
 import { InputTextModule } from 'primeng/inputtext';
 import { BaseTableWithCriteriaComponent } from '../../../../components/base-table-with-criteria.component';
 import { MatTableLoaderComponent } from '../../../../components/mat-table-loader/mat-table-loader.component';
@@ -54,18 +53,18 @@ import { ToggleSwitchModule } from 'primeng/toggleswitch';
 })
 export class UsersListComponent extends BaseTableWithCriteriaComponent implements AfterViewInit {
   // font-awesome icons
-  faSpinner = faSpinner;
-  faPlusCircle = faPlusCircle;
-  faSortDown = faSortDown;
-  faHistory = faHistory;
-  faEdit = faEdit;
-  faTrash = faTrash;
+  readonly faSpinner = faSpinner;
+  readonly faPlusCircle = faPlusCircle;
+  readonly faSortDown = faSortDown;
+  readonly faHistory = faHistory;
+  readonly faEdit = faEdit;
+  readonly faTrash = faTrash;
 
   override displayedColumns: string[] = ['actions', 'id', 'name', 'email', 'roles', 'confirmed'];
-  data: User[] = [];
+  data = signal<User[]>([]);
 
-  isLoadingRole = false;
-  roles: Role[] = [];
+  isLoadingRole = signal(false);
+  roles = signal<Role[]>([]);
 
   // Aktualnie zalogowany użytkownik
   get user(): AuthUser {
@@ -117,24 +116,23 @@ export class UsersListComponent extends BaseTableWithCriteriaComponent implement
           return of([]);
         })
       )
-      .subscribe((data) => (this.data = data));
+      .subscribe((data) => (this.data.set(data)));
   }
 
   // Pobranie wszystkich roli, jakie można przypisać użytkownikowi.
   getRole(): void {
-    this.isLoadingRole = true;
+    this.isLoadingRole.set(true);
     this.roleService
       .getAll()
       .pipe(
         finalize(() => {
-          this.isLoadingRole = false;
+          this.isLoadingRole.set(false);
         })
       )
       .subscribe({
         next: (response) => {
           if (response.body) {
-            this.roles = response.body;
-            console.log(this.roles);
+            this.roles.set(response.body);
           }
         },
         error: () => {

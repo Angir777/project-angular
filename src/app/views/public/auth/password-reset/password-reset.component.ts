@@ -38,8 +38,8 @@ import { InputIconModule } from 'primeng/inputicon';
     styleUrl: './password-reset.component.scss'
 })
 export class PasswordResetComponent extends BaseFormComponent {
-  faUser = faUser;
-  faSpinner = faSpinner;
+  readonly faUser = faUser;
+  readonly faSpinner = faSpinner;
 
   constructor(
     private authService: AuthService,
@@ -62,12 +62,12 @@ export class PasswordResetComponent extends BaseFormComponent {
   }
 
   passwordReset() {
-    this.isLoading = true;
+    this.isLoading.set(true);
     this.authService
       .sendResetPasswordEmail(this.form.value)
       .pipe(
         finalize(() => {
-          this.isLoading = false;
+          this.isLoading.set(false);
         })
       )
       .subscribe({
